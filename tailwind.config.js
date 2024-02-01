@@ -1,27 +1,91 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-    colors: {
-      'transparent': 'transparent',
-      'currentColor': 'currentColor',
-      'primary': '#2c74e2',
-      'green': '#618449',
-      'yellow': '#EDD92A',
-      'red':'#FF5252',
-      'primary-txt': '#233145',
-      'secondary-txt': '#8E98A7',
-      'gray': '#DFE5F1',
-      'white': '#FFFFFF'
 
-    },
-    fontFamily: {
-      pop: [ 'Poppins', 'sans-serif' ]
-    }
-  },
-  plugins: [],
-}
+export default {
+	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+	theme: {
+		extend: {
+			colors: {
+				// Principal colors
+        'primary': '#2c74e2',
+        'green': '#618449',
+        'yellow': '#EDD92A',
+        'red':'#FF5252',
+        'primary-txt': '#233145',
+        'secondary-txt': '#8E98A7',
+        'gray': '#DFE5F1',
+        'white': '#FFFFFF',
+        // Optional colors
+				'h-primary-0': '#000',
+				'h-primary-10': '#061D31',
+				'h-primary-20': '#0C3961',
+				'h-primary-30': '#115692',
+				'h-primary-40': '#1772C2',
+				'h-primary-50': '#1D8FF3',
+				'h-primary-60': '#4AA5F5',
+				'h-primary-70': '#77BCF8',
+				'h-primary-80': '#A5D2FA',
+				'h-primary-90': '#D2E9FD',
+				'h-primary-95': '#F4F9FE',
+				'h-primary-98': '#FBFDFF',
+				'h-primary-100': '#fff',
+
+				'h-neutral-0': '#000',
+				'h-neutral-10': '#1A1A1A',
+				'h-neutral-20': '#333333',
+				'h-neutral-30': '#4D4D4D',
+				'h-neutral-40': '#666666',
+				'h-neutral-50': '#808080',
+				'h-neutral-60': '#999999',
+				'h-neutral-70': '#B3B3B3',
+				'h-neutral-80': '#CCCCCC',
+				'h-neutral-90': '#F4F4F4',
+				'h-neutral-94': '#F7F7F7',
+				'h-neutral-95': '#F9F9F9',
+				'h-neutral-96': '#FAFAFA',
+				'h-neutral-98': '#FDFDFD',
+				'h-neutral-100': '#fff',
+
+				'h-text-heading': '#061D31',
+				'h-text-dark': '#1A1A1A',
+				'h-text-medium': '#4D4D4D',
+				'h-text-light': '#B3B3B3',
+				'h-text-white': '#fff',
+
+				'h-success-10': '#121B09',
+				'h-success-30': '#38501F',
+				'h-success-50': '#5E8635',
+				'h-success-70': '#9DB682',
+				'h-success-90': '#DEE7D5',
+				'h-success-95': '#F6F9F4',
+
+				'h-warning-10': '#2D230D',
+				'h-warning-30': '#87692C',
+				'h-warning-50': '#E1AE4B',
+				'h-warning-70': '#EDCE8C',
+				'h-warning-90': '#F9EED8',
+				'h-warning-95': '#FEFBF6',
+
+				'h-information-10': '#101C24',
+				'h-information-30': '#33546C',
+				'h-information-50': '#568BB3',
+				'h-information-70': '#97BAD1',
+				'h-information-90': '#DCE7F0',
+				'h-information-95': '#F7F9FB',
+
+				'h-error-10': '#260B07',
+				'h-error-30': '#752517',
+				'h-error-50': '#C23F28',
+				'h-error-70': '#D88778',
+				'h-error-90': '#F1D6D2',
+				'h-error-95': '#FCF5F4',
+			},
+			animation: {
+				blink: 'blink 1.4s infinite both',
+			},
+			zIndex: {
+				1600: '1600',
+			},
+		},
+	},
+	plugins: [],
+};
