@@ -1,33 +1,25 @@
 import { getTextColor, getTextSize, getTextWeight } from "../../shared/utils/styles.utils";
-
 interface Props {
 	children: React.ReactNode;
 	color?:
-		| 'dark'
-		| 'medium'
-		| 'light'
-		| 'white'
+		| 'info'
+		| 'success'
+		| 'yellow'
+		| 'error'
 		| 'primary'
-		| 'ultraBlueLight'
-		| 'green'
-		| 'red'
+		| 'secondary'
 		| 'gray'
-		| 'greenSuccess'
-		| 'blueInformation';
+		| 'white'
 	size?:
-		| 'xxs'
-		| 'xs'
-		| 's'
-		| 'm'
-		| 'l'
-		| 'xl'
-		| 'subtitle'
-		| 'label'
-		| 'body-1'
-		| 'body-2'
-		| 'caption'
-		| 'mini-1'
-		| 'mini-2';
+		| 'mini'
+		| 'mini-2'
+		| 'extraSmall'
+		| 'small'
+		| 'medium'
+		| 'large'
+		| 'extraLarge'
+		| 'extraextraLarge'
+		| 'mostLarge';
 	weight?: 'light' | 'regular' | 'medium' | 'bold';
 	sx?: string;
 	beforeIcon?: React.ReactNode;
@@ -35,8 +27,8 @@ interface Props {
 
 const Text = ({
 	children,
-	color = 'dark',
-	size = 'm',
+	color = 'primary',
+	size = 'medium',
 	sx,
 	weight = 'regular',
 	beforeIcon,

@@ -1,16 +1,13 @@
 const getTextColor = (textColor: string) => {
 	const colors: Record<string, string> = {
-		white: 'text-h-primary-100',
-		dark: 'text-h-text-dark',
-		medium: 'text-h-text-medium',
-		light: 'text-h-text-light',
-		primary: 'text-h-primary-50',
-		ultraBlueLight: 'text-h-primary-70',
-		red: 'text-red',
-		green: 'text-h-success-50',
-		gray: 'text-h-neutral-70',
-		greenSuccess: 'text-h-success-50',
-		blueInformation: 'text-h-information-50',
+		info: 'text-h-info',
+		success: 'text-h-success',
+		yellow: 'text-h-yellow',
+		error: 'text-h-error',
+		primary: 'text-h-primary',
+		secondary: 'text-h-secondary',
+		gray: 'text-h-gray',
+		white: 'text-h-white',
 	};
 
 	return colors[textColor] || 'text-title';
@@ -18,27 +15,26 @@ const getTextColor = (textColor: string) => {
 
 const getTextSize = (textSize: string) => {
 	switch (textSize) {
-		case 'xl':
-		case 'body-1':
-		case 'subtitle':
-			return 'text-xl leading-7';
-		case 'l':
-			return 'text-lg leading-[25px]';
-		case 'm':
-		case 'body-2':
-		case 'label':
-			return 'text-base leading-6';
-		case 's':
-		case 'caption':
-			return 'text-sm leading-[22px]';
-		case 'xs':
-		case 'mini-1':
-			return 'text-xs leading-5';
-		case 'xxs':
+		case 'mini':
+			return 'text-[11px]';
 		case 'mini-2':
-			return 'text-[10px] leading-5';
+			return 'text-[12px]';
+		case 'extraSmall':
+			return 'text-[13px]';
+		case 'small':
+			return 'text-sm';
+		case 'medium':
+			return 'text-base';
+		case 'large':
+			return 'text-lg';
+		case 'extra-large':
+			return 'text-xl';
+		case 'extra-extra-large':
+			return 'text-2xl';
+		case 'most-large':
+			return 'text-[28px]';
 		default:
-			return 'text-base leading-6';
+			return 'text-base';
 	}
 };
 
