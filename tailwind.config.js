@@ -14,6 +14,7 @@ export default {
 				'h-secondary': '#8E98A7',
 				'h-gray': '#DFE5F1',
 				'h-white': '#FFFFFF',
+				'h-gray-input': '#FAFAFA'
 			},
 			animation: {
 				blink: 'blink 1.4s infinite both',
