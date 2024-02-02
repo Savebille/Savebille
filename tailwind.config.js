@@ -6,14 +6,14 @@ export default {
 		extend: {
 			colors: {
 				// Principal colors
-        'primary': '#2c74e2',
-        'green': '#618449',
-        'yellow': '#EDD92A',
-        'red':'#FF5252',
-        'primary-txt': '#233145',
+        'primary': 		 '#2c74e2',
+        'green': 		 '#618449',
+        'yellow': 		 '#EDD92A',
+        'red':			 '#FF5252',
+        'primary-txt':   '#233145',
         'secondary-txt': '#8E98A7',
-        'gray': '#DFE5F1',
-        'white': '#FFFFFF',
+        'gray': 		 '#DFE5F1',
+        'white': 		 '#FFFFFF',
         // Optional colors
 				'h-primary-0': '#000',
 				'h-primary-10': '#061D31',
