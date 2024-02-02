@@ -8,11 +8,11 @@ const Login: React.FC = () => {
       {/* main container */}
       <div className='bg-h-white flex flex-row justify-between rounded-3xl shadow-lg w-[1438px] h-[954px]'>
         {/* form */}
-        <div className='w-[557px] h-[794px] mx-[130px] my-[80px] flex flex-col items-center'>
+        <div className='w-[557px] h-[794px] mx-[130px] my-[80px] flex flex-col items-center justify-between'>
           <div className='w-[289px] h-[200px] flex flex-col items-center justify-between'>
-            {/* imagen */}
-            <div className='w-[90px] h-[90px] overflow-hidden rounded-full'>
-              <img src='src/assets/img/AuthenticationBanner.jpg' />
+            {/* avatar */}
+            <div className='w-[90px] h-[90px] overflow-hidden rounded-full shadow-xl'>
+              <img src='src/assets/img/LoginAvatar.png' alt='user avatar' />
             </div>
 
             {/* textos */}
@@ -56,42 +56,68 @@ const Login: React.FC = () => {
           </div>
 
           {/* form */}
-          <div className='w-[556px] h-[194px] flex flex-col items-center mt-10'>
+          <div className='w-[556px] h-[194px] flex flex-col items-center mt-10 justify-between'>
             {/* input */}
             <form className='w-full h-[150px] flex flex-col justify-between'>
               <input
                 type='email'
                 name='user-email'
                 placeholder='Enter your email...'
-                className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] px-4 bg-h-white'
+                className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] px-4 bg-h-gray-input focus:outline-none'
               />
               <div className='relative'>
                 <input
                   type='password'
                   name='user-password'
                   placeholder='Enter your password...'
-                  className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] px-4 bg-h-white'
+                  className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] px-4 bg-h-gray-input  focus:outline-none'
                 />
-                <Eye className='absolute top-3 right-3' size={26}/>
+                <Eye
+                  className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary'
+                  size={24}
+                />
               </div>
             </form>
 
             {/* remember password */}
-            <div>
-              <label>
-                <input type='checkbox' />
+            <div className='w-full h-6 flex justify-between items-center'>
+              <label className='w-[150px] h-full flex items-center text-h-secondary text-base'>
+                <input type='checkbox' className='mr-3 checkbox-input' />
                 Remember me
               </label>
 
-              <Text>Forgot password?</Text>
+              <a href='#'>
+                <Text color='info' sx='underline' size='medium'>
+                  Forgot password?
+                </Text>
+              </a>
             </div>
+          </div>
+
+          {/* Button SignIn */}
+          <button className='w-[556px] h-[56px] rounded-xl bg-h-info flex justify-center items-center mt-20'>
+            <Text weight='medium' color='white' size='extraLarge'>
+              Sign in
+            </Text>
+          </button>
+
+          {/* Sign Up */}
+          <div className='w-[300px] h-[20px] flex justify-center items-center mt-10'>
+            <Text color='secondary' weight='regular' size='medium' sx='mr-1'>
+              Don't have an account yet?
+            </Text>
+            <a href='#'>
+              <Text color='primary' weight='medium' size='medium'>
+                Sign Up
+              </Text>
+            </a>
           </div>
         </div>
 
         {/* img */}
         <div className='w-[630px] h-[954px]'>
           <img
-            src='src/assets/img/AuthenticationBanner.jpg'
+            src='src/assets/img/LoginBanner.png'
             alt='Authentication Banner'
             className='rounded-r-3xl h-full'
           />
