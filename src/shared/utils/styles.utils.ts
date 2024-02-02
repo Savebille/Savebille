@@ -31,8 +31,10 @@ const getTextSize = (textSize: string) => {
 			return 'text-xl';
 		case 'extra-extra-large':
 			return 'text-2xl';
-		case 'most-large':
-			return 'text-[28px]';
+    case 'most-large':
+      return 'text-[28px]';
+    case 'title':
+      return 'text-[32px] leading-[38px]'
 		default:
 			return 'text-base';
 	}
