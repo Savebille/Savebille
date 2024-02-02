@@ -118,7 +118,7 @@ const Login: React.FC = () => {
         <div className='w-[630px] h-[954px]'>
           <img
             src='src/assets/img/LoginBanner.png'
-            alt='Authentication Banner'
+            alt='Login Banner'
             className='rounded-r-3xl h-full'
           />
         </div>
