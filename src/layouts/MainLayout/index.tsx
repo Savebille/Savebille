@@ -23,7 +23,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
 {/* TODO : NavBar */}
       <div className="flex flex-col w-full relative">
         <div
-          className={`flex bg-h-white shadow ${
+          className={`flex items-center justify-center bg-white shadow ${
             !isDesktop ? "sticky top-0 md:static" : "sticky top-0"
           } z-40`}> 
               <div className="flex justify-between items-center bg-h-white w-full z-[150] ml-52 p-9 h-[100px] ">
@@ -40,23 +40,22 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
                     </div>
                 </div>
           {/* Rightside */}
-                <div className="bg-h-white flex items-center justify-between p-5 w-[500px] ">
+                <div className="bg-h-white flex items-center justify-between p-5 w-[500px] h-[40px]">
                     <div className="bg-h-white flex items-center "> 
-                      <div className="bg-h-gray-input rounded-full h-[42px] w-[42px] flex items-center justify-center mr-4">
+                      <div className="bg-h-gray-input rounded-full h-[42px] w-[42px] flex items-center justify-center mr-10">
                       <Bell size={32}  />
                       </div>
                         <Image size={70} />
-                        <div className="flex flex-col ml-4">
-                      <Text
-                        size="large"
-                        weight="bold" >
-                          Martin Rubiano
-                      </Text>
-                      <Text >
-                          martin.savebille@gmail.com
-                      </Text>
-
-                      </div>
+                        <div className="flex flex-col ml-4 mt-2">
+                          <Text
+                            size="large"
+                            weight="bold" >
+                              Martin Rubiano
+                          </Text>
+                          <Text >
+                            martin.savebille@gmail.com
+                          </Text>
+                        </div>
                     </div>
                     
                 </div>

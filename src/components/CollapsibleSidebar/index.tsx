@@ -14,7 +14,6 @@ import { useLocation } from "react-router-dom";
 import Text from "../Text";
 import ROUTES from "../../shared/constants/routes";
 import Divider from "../Divider";
-
 interface SidebarItemProps {
   icon: JSX.Element;
   text: string;
@@ -42,77 +41,94 @@ const SidebarItem = ({
   };
 
   return (
-    <li
-      onClick={handleClick}
-      className={`
-        relative flex py-2 px-2 items-center justify-between my-1 cursor-pointer rounded-md
-        ${
-          active ? "bg-h-info text-white" : "hover:bg-[#DAEDFE] text-[#162D4C]"
-        }
+    <>
+      {active ? (
+        <li
+          onClick={handleClick}
+          className={`
+        flex py-2 px-4 items-center justify-between my-1 cursor-pointer rounded-md bg-h-info
     `}
-    >
-      <Text
-        size="small"
-        weight="regular"
-        sx="mr-2"
-        color={active ? "white" : "primary"}
-      >
-        {text}
-      </Text>
-      {icon}
-    </li>
+        >
+          <Text
+            size="small"
+            weight="medium"
+            sx="mr-2"
+            color={active ? "white" : "primary"}
+          >
+            {text}
+          </Text>
+          {icon}
+        </li>
+      ) : (
+        <li
+          onClick={handleClick}
+          className={`
+        relative flex py-2 px-2 items-center my-1 cursor-pointer rounded-md
+        ${active ? "bg-h-info text-white" : "hover:bg-h-blue-light"}
+    `}
+        >
+          {icon}
+          <Text
+            size="small"
+            weight="regular"
+            color={active ? "white" : "primary"}
+            sx="ml-3"
+          >
+            {text}
+          </Text>
+        </li>
+      )}
+    </>
   );
 };
+
+const options = [
+  {
+    label: "Home",
+    icon: <House size={16} color={"var(--h-secondary)"} />,
+    path: ROUTES.ROOT,
+  },
+  {
+    label: "Estadisticas",
+    icon: <ChartLine size={16} color="var(--h-secondary)" />,
+    path: "/stats",
+  },
+  {
+    label: "Tarjetas",
+    icon: <CreditCard size={16} color="var(--h-secondary)" />,
+    path: "/cards",
+  },
+  {
+    label: "Proximos pagos",
+    icon: <Coins size={16} color="var(--h-secondary)" />,
+    path: "/payments",
+  },
+  {
+    label: "Ajustes",
+    icon: <Gear size={16} color="var(--h-secondary)" />,
+    path: "/settings",
+  },
+  {
+    label: "Ayuda",
+    icon: <Info size={16} color="var(--h-secondary)" />,
+    path: "/help",
+  },
+  {
+    label: "Cerrar sesión",
+    icon: <SignOut size={16} color="var(--h-secondary)" />,
+    path: ROUTES.LOGIN,
+  },
+];
 
 const CollapsibleSidebar: React.FC = () => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState<string | null>(ROUTES.ROOT);
   const navigate = useNavigate();
 
-  const routes = [
-    {
-      label: "Home",
-      icon: <House size={16} color='var(--h-secondary)' />,
-      path: ROUTES.ROOT,
-    },
-    {
-      label: "Estadisticas",
-      icon: <ChartLine size={16} color='var(--h-secondary)' />,
-      path: '/stats',
-    },
-    {
-      label: "Tarjetas",
-      icon: <CreditCard size={16}  color='var(--h-secondary)'/>,
-      path: '/cards',
-    },
-    {
-      label: "Proximos pagos",
-      icon: <Coins size={16} color='var(--h-secondary)' />,
-      path: '/payments',
-    },
-  ];
-
-  const bottomRoutes = [
-    {
-      label: "Ajustes",
-      icon: <Gear size={16} />,
-      path: '/settings',
-    },
-    {
-      label: "Ayuda",
-      icon: <Info size={16} />,
-      path: '/help',
-    },
-    {
-      label: "Cerrar sesión",
-      icon: <SignOut size={16} />,
-      path: ROUTES.LOGIN,
-    },
-  ];
 
   const activeRouteIndex = useMemo(() => {
-    return routes.findIndex((route) => route.path === location.pathname);
-  }, [routes, location.pathname]);
+    return options.findIndex((route) => route.path === location.pathname);
+  }, [options, location.pathname]);
 
   useEffect(() => {
     setActiveItem(location.pathname);
@@ -129,10 +145,10 @@ const CollapsibleSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`h-full fixed top-0 left-0 z-[90] bg-white shadow-md w-52`}
+      className={`h-full fixed top-0 left-0 z-[90] bg-white border-r border-h-gray w-52`}
     >
       <nav className="flex flex-col h-full">
-        <div className="p-4 pb-2 flex items-center justify-center">
+        <div className="p-4 pb-2 flex items-center justify-center h-[70px] border-b border-h-gray">
           <button onClick={() => navigate(ROUTES.ROOT)}>
             <img
               src="https://cdn.iconscout.com/icon/premium/png-512-thumb/finance-1433977-1212011.png?f=webp&w=256"
@@ -143,28 +159,13 @@ const CollapsibleSidebar: React.FC = () => {
           </button>
         </div>
 
-        <div>
+        <div className="mt-1">
           <ul className="flex flex-col p-4">
-            {routes.map((route, index) => (
+            {options.map((route, index) => (
               <Link to={route.path} key={index}>
                 <SidebarItem
                   icon={React.cloneElement(route.icon, {
-                    weight: 'light',
-                  })}
-                  text={route.label}
-                  active={route.path === activeItem}
-                  onClick={() => handleItemClick(route.path)}
-                />
-              </Link>
-            ))}
-          </ul>
-          <Divider sx="mx-4" />
-          <ul className="flex flex-col p-4">
-            {bottomRoutes.map((route, index) => (
-              <Link to={route.path} key={index}>
-                <SidebarItem
-                  icon={React.cloneElement(route.icon, {
-                    weight: 'light',
+                    weight: "light",
                   })}
                   text={route.label}
                   active={route.path === activeItem}
