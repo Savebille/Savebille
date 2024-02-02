@@ -56,21 +56,23 @@ const Login: React.FC = () => {
           </div>
 
           {/* form */}
-          <div className='w-[556px] h-[194px] flex flex-col items-center'>
+          <div className='w-[556px] h-[194px] flex flex-col items-center mt-10'>
             {/* input */}
-            <form className='w-full h-[150px]'>
+            <form className='w-full h-[150px] flex flex-col justify-between'>
               <input
                 type='email'
                 name='user-email'
                 placeholder='Enter your email...'
+                className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] px-4 bg-h-white'
               />
-              <div>
+              <div className='relative'>
                 <input
                   type='password'
                   name='user-password'
                   placeholder='Enter your password...'
+                  className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] px-4 bg-h-white'
                 />
-                <Eye />
+                <Eye className='absolute top-3 right-3' size={26}/>
               </div>
             </form>
 
