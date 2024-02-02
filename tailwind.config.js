@@ -17,6 +17,7 @@ export default {
 				'h-secondary': '#8E98A7',
 				'h-gray': '#DFE5F1',
 				'h-white': '#FFFFFF',
+				'h-gray-input': '#FAFAFA',
 				'h-blue-light': '#F3F8FF',
 			},
 			animation: {
