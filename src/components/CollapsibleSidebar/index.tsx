@@ -47,15 +47,15 @@ const SidebarItem = ({
       className={`
         relative flex py-2 px-2 items-center justify-between my-1 cursor-pointer rounded-md
         ${
-          active ? "bg-primary text-white" : "hover:bg-[#DAEDFE] text-[#162D4C]"
+          active ? "bg-h-info text-white" : "hover:bg-[#DAEDFE] text-[#162D4C]"
         }
     `}
     >
       <Text
-        size="s"
+        size="small"
         weight="regular"
         sx="mr-2"
-        color={active ? "white" : "medium"}
+        color={active ? "white" : "primary"}
       >
         {text}
       </Text>
@@ -72,22 +72,22 @@ const CollapsibleSidebar: React.FC = () => {
   const routes = [
     {
       label: "Home",
-      icon: <House size={22} />,
+      icon: <House size={16} color='var(--h-secondary)' />,
       path: ROUTES.ROOT,
     },
     {
       label: "Estadisticas",
-      icon: <ChartLine size={22} />,
+      icon: <ChartLine size={16} color='var(--h-secondary)' />,
       path: '/stats',
     },
     {
       label: "Tarjetas",
-      icon: <CreditCard size={22} />,
+      icon: <CreditCard size={16}  color='var(--h-secondary)'/>,
       path: '/cards',
     },
     {
       label: "Proximos pagos",
-      icon: <Coins size={22} />,
+      icon: <Coins size={16} color='var(--h-secondary)' />,
       path: '/payments',
     },
   ];
@@ -95,17 +95,17 @@ const CollapsibleSidebar: React.FC = () => {
   const bottomRoutes = [
     {
       label: "Ajustes",
-      icon: <Gear size={22} />,
+      icon: <Gear size={16} />,
       path: '/settings',
     },
     {
       label: "Ayuda",
-      icon: <Info size={22} />,
+      icon: <Info size={16} />,
       path: '/help',
     },
     {
       label: "Cerrar sesión",
-      icon: <SignOut size={22} />,
+      icon: <SignOut size={16} />,
       path: ROUTES.LOGIN,
     },
   ];
@@ -149,7 +149,7 @@ const CollapsibleSidebar: React.FC = () => {
               <Link to={route.path} key={index}>
                 <SidebarItem
                   icon={React.cloneElement(route.icon, {
-                    weight: route.path === activeItem ? "fill" : "regular",
+                    weight: 'light',
                   })}
                   text={route.label}
                   active={route.path === activeItem}
@@ -164,7 +164,7 @@ const CollapsibleSidebar: React.FC = () => {
               <Link to={route.path} key={index}>
                 <SidebarItem
                   icon={React.cloneElement(route.icon, {
-                    weight: route.path === activeItem ? "fill" : "regular",
+                    weight: 'light',
                   })}
                   text={route.label}
                   active={route.path === activeItem}
