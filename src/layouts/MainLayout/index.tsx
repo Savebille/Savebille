@@ -21,11 +21,11 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       {/* TODO : NavBar */}
       <div className='flex flex-col w-full relative'>
         <div
-          className={`flex items-center justify-center bg-white shadow ${
+          className={`flex items-center justify-center bg-white  ${
             !isDesktop ? 'sticky top-0 md:static' : 'sticky top-0'
           } z-40`}
         >
-          <div className='flex justify-between items-center bg-h-white w-full z-[150] ml-52 p-9 h-[100px] '>
+          <div className='flex justify-between items-center  w-full z-[150] ml-60 p-9 h-[100px] border-b border-h-gray '>
             {/* Leftside */}
             <div className='bg-h-gray-input flex items-center justify-between p-2 w-[450px] rounded-md h-[42px]'>
               <div className='flex items-center justify-between h-[20px] w-[320px] gap-2'>
@@ -50,7 +50,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
             <div className='bg-h-white flex items-center justify-between w-auto h-[42px]'>
               {/* user-account */}
               <div className='flex items-center'>
-                <div className='bg-h-gray-input rounded-full h-[42px] w-[42px] flex items-center justify-center mr-8 border-[1px] border-h-gray'>
+                <div className='bg-h-gray-input rounded-full h-[42px] w-[42px] flex items-center justify-center mr-8 border-b  border-h-gray'>
                   <Bell size={20} />
                 </div>
 
