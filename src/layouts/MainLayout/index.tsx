@@ -20,7 +20,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
 
       <div className="flex flex-col w-full relative">
         <div
-          className={`flex items-center justify-center bg-white shadow ${
+          className={`flex items-center justify-center bg-white border-b border-h-gray h-[70px] ${
             !isDesktop ? "sticky top-0 md:static" : "sticky top-0"
           } z-40`}
         >

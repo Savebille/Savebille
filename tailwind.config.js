@@ -4,6 +4,9 @@ export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
+			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
+			},
 			colors: {
 				// Figma provided
 				'h-info': '#3183FF',
@@ -14,6 +17,7 @@ export default {
 				'h-secondary': '#8E98A7',
 				'h-gray': '#DFE5F1',
 				'h-white': '#FFFFFF',
+				'h-blue-light': '#F3F8FF',
 			},
 			animation: {
 				blink: 'blink 1.4s infinite both',

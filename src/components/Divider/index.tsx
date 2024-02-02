@@ -5,7 +5,7 @@ interface Props {
 }
 
 const Divider: React.FC<Props> = ({ sx }) => {
-	return <hr className={`border border-gray ${sx}`} />;
+	return <hr className={`border border-h-gray ${sx}`} />;
 };
 
 export default React.memo(Divider);
