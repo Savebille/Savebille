@@ -70,7 +70,7 @@ const Login: React.FC = () => {
                   type='password'
                   name='user-password'
                   placeholder='Enter your password...'
-                  className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] pl-4 pr-14 bg-h-gray-input  focus:outline-none'
+                  className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] pl-4 pr-12 bg-h-gray-input  focus:outline-none'
                 />
                 <Eye
                   className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary'
