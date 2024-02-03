@@ -5,109 +5,127 @@
 @tailwind utilities;
 
 :root {
-	font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
+  font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
-	color-scheme: light dark;
-	background-color: #FCFCFC;
+  color-scheme: light dark;
+  background-color: #fcfcfc;
 
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 
-	/* NEW COLORS */
-	--h-info: #3183FF;
-	--h-success: #61B449;
-	--h-yellow: #EDD92A;
-	--h-error: #FF5252;
-	--h-primary: #233145;
-	--h-secondary: #8E98A7;
-	--h-gray: #DFE5F1;
-	--h-white: #FFFFFF;
+  /* NEW COLORS */
+  --h-info: #3183ff;
+  --h-success: #61b449;
+  --h-yellow: #edd92a;
+  --h-error: #ff5252;
+  --h-primary: #233145;
+  --h-secondary: #8e98a7;
+  --h-gray: #dfe5f1;
+  --h-white: #ffffff;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 html,
 body,
 :root {
-	height: 100%;
+  height: 100%;
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	width: 100vw;
-	min-height: 100vh;
-	overflow-x: hidden;
-	background-color: #fbfcfd;
-	color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #fbfcfd;
+  color: #1a1a1a;
 }
 
 * {
-	font-family: 'Poppins', sans-serif;
-	box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
 .Mui-error {
-	color: var(--h-red-40) !important;
+  color: var(--h-red-40) !important;
 }
 
 .darktheme > .MuiInputBase-input {
-	color: white !important;
+  color: white !important;
 }
 
 .darktheme > .MuiOutlinedInput-notchedOutline {
-	border-color: rgba(255, 255, 255, 0.23) !important;
+  border-color: rgba(255, 255, 255, 0.23) !important;
 }
 
 .multiline .MuiInputBase-root {
-	background-color: #fff !important;
-	min-height: 31px !important;
-	padding: 12px;
-	height: fit-content !important;
-	border-radius: 8px 8px !important;
+  background-color: #fff !important;
+  min-height: 31px !important;
+  padding: 12px;
+  height: fit-content !important;
+  border-radius: 8px 8px !important;
 }
 
 .customInput .MuiOutlinedInput-input {
-	border-radius: 8px;
-	height: 14px;
+  border-radius: 8px;
+  height: 14px;
 }
 
 .customInput .MuiInputLabel-animated {
-	color: var(--h-light) !important;
-	top: -4px;
+  color: var(--h-light) !important;
+  top: -4px;
 }
 
 .customInput .MuiInputLabel-shrink {
-	color: var(--h-blue-40) !important;
-	top: 0px;
+  color: var(--h-blue-40) !important;
+  top: 0px;
 }
 
 .MuiAccordion-root::before {
-	display: none !important;
+  display: none !important;
 }
+
+.checkbox-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #DFE5F1;
+  border-radius: 4px;
+  background-color: #FAFAFA;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkbox-input:checked {
+  background-color: var(--h-success);
+}
+
 /* width */
 ::-webkit-scrollbar {
-	width: 10px;
+  width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-	background: #f1f1f1;
+  background: #f1f1f1;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	background: var(--h-gray-40);
-	border-radius: 40px;
+  background: var(--h-gray-40);
+  border-radius: 40px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	background: #555;
+  background: #555;
 }
