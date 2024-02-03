@@ -1,16 +1,16 @@
 const getTextColor = (textColor: string) => {
-	const colors: Record<string, string> = {
-		info: 'text-h-info',
-		success: 'text-h-success',
-		yellow: 'text-h-yellow',
-		error: 'text-h-error',
-		primary: 'text-h-primary',
-		secondary: 'text-h-secondary',
-		gray: 'text-h-gray',
-		white: 'text-h-white',
-	};
+  const colors: Record<string, string> = {
+    info: 'text-h-info',
+    success: 'text-h-success',
+    yellow: 'text-h-yellow',
+    error: 'text-h-error',
+    primary: 'text-h-primary',
+    secondary: 'text-h-secondary',
+    gray: 'text-h-gray',
+    white: 'text-h-white',
+  };
 
-	return colors[textColor] || 'text-title';
+  return colors[textColor] || 'text-title';
 };
 
 const getTextSize = (textSize: string) => {
@@ -41,30 +41,27 @@ const getTextSize = (textSize: string) => {
 };
 
 const getTextWeight = (weight: string) => {
-	switch (weight) {
-		case 'light':
-			return 'font-light';
-		case 'regular':
-			return 'font-regular';
-		case 'medium':
-			return 'font-medium';
-		case 'bold':
-			return 'font-bold';
-		default:
-			return 'font-regular';
-	}
+  switch (weight) {
+    case 'light':
+      return 'font-light';
+    case 'regular':
+      return 'font-regular';
+    case 'medium':
+      return 'font-medium';
+    case 'semibold':
+      return 'font-semibold';
+    case 'bold':
+      return 'font-bold';
+    default:
+      return 'font-regular';
+  }
 };
 
 const getBgColorRow = (index: number) => {
-	if (index % 2 === 0) {
-		return 'bg-white';
-	} else {
-		return 'bg-[#FAFAFA]';
-	}
+  if (index % 2 === 0) {
+    return 'bg-white';
+  } else {
+    return 'bg-[#FAFAFA]';
+  }
 };
-export {
-	getTextColor,
-	getTextSize,
-	getTextWeight,
-	getBgColorRow,
-};
+export { getTextColor, getTextSize, getTextWeight, getBgColorRow };

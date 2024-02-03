@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from 'react';
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import {
   ChartLine,
   Coins,
@@ -9,11 +9,11 @@ import {
   House,
   Info,
   SignOut,
-} from "@phosphor-icons/react";
-import { useLocation } from "react-router-dom";
-import Text from "../Text";
-import ROUTES from "../../shared/constants/routes";
-import Divider from "../Divider";
+} from '@phosphor-icons/react';
+import { useLocation } from 'react-router-dom';
+import Text from '../Text';
+import ROUTES from '../../shared/constants/routes';
+import Divider from '../Divider';
 interface SidebarItemProps {
   icon: JSX.Element;
   text: string;
@@ -46,14 +46,14 @@ const SidebarItem = ({
         <li
           onClick={handleClick}
           className={`
-        flex py-2 px-4 items-center justify-between my-1 cursor-pointer rounded-md bg-h-info
+        flex py-2 px-4 items-center justify-between my-1 cursor-pointer rounded-[10px] bg-h-info
     `}
         >
           <Text
-            size="small"
-            weight="medium"
-            sx="mr-2"
-            color={active ? "white" : "primary"}
+            size='medium'
+            weight='medium'
+            sx='mr-2'
+            color={active ? 'white' : 'primary'}
           >
             {text}
           </Text>
@@ -63,16 +63,16 @@ const SidebarItem = ({
         <li
           onClick={handleClick}
           className={`
-        relative flex py-2 px-2 items-center my-1 cursor-pointer rounded-md
-        ${active ? "bg-h-info text-white" : "hover:bg-h-blue-light"}
+        relative flex py-2 px-2 items-center my-1 cursor-pointer rounded-[10px]
+        ${active ? 'bg-h-info text-white' : 'hover:bg-h-blue-light'}
     `}
         >
           {icon}
           <Text
-            size="small"
-            weight="regular"
-            color={active ? "white" : "primary"}
-            sx="ml-3"
+            size='small'
+            weight='regular'
+            color={active ? 'white' : 'primary'}
+            sx='ml-3'
           >
             {text}
           </Text>
@@ -84,38 +84,38 @@ const SidebarItem = ({
 
 const options = [
   {
-    label: "Home",
-    icon: <House size={16} color={"var(--h-secondary)"} />,
+    label: 'Home',
+    icon: <House size={20} color={'var(--h-white)'} />,
     path: ROUTES.ROOT,
   },
   {
-    label: "Estadisticas",
-    icon: <ChartLine size={16} color="var(--h-secondary)" />,
-    path: "/stats",
+    label: 'Estadisticas',
+    icon: <ChartLine size={20} color='var(--h-secondary)' />,
+    path: '/stats',
   },
   {
-    label: "Tarjetas",
-    icon: <CreditCard size={16} color="var(--h-secondary)" />,
-    path: "/cards",
+    label: 'Tarjetas',
+    icon: <CreditCard size={20} color='var(--h-secondary)' />,
+    path: '/cards',
   },
   {
-    label: "Proximos pagos",
-    icon: <Coins size={16} color="var(--h-secondary)" />,
-    path: "/payments",
+    label: 'Proximos pagos',
+    icon: <Coins size={20} color='var(--h-secondary)' />,
+    path: '/payments',
   },
   {
-    label: "Ajustes",
-    icon: <Gear size={16} color="var(--h-secondary)" />,
-    path: "/settings",
+    label: 'Ajustes',
+    icon: <Gear size={20} color='var(--h-secondary)' />,
+    path: '/settings',
   },
   {
-    label: "Ayuda",
-    icon: <Info size={16} color="var(--h-secondary)" />,
-    path: "/help",
+    label: 'Ayuda',
+    icon: <Info size={20} color='var(--h-secondary)' />,
+    path: '/help',
   },
   {
-    label: "Cerrar sesión",
-    icon: <SignOut size={16} color="var(--h-secondary)" />,
+    label: 'Cerrar sesión',
+    icon: <SignOut size={20} color='var(--h-secondary)' />,
     path: ROUTES.LOGIN,
   },
 ];
@@ -124,7 +124,6 @@ const CollapsibleSidebar: React.FC = () => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState<string | null>(ROUTES.ROOT);
   const navigate = useNavigate();
-
 
   const activeRouteIndex = useMemo(() => {
     return options.findIndex((route) => route.path === location.pathname);
@@ -139,33 +138,33 @@ const CollapsibleSidebar: React.FC = () => {
   };
 
   const onLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     navigate(ROUTES.LOGIN);
   };
 
   return (
     <aside
-      className={`h-full fixed top-0 left-0 z-[90] bg-white border-r border-h-gray w-52`}
+      className={`h-full fixed top-0 left-0 z-[90] bg-white border-r border-h-gray w-60`}
     >
-      <nav className="flex flex-col h-full">
-        <div className="p-4 pb-2 flex items-center justify-center h-[70px] border-b border-h-gray">
+      <nav className='flex flex-col h-full'>
+        <div className='p-9 flex items-center justify-center h-[100px] border-b border-h-gray m-0'>
           <button onClick={() => navigate(ROUTES.ROOT)}>
             <img
-              src="https://cdn.iconscout.com/icon/premium/png-512-thumb/finance-1433977-1212011.png?f=webp&w=256"
-              alt="avatar"
-              width={40}
-              height={40}
+              src='https://cdn.iconscout.com/icon/premium/png-512-thumb/finance-1433977-1212011.png?f=webp&w=256'
+              alt='avatar'
+              width={42}
+              height={42}
             ></img>
           </button>
         </div>
 
-        <div className="mt-1">
-          <ul className="flex flex-col p-4">
+        <div>
+          <ul className='flex flex-col justify-between p-4'>
             {options.map((route, index) => (
               <Link to={route.path} key={index}>
                 <SidebarItem
                   icon={React.cloneElement(route.icon, {
-                    weight: "light",
+                    weight: 'light',
                   })}
                   text={route.label}
                   active={route.path === activeItem}

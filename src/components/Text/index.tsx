@@ -25,8 +25,8 @@ interface Props {
     | 'extraextraLarge'
     | 'mostLarge'
     | 'title';
+  weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold';
 
-  weight?: 'light' | 'regular' | 'medium' | 'bold';
   sx?: string;
   beforeIcon?: React.ReactNode;
 }

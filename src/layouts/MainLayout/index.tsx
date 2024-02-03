@@ -1,6 +1,6 @@
 import React from 'react';
 import CollapsibleSidebar from '../../components/CollapsibleSidebar';
-import { Bell, Image, MagnifyingGlass } from '@phosphor-icons/react';
+import { Bell, MagnifyingGlass, ArrowDown } from '@phosphor-icons/react';
 import Text from '../../components/Text';
 
 const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -21,39 +21,61 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       {/* TODO : NavBar */}
       <div className='flex flex-col w-full relative'>
         <div
-          className={`flex items-center justify-center bg-white shadow ${
+          className={`flex items-center justify-center bg-white  ${
             !isDesktop ? 'sticky top-0 md:static' : 'sticky top-0'
           } z-40`}
         >
-          <div className='flex justify-between items-center bg-h-white w-full z-[150] ml-52 p-9 h-[100px] '>
+          <div className='flex justify-between items-center  w-full z-[150] ml-60 p-9 h-[100px] border-b border-h-gray '>
             {/* Leftside */}
-            <div className='bg-h-gray-input flex items-center justify-between p-5 w-[500px] rounded-md h-[55px] m-2'>
-              <div className='flex items-center'>
-                <MagnifyingGlass size={20} className='mr-4' />
+            <div className='bg-h-gray-input flex items-center justify-between p-2 w-[450px] rounded-md h-[42px]'>
+              <div className='flex items-center justify-between h-[20px] w-[320px] gap-2'>
+                <div className='flex justify-center items-center'>
+                  <MagnifyingGlass color='#233145' size={20} />
+                </div>
                 <input
                   type='text'
                   placeholder='Type here to search'
-                  className='bg-h-gray-input h-10 w-[200px] border-h-info focus:outline-none text-h-secondary text-[18px]'
+                  className='bg-h-gray-input h-full w-full border-h-info focus:outline-none text-h-secondary text-[18px]'
                 />
               </div>
-              <div className='bg-h-white'>
-                <div className='bg-h-white h-[32px] w-[52px] rounded flex justify-center items-center '>
+
+              <div className='bg-h-white h-[32px] w-[52px] rounded-lg py-1 flex justify-center items-center shadow'>
+                <Text size='medium' weight='semibold' color='primary'>
                   ⌘ F
-                </div>
+                </Text>
               </div>
             </div>
+
             {/* Rightside */}
-            <div className='bg-h-white flex items-center justify-between p-5 w-[500px] h-[40px]'>
-              <div className='bg-h-white flex items-center '>
-                <div className='bg-h-gray-input rounded-full h-[42px] w-[42px] flex items-center justify-center mr-10'>
-                  <Bell size={32} />
+            <div className='bg-h-white flex items-center justify-between w-auto h-[42px]'>
+              {/* user-account */}
+              <div className='flex items-center'>
+                <div className='bg-h-gray-input rounded-full h-[42px] w-[42px] flex items-center justify-center mr-8 border-b  border-h-gray'>
+                  <Bell size={20} />
                 </div>
-                <Image size={70} />
-                <div className='flex flex-col ml-4 mt-2'>
-                  <Text size='large' weight='bold'>
-                    Martin Rubiano
-                  </Text>
-                  <Text>martin.savebille@gmail.com</Text>
+
+                {/* user-info */}
+                <div className='w-[340px] h-[42px] flex justify-between items-center'>
+                  <div className='flex items-center gap-3'>
+                    <img
+                      src='src/assets/img/LoginAvatar.png'
+                      alt=''
+                      className='w-[42px] h-[42px] rounded-full'
+                    />
+
+                    <div className='flex flex-col h-[38px] justify-between'>
+                      <Text size='large' weight='bold' color='primary'>
+                        Martin Rubiano
+                      </Text>
+                      <Text size='medium' color='secondary'>
+                        martin.savebille@gmail.com
+                      </Text>
+                    </div>
+                  </div>
+
+                  <div className='w-[28px] h-[28px] flex justify-center items-center'>
+                    <ArrowDown size={20} color='#8E98A7' />
+                  </div>
                 </div>
               </div>
             </div>
