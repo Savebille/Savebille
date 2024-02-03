@@ -35,7 +35,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
                 <input
                   type='text'
                   placeholder='Type here to search'
-                  className='bg-h-gray-input h-full w-full border-h-info focus:outline-none text-h-secondary text-[18px]'
+                  className='bg-h-gray-input h-full w-full border-h-info focus:outline-none text-h-secondary text-sm'
                 />
               </div>
 
@@ -55,7 +55,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
                 </div>
 
                 {/* user-info */}
-                <div className='w-[340px] h-[42px] flex justify-between items-center'>
+                <div className='w-[310px] h-[42px] flex justify-between items-center'>
                   <div className='flex items-center gap-3'>
                     <img
                       src='src/assets/img/LoginAvatar.png'
@@ -67,13 +67,13 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
                       <Text size='large' weight='bold' color='primary'>
                         Martin Rubiano
                       </Text>
-                      <Text size='medium' color='secondary'>
+                      <Text size='small' color='secondary'>
                         martin.savebille@gmail.com
                       </Text>
                     </div>
                   </div>
 
-                  <div className='w-[28px] h-[28px] flex justify-center items-center'>
+                  <div className='w-[28px] h-[28px] flex justify-center items-center '>
                     <ArrowDown size={20} color='#8E98A7' />
                   </div>
                 </div>
