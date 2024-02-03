@@ -14,28 +14,30 @@ const getTextColor = (textColor: string) => {
 };
 
 const getTextSize = (textSize: string) => {
-  switch (textSize) {
-    case 'mini':
-      return 'text-[11px]';
-    case 'mini-2':
-      return 'text-[12px]';
-    case 'extraSmall':
-      return 'text-[13px]';
-    case 'small':
-      return 'text-sm';
-    case 'medium':
-      return 'text-base';
-    case 'large':
-      return 'text-lg';
-    case 'extra-large':
-      return 'text-xl';
-    case 'extra-extra-large':
-      return 'text-2xl';
+	switch (textSize) {
+		case 'mini':
+			return 'text-[11px]';
+		case 'mini-2':
+			return 'text-[12px]';
+		case 'extraSmall':
+			return 'text-[13px]';
+		case 'small':
+			return 'text-sm';
+		case 'medium':
+			return 'text-base';
+		case 'large':
+			return 'text-lg';
+		case 'extra-large':
+			return 'text-xl';
+		case 'extra-extra-large':
+			return 'text-2xl';
     case 'most-large':
       return 'text-[28px]';
-    default:
-      return 'text-base';
-  }
+    case 'title':
+      return 'text-[32px] leading-[38px]'
+		default:
+			return 'text-base';
+	}
 };
 
 const getTextWeight = (weight: string) => {

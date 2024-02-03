@@ -23,8 +23,10 @@ interface Props {
     | 'large'
     | 'extraLarge'
     | 'extraextraLarge'
-    | 'mostLarge';
+    | 'mostLarge'
+    | 'title';
   weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold';
+
   sx?: string;
   beforeIcon?: React.ReactNode;
 }
