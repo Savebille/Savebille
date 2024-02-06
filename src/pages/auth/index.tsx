@@ -10,7 +10,7 @@ const Login: React.FC = () => {
         {/* form */}
         <div className='w-full h-[80%]  lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between'>
           {/* header */}
-          <div className='w-full h-auto flex flex-col items-center justify-between gap-2'>
+          <div className='w-full h-auto flex flex-col items-center justify-between gap-4'>
             {/* avatar */}
             <div className='w-[70px] h-[70px] lg:w-[90px] lg:h-[90px] overflow-hidden rounded-full shadow-xl'>
               <img
