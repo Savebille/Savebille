@@ -1,34 +1,34 @@
-import React, { PropsWithChildren } from 'react';
+import React from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import MainLayout from "../layouts/MainLayout";
 import {
-	Navigate,
-	Outlet,
-} from 'react-router-dom';
-import MainLayout from '../layouts/MainLayout';
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+} from "@clerk/clerk-react";
+import SignInPage from "./sign-in";
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
-type Props = {
-	redirectPath: string;
-};
+if (!PUBLISHABLE_KEY) {
+  throw new Error("Missing Publishable Key");
+}
 
-const ProtectedRoutes: React.FC<PropsWithChildren<Props>> = ({
-	redirectPath,
-}) => {
+const ProtectedRoutes: React.FC = () => {
+  const navigate = useNavigate();
 
-  const isAuthenticated = true;
-  
-	if (!isAuthenticated) {
-		return (
-			<Navigate
-				to={redirectPath}
-				replace
-			/>
-		);
-	}
-
-	return (
-		<MainLayout>
-			<Outlet />
-		</MainLayout>
-	);
+  return (
+    <ClerkProvider navigate={navigate} publishableKey={PUBLISHABLE_KEY}>
+      <SignedIn>
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
+      </SignedIn>
+      <SignedOut>
+        <SignInPage />
+        <Outlet />
+      </SignedOut>
+    </ClerkProvider>
+  );
 };
 
 export default React.memo(ProtectedRoutes);

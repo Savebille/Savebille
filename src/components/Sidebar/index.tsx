@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 import {
+  BookOpenText,
   ChartLine,
   Coins,
   CreditCard,
@@ -89,19 +90,19 @@ const options = [
     path: ROUTES.ROOT,
   },
   {
+    label: 'Mis categorías',
+    icon: <BookOpenText size={20} color='var(--h-secondary)' />,
+    path: '/categories',
+  },
+  {
+    label: 'Mis próximos pagos',
+    icon: <Coins size={20} color='var(--h-secondary)' />,
+    path: '/upcoming-payments',
+  },
+  {
     label: 'Estadisticas',
     icon: <ChartLine size={20} color='var(--h-secondary)' />,
     path: '/stats',
-  },
-  {
-    label: 'Tarjetas',
-    icon: <CreditCard size={20} color='var(--h-secondary)' />,
-    path: '/cards',
-  },
-  {
-    label: 'Proximos pagos',
-    icon: <Coins size={20} color='var(--h-secondary)' />,
-    path: '/payments',
   },
   {
     label: 'Ajustes',
@@ -120,7 +121,7 @@ const options = [
   },
 ];
 
-const CollapsibleSidebar: React.FC = () => {
+const Sidebar: React.FC = () => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState<string | null>(ROUTES.ROOT);
   const navigate = useNavigate();
@@ -147,7 +148,7 @@ const CollapsibleSidebar: React.FC = () => {
       className={`h-full fixed top-0 left-0 z-[90] bg-white border-r border-h-gray w-60`}
     >
       <nav className='flex flex-col h-full'>
-        <div className='p-9 flex items-center justify-center h-[100px] border-b border-h-gray m-0'>
+        <div className='p-9 flex items-center justify-center h-[80px] border-b border-h-gray m-0'>
           <button onClick={() => navigate(ROUTES.ROOT)}>
             <img
               src='https://cdn.iconscout.com/icon/premium/png-512-thumb/finance-1433977-1212011.png?f=webp&w=256'
@@ -179,4 +180,4 @@ const CollapsibleSidebar: React.FC = () => {
   );
 };
 
-export default React.memo(CollapsibleSidebar);
+export default React.memo(Sidebar);

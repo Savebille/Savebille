@@ -1,6 +1,7 @@
 import React from 'react';
 import { Eye } from '@phosphor-icons/react';
 import Text from '../../components/Text';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
   return (
@@ -95,12 +96,15 @@ const Login: React.FC = () => {
           </div>
 
           {/* Button SignIn */}
-          <button className='w-[556px] h-[56px] rounded-xl bg-h-info flex justify-center items-center mt-20'>
+          <a href='/login'>
+          <button 
+          className='w-[556px] h-[56px] rounded-xl bg-h-info flex justify-center items-center mt-20'>
             <Text weight='medium' color='white' size='extraLarge'>
               Sign in
             </Text>
           </button>
-
+          </a>
+      
           {/* Sign Up */}
           <div className='w-[300px] h-[20px] flex justify-center items-center mt-10'>
             <Text color='secondary' weight='regular' size='medium' sx='mr-1'>

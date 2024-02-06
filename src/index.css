@@ -26,6 +26,7 @@
   --h-secondary: #8e98a7;
   --h-gray: #dfe5f1;
   --h-white: #ffffff;
+  --h-blue-light: #f3f8ff;
 }
 
 a {
@@ -116,12 +117,12 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--h-blue-light);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--h-gray-40);
+  background: var(--h-secondary);
   border-radius: 40px;
 }
 
