@@ -144,7 +144,7 @@ const CollapsibleSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`h-full fixed top-0 left-0 z-[90] bg-white border-r border-h-gray w-60 hidden md:block xl:block`}
+      className={`h-full fixed top-0 left-0 z-[90] bg-white border-r border-h-gray w-60 hidden md:hidden lg:block`}
     >
       <nav className='flex flex-col h-full'>
         <div className='p-9 flex items-center justify-center h-[100px] border-b border-h-gray m-0'>
