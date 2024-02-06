@@ -6,7 +6,7 @@ import Text from '../../../../components/Text';
 function Input() {
     return  <div className='bg-h-gray-input lg:flex lg:items-center lg:justify-between p-2 lg:w-[400px] lg:ml-[220px] xl:m-0 rounded-md h-[42px] md:hidden hidden '>
     <div className='flex items-center justify-between h-[20px] lg:w-[400px] gap-2 '>
-      <div className='flex justify-center items-center'>
+      <div className='flex justify-center items-center md:block'>
         <MagnifyingGlass color='#233145' size={20} />
       </div>
       <input

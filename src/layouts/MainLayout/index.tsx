@@ -1,6 +1,6 @@
 import React from 'react';
 import CollapsibleSidebar from '../../components/CollapsibleSidebar';
-import { Bell, MagnifyingGlass, ArrowDown } from '@phosphor-icons/react';
+import { Bell, ArrowDown } from '@phosphor-icons/react';
 import Text from '../../components/Text';
 import Input from './components/input';
 
@@ -56,7 +56,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
                       className='w-[42px] h-[42px] rounded-full'
                     />
 
-                    <div className='lg:flex lg:flex-col lg:h-[38px] lg:justify-between lg:gap-1 hidden'>
+                    <div className='lg:flex lg:flex-col lg:h-[38px] lg:justify-between lg:gap-1 md:block hidden'>
                       <Text size='large' weight='bold' color='primary'>
                         Martin Rubiano
                       </Text>

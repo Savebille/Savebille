@@ -3,7 +3,7 @@ import React from "react";
 const Home: React.FC = () => {
   return (
     <div className="">
-      y ameg
+      home text
     </div>
   );
 };
