@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Eye } from '@phosphor-icons/react';
+import { Eye, EyeSlash } from '@phosphor-icons/react';
 import Text from '../../components/Text';
 
 const Login: React.FC = () => {
   const [step, setStep] = useState(0);
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+
+  const handlePasswordVisibility = () =>
+    setPasswordVisibility(!passwordVisibility);
 
   return (
     <div className='h-screen w-screen flex items-center justify-center'>
@@ -87,16 +91,25 @@ const Login: React.FC = () => {
                     </label>
                     <div className='relative w-full'>
                       <input
-                        type='password'
+                        type={passwordVisibility ? 'text' : 'password'}
                         name='user-password'
                         id='password'
                         placeholder='Enter your password...'
                         className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] pl-4 pr-12 bg-h-gray-input focus:outline-none'
                       />
-                      <Eye
-                        className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary'
-                        size={24}
-                      />
+                      {passwordVisibility ? (
+                        <Eye
+                          className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary cursor-pointer'
+                          onClick={() => handlePasswordVisibility()}
+                          size={24}
+                        />
+                      ) : (
+                        <EyeSlash
+                          className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary cursor-pointer'
+                          onClick={() => handlePasswordVisibility()}
+                          size={24}
+                        />
+                      )}
                     </div>
                   </div>
                 </form>
@@ -225,26 +238,27 @@ const Login: React.FC = () => {
                   </div>
 
                   {/* password */}
-                  <div className='flex flex-col items-start gap-2'>
-                    <label
-                      htmlFor='password'
-                      className='text-h-primary hidden lg:block'
-                    >
-                      Password
-                    </label>
-                    <div className='relative w-full'>
-                      <input
-                        type='password'
-                        name='user-password'
-                        id='password'
-                        placeholder='Enter your password...'
-                        className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] pl-4 pr-12 bg-h-gray-input focus:outline-none'
-                      />
+                  <div className='relative w-full'>
+                    <input
+                      type={passwordVisibility ? 'text' : 'password'}
+                      name='user-password'
+                      id='password'
+                      placeholder='Enter your password...'
+                      className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] pl-4 pr-12 bg-h-gray-input focus:outline-none'
+                    />
+                    {passwordVisibility ? (
                       <Eye
-                        className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary'
+                        className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary cursor-pointer'
+                        onClick={() => handlePasswordVisibility()}
                         size={24}
                       />
-                    </div>
+                    ) : (
+                      <EyeSlash
+                        className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary cursor-pointer'
+                        onClick={() => handlePasswordVisibility()}
+                        size={24}
+                      />
+                    )}
                   </div>
                 </form>
 
