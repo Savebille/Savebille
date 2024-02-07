@@ -1,6 +1,6 @@
 const ROUTES = {
   ROOT: '/',
-  LOGIN: '/login',
+  LOGIN: '/authentication',
 };
 
 export default ROUTES;

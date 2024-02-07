@@ -2,32 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { Eye, EyeSlash } from '@phosphor-icons/react';
 import Text from '../../components/Text';
 
-const Login: React.FC = () => {
+const Authentication: React.FC = () => {
   const [step, setStep] = useState(0);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [containerSignInAnimation, setContainerSignInAnimation] = useState(false);
-  const [containerSignUpAnimation, setContainerSignUpAnimation] = useState(true);
+  const [containerAnimation, setContainerAnimation] =
+    useState('hiddeContainer');
 
   const handlePasswordVisibility = () =>
     setPasswordVisibility(!passwordVisibility);
-  
-  const handleContainerAnimation = () => {
-    setContainerSignInAnimation(!containerSignInAnimation);
-    setContainerSignUpAnimation(!containerSignUpAnimation);
-  }
 
   const handleStepChange = (nextStep: number) => {
-    setStep(nextStep);
+    setContainerAnimation('hiddeContainer');
+    setTimeout(() => {
+      setStep(nextStep);
+      setContainerAnimation('showContainer');
+    }, 300);
   };
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      handleContainerAnimation();
+      setContainerAnimation('showContainer');
     }, 300);
 
     return () => clearTimeout(timeoutId);
   }, [step]);
-
 
   return (
     <div className='h-screen w-screen flex items-center justify-center'>
@@ -38,9 +36,7 @@ const Login: React.FC = () => {
             {/* Sign In Form */}
             <div
               id='sign-in'
-              className={`w-full h-[80%] lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${
-                containerSignInAnimation ? 'showContainer' : 'hiddeContainer'
-              }`}
+              className={`w-full h-[80%] lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
             >
               {/* header */}
               <div className='w-full h-auto flex flex-col items-center justify-between gap-4'>
@@ -188,9 +184,7 @@ const Login: React.FC = () => {
             {/* Sign Up Form */}
             <div
               id='sign-up'
-              className={`w-full h-[80%] lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${
-                containerSignUpAnimation ? 'showContainer' : 'hiddeContainer'
-              }`}
+              className={`w-full h-[80%] lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
             >
               {/* header */}
               <div className='w-full h-auto flex flex-col items-center'>
@@ -354,4 +348,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default React.memo(Login);
+export default React.memo(Authentication);
