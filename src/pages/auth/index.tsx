@@ -238,27 +238,35 @@ const Login: React.FC = () => {
                   </div>
 
                   {/* password */}
-                  <div className='relative w-full'>
-                    <input
-                      type={passwordVisibility ? 'text' : 'password'}
-                      name='user-password'
-                      id='password'
-                      placeholder='Enter your password...'
-                      className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] pl-4 pr-12 bg-h-gray-input focus:outline-none'
-                    />
-                    {passwordVisibility ? (
-                      <Eye
-                        className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary cursor-pointer'
-                        onClick={() => handlePasswordVisibility()}
-                        size={24}
+                  <div className='flex flex-col items-start gap-2'>
+                    <label
+                      htmlFor='password'
+                      className='text-h-primary hidden lg:block'
+                    >
+                      Password
+                    </label>
+                    <div className='relative w-full'>
+                      <input
+                        type={passwordVisibility ? 'text' : 'password'}
+                        name='user-password'
+                        id='password'
+                        placeholder='Enter your password...'
+                        className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] pl-4 pr-12 bg-h-gray-input focus:outline-none'
                       />
-                    ) : (
-                      <EyeSlash
-                        className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary cursor-pointer'
-                        onClick={() => handlePasswordVisibility()}
-                        size={24}
-                      />
-                    )}
+                      {passwordVisibility ? (
+                        <Eye
+                          className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary cursor-pointer'
+                          onClick={() => handlePasswordVisibility()}
+                          size={24}
+                        />
+                      ) : (
+                        <EyeSlash
+                          className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary cursor-pointer'
+                          onClick={() => handlePasswordVisibility()}
+                          size={24}
+                        />
+                      )}
+                    </div>
                   </div>
                 </form>
 
