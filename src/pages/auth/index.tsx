@@ -1,13 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Eye, EyeSlash } from '@phosphor-icons/react';
 import Text from '../../components/Text';
 
 const Login: React.FC = () => {
   const [step, setStep] = useState(0);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [containerSignInAnimation, setContainerSignInAnimation] = useState(false);
+  const [containerSignUpAnimation, setContainerSignUpAnimation] = useState(true);
 
   const handlePasswordVisibility = () =>
     setPasswordVisibility(!passwordVisibility);
+  
+  const handleContainerAnimation = () => {
+    setContainerSignInAnimation(!containerSignInAnimation);
+    setContainerSignUpAnimation(!containerSignUpAnimation);
+  }
+
+  const handleStepChange = (nextStep: number) => {
+    setStep(nextStep);
+  };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      handleContainerAnimation();
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [step]);
+
 
   return (
     <div className='h-screen w-screen flex items-center justify-center'>
@@ -18,7 +38,9 @@ const Login: React.FC = () => {
             {/* Sign In Form */}
             <div
               id='sign-in'
-              className='w-full h-[80%]  lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between'
+              className={`w-full h-[80%] lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${
+                containerSignInAnimation ? 'showContainer' : 'hiddeContainer'
+              }`}
             >
               {/* header */}
               <div className='w-full h-auto flex flex-col items-center justify-between gap-4'>
@@ -144,7 +166,7 @@ const Login: React.FC = () => {
                 <a
                   href='#sign-up'
                   onClick={() => {
-                    setStep(1);
+                    handleStepChange(1);
                   }}
                 >
                   <Text
@@ -166,7 +188,9 @@ const Login: React.FC = () => {
             {/* Sign Up Form */}
             <div
               id='sign-up'
-              className='w-full h-[80%]  lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between'
+              className={`w-full h-[80%] lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${
+                containerSignUpAnimation ? 'showContainer' : 'hiddeContainer'
+              }`}
             >
               {/* header */}
               <div className='w-full h-auto flex flex-col items-center'>
@@ -300,7 +324,7 @@ const Login: React.FC = () => {
                 <a
                   href='#sign-in'
                   onClick={() => {
-                    setStep(0);
+                    handleStepChange(0);
                   }}
                 >
                   <Text
