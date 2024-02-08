@@ -13,7 +13,7 @@ const TextInput: React.FC<TextInputProps> = ({
 }) => {
   return (
     <div className='flex flex-col items-start gap-2'>
-      <label htmlFor={idName} className='text-h-primary hidden lg:block'>
+      <label htmlFor={idName} className='text-h-primary'>
         {labelText}
       </label>
       <input

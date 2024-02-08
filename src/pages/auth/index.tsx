@@ -27,7 +27,6 @@ const Authentication: React.FC = () => {
     <div className='h-screen w-screen flex items-center justify-center'>
       {/* main container */}
       <div className='bg-h-white flex flex-col-reverse lg:flex-row justify-between rounded-3xl shadow-lg max-w-[1438px] max-h-[954px] w-[90%] h-[80%]'>
-
         {step === 0 && (
           <SignInForm
             containerAnimation={containerAnimation}
@@ -43,7 +42,8 @@ const Authentication: React.FC = () => {
         )}
 
         {/* img */}
-        <div className='w-full h-[20%] lg:w-[42%] lg:h-full overflow-hidden'>
+
+        <div className='hidden lg:block lg:w-[42%] lg:h-full overflow-hidden'>
           <img
             src='src/assets/img/LoginBanner.png'
             alt='Login Banner'

@@ -2,12 +2,12 @@
 import React from 'react';
 import Text from '../../../components/Text';
 import PasswordInput from '../../../components/PasswordInput';
-import SubmitButton from '../../../components/SubmitButton';
 import CheckboxInput from '../components/CheckboxInput';
 import TextDivider from '../components/TextDivider';
 import AuthOptionMessage from '../components/AuthOptionMessage';
 import IconButton from '../../../components/IconButton';
 import TextInput from '../../../components/TextInput';
+import Button from '../../../components/Button';
 
 interface SignUnFormProps {
   containerAnimation: string;
@@ -22,7 +22,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
   return (
     <div
       id='sign-up'
-      className={`w-full h-[80%] lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
+      className={`w-full h-full lg:w-[58%] px-[30px] py-[80px] lg:px-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
     >
       {/* header */}
       <div className='w-full h-auto flex flex-col items-center'>
@@ -49,7 +49,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
       <TextDivider text='OR' />
 
       {/* form */}
-      <div className='w-full h-auto flex flex-col justify-between items-center gap-6 '>
+      <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-6 '>
         {/* inputs */}
         <form className='w-full h-auto flex flex-col justify-between gap-6'>
           {/* name */}
@@ -72,8 +72,8 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
           <PasswordInput idName='password-sign-up' />
         </form>
 
-        {/* Agree with Terms and Conditions */}
-        <div className='w-full h-auto flex flex-col sm:flex-row justify-start items-center gap-1'>
+        {/* Agree with Terms and Conditions desktop*/}
+        <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-start items-center gap-1'>
           <CheckboxInput
             labelText='You agree to our'
             anchorText='Terms and Conditions'
@@ -81,11 +81,20 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
         </div>
       </div>
 
+      {/* Agree with Terms and Conditions mobile*/}
+      <div className='w-full h-auto flex flex-col sm:hidden justify-start items-center gap-2'>
+        <CheckboxInput
+          labelText='You agree to our'
+          anchorText='Terms and Conditions'
+        />
+      </div>
+
       {/* Button SignIn */}
-      <SubmitButton text='Register' />
+      <Button text='Register' />
 
       {/* Sign Up */}
       <AuthOptionMessage
+        anchorHref='#sign-in'
         paragraphText='Do you already have an account?'
         textButton='Sign In'
         onClick={() => handleStepChange(0)}

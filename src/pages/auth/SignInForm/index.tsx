@@ -1,12 +1,12 @@
 import React from 'react';
 import Text from '../../../components/Text';
 import PasswordInput from '../../../components/PasswordInput';
-import SubmitButton from '../../../components/SubmitButton';
 import CheckboxInput from '../components/CheckboxInput';
 import TextDivider from '../components/TextDivider';
 import AuthOptionMessage from '../components/AuthOptionMessage';
 import IconButton from '../../../components/IconButton';
 import TextInput from '../../../components/TextInput';
+import Button from '../../../components/Button';
 
 interface SignInFormProps {
   containerAnimation: string;
@@ -20,7 +20,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
   return (
     <div
       id='sign-in'
-      className={`w-full h-[80%] lg:w-[58%] lg:h-full p-[30px] lg:p-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
+      className={`w-full h-full lg:w-[58%] px-[30px] py-[80px] lg:px-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
     >
       {/* header */}
       <div className='w-full h-auto flex flex-col items-center justify-between gap-4'>
@@ -56,7 +56,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
       <TextDivider text='OR' />
 
       {/* form */}
-      <div className='w-full h-auto flex flex-col justify-between items-center gap-6'>
+      <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-6'>
         {/* inputs */}
         <form className='w-full h-auto flex flex-col justify-between gap-6'>
           {/* email */}
@@ -71,8 +71,8 @@ const SignInForm: React.FC<SignInFormProps> = ({
           <PasswordInput idName='password-sign-in' />
         </form>
 
-        {/* remember password */}
-        <div className='w-full h-auto flex flex-col sm:flex-row justify-between items-center gap-2'>
+        {/* remember password desktop*/}
+        <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-between items-center gap-2'>
           <CheckboxInput
             labelText='Remember me'
             anchorText='Forgot password?'
@@ -80,11 +80,17 @@ const SignInForm: React.FC<SignInFormProps> = ({
         </div>
       </div>
 
+      {/* remember password mobile*/}
+      <div className='w-full h-auto flex flex-col sm:hidden justify-between items-center gap-2'>
+        <CheckboxInput labelText='Remember me' anchorText='Forgot password?' />
+      </div>
+
       {/* Button SignIn */}
-      <SubmitButton text='Sign In' />
+      <Button text='Sign In' />
 
       {/* Sign Up */}
       <AuthOptionMessage
+        anchorHref='#sign-up'
         paragraphText="Don't have an account yet?"
         textButton='Sign Up'
         onClick={() => handleStepChange(1)}

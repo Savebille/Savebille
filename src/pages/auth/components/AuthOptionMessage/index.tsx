@@ -2,12 +2,14 @@ import React from 'react';
 import Text from '../../../../components/Text';
 
 interface AuthOptionMessageProps {
+  anchorHref: string;
   paragraphText: string;
   textButton: string;
   onClick: () => void;
 }
 
 const AuthOptionMessage: React.FC<AuthOptionMessageProps> = ({
+  anchorHref,
   paragraphText,
   textButton,
   onClick,
@@ -17,7 +19,7 @@ const AuthOptionMessage: React.FC<AuthOptionMessageProps> = ({
       <Text color='secondary' weight='regular' size='medium'>
         {paragraphText}
       </Text>
-      <a href='#sign-up' onClick={onClick}>
+      <a href={anchorHref} onClick={onClick}>
         <Text
           color='primary'
           weight='medium'
