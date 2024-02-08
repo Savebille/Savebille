@@ -1,38 +1,59 @@
+import ROUTES from '../../shared/constants/routes';
 import {
     ChartLine,
     Coins,
-    CreditCard,
-    Gear,
     House,
-    Info,
     SignOut,
   } from '@phosphor-icons/react';
+import { NavLink } from 'react-router-dom';
+
+
+// ...
 
 const MobileMenu: React.FC = () => {
-    return (
-        <div className="bg-h-error flex justify-between w-full h-16 bottom-0 fixed lg:hidden text-center mt-2">
-            <div className="bg-orange-600 w-full ">
-                <div className='flex flex-col '>
-                    <House size={20} color={'var(--h-white)'} />
-                </div>
-                <div className='flex'>
-                    <a href="">Home</a>
-                </div>
-            </div>
-            <div className="bg-amber-400 w-full">
-                <ChartLine size={20} color='var(--h-secondary)' />
-                <a href="">Mis categorias</a>
-            </div>
-            <div className="bg-green-600 w-full">
-                <CreditCard size={20} color='var(--h-secondary)' />
-                <a href="">Estadisticas</a>
-            </div>
-            <div className="bg-cyan-500 w-full">
-                <Coins size={20} color='var(--h-secondary)' />
-                <a href="">Cuenta</a>
-            </div>
-        </div>
-    )
-}
+
+
+  const options = [
+    {
+      label: 'Home',
+      icon: <House size={18} color='var(--h-primary)'  />,
+      path: ROUTES.ROOT,
+    },
+    {
+      label: 'Balance',
+      icon: <ChartLine size={18} color='var(--h-primary)' />,
+      path: ROUTES.ROOT,
+    },
+    {
+      label: 'Pagos',
+      icon: <Coins size={18} color='var(--h-primary)' />,
+      path: ROUTES.ROOT,
+    },
+    {
+      label: 'Cuenta',
+      icon: <SignOut size={18} color='var(--h-primary)' />,
+      path: ROUTES.LOGIN,
+    },
+  ];
+
+  return (
+    <div className='flex w-full bottom-0 fixed h-12 lg:hidden'>
+      <div className='w-full'>
+        <ul className='flex w-full text-base items-center justify-between'>
+          {options.map((option, i) => (
+            <NavLink
+              key={i}
+              to={option.path}
+              className='border-t border-slate-300 flex flex-col justify-center items-center w-full h-full hover:bg-h-info '
+            >
+              <div className='mt-[6px]'>{option.icon}</div>
+              <span>{option.label}</span>
+            </NavLink>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
 
 export default MobileMenu

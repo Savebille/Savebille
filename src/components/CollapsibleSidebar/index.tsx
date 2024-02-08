@@ -21,7 +21,8 @@ interface SidebarItemProps {
   onClick: () => void;
 }
 
-const SidebarItem = ({
+export const
+SidebarItem = ({
   icon,
   text,
   active: initialActive,
