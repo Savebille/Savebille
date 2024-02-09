@@ -155,7 +155,7 @@ const MobileMenu: React.FC = () => {
     {
       label: 'Cerrar Sesion',
       icon: <SignOut size={18} color='var(--h-secondary)' />,
-      onClick: () => navigate(ROUTES.LOGIN),
+      onClick: () => navigate(ROUTES.AUTH),
     }
   
   ]

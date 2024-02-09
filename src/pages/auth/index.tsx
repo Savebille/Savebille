@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 
-const Authentication: React.FC = () => {
+const Auth: React.FC = () => {
   const [step, setStep] = useState(0);
   const [containerAnimation, setContainerAnimation] =
     useState('hiddeContainer');
@@ -55,4 +55,4 @@ const Authentication: React.FC = () => {
   );
 };
 
-export default React.memo(Authentication);
+export default React.memo(Auth);
