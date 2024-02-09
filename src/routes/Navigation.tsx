@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   {
     id: 'home',
     path: '/',
-    element: <ProtectedRoutes redirectPath='/login' />,
+    element: <ProtectedRoutes redirectPath={ROUTES.AUTH} />,
     children: [
       {
         id: 'root',
@@ -33,18 +33,6 @@ const router = createBrowserRouter([
         id: 'payments',
         path: ROUTES.PAYMENTS,
         element: <Payments />,
-      },
-    ],
-  },
-  {
-    id: 'home',
-    path: '/',
-    element: <ProtectedRoutes redirectPath={ROUTES.AUTH} />,
-    children: [
-      {
-        id: 'root',
-        path: ROUTES.ROOT,
-        element: <Home />,
       },
     ],
   },
