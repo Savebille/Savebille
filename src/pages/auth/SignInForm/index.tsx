@@ -1,5 +1,4 @@
 import React from 'react';
-import Text from '../../../components/Text';
 import PasswordInput from '../../../components/PasswordInput';
 import CheckboxInput from '../components/CheckboxInput';
 import TextDivider from '../components/TextDivider';
@@ -7,6 +6,7 @@ import AuthOptionMessage from '../components/AuthOptionMessage';
 import IconButton from '../../../components/IconButton';
 import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
+import TextHeaders from '../../../components/TextHeaders';
 
 interface SignInFormProps {
   containerAnimation: string;
@@ -28,20 +28,16 @@ const SignInForm: React.FC<SignInFormProps> = ({
         <div className='w-[70px] h-[70px] lg:w-[90px] lg:h-[90px] overflow-hidden rounded-full shadow-xl'>
           <img
             src='src/assets/img/LoginAvatar.png'
-            alt='user avatar'
+            alt='Savebille Icon'
             className='object-cover object-center'
           />
         </div>
 
         {/* textos */}
-        <div className='w-full h-auto flex flex-col items-center justify-between text-center gap-2'>
-          <Text weight='medium' color='primary' size='title'>
-            Welcome back
-          </Text>
-          <Text weight='regular' color='secondary' size='extraLarge'>
-            Please enter your details to sign in.
-          </Text>
-        </div>
+        <TextHeaders
+          title='Welcome back'
+          subtitle='Please enter your details to sign in.'
+        />
       </div>
 
       {/* buttons */}

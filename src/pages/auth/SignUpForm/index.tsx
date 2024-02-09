@@ -1,6 +1,5 @@
 // SignUpForm.tsx
 import React from 'react';
-import Text from '../../../components/Text';
 import PasswordInput from '../../../components/PasswordInput';
 import CheckboxInput from '../components/CheckboxInput';
 import TextDivider from '../components/TextDivider';
@@ -8,6 +7,7 @@ import AuthOptionMessage from '../components/AuthOptionMessage';
 import IconButton from '../../../components/IconButton';
 import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
+import TextHeaders from '../../../components/TextHeaders';
 
 interface SignUnFormProps {
   containerAnimation: string;
@@ -27,14 +27,10 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
       {/* header */}
       <div className='w-full h-auto flex flex-col items-center'>
         {/* textos */}
-        <div className='w-full h-auto flex flex-col items-center justify-between text-center gap-2'>
-          <Text weight='medium' color='primary' size='title'>
-            Create a new account
-          </Text>
-          <Text weight='regular' color='secondary' size='extraLarge'>
-            Please enter your details to sign up.
-          </Text>
-        </div>
+        <TextHeaders
+          title='Create a new account'
+          subtitle='Please enter your details to sign up.'
+        />
       </div>
 
       {/* buttons */}
