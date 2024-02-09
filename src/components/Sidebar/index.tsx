@@ -13,7 +13,6 @@ import {
 import { useLocation } from 'react-router-dom';
 import Text from '../Text';
 import ROUTES from '../../shared/constants/routes';
-import Divider from '../Divider';
 interface SidebarItemProps {
   icon: JSX.Element;
   text: string;
@@ -92,7 +91,7 @@ const options = [
   {
     label: 'Estadisticas',
     icon: <ChartLine size={20} color='var(--h-secondary)' />,
-    path: '/stats',
+    path: ROUTES.STATS,
   },
   {
     label: 'Tarjetas',
@@ -121,11 +120,11 @@ const options = [
   },
 ];
 
-const CollapsibleSidebar: React.FC = () => {
+const Sidebar: React.FC = () => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState<string | null>(ROUTES.ROOT);
   const navigate = useNavigate();
-
+  
   const activeRouteIndex = useMemo(() => {
     return options.findIndex((route) => route.path === location.pathname);
   }, [options, location.pathname]);
@@ -147,14 +146,14 @@ const CollapsibleSidebar: React.FC = () => {
     <aside
       className={`h-full fixed top-0 left-0 z-[90] bg-white border-r border-h-gray w-60 hidden md:hidden lg:block`}
     >
-      <nav className='flex flex-col h-full'>
+      <nav className='flex flex-col h-full z-[]'>
         <div className='p-9 flex items-center justify-center h-[100px] border-b border-h-gray m-0'>
           <button onClick={() => navigate(ROUTES.ROOT)}>
             <img
               src='https://cdn.iconscout.com/icon/premium/png-512-thumb/finance-1433977-1212011.png?f=webp&w=256'
               alt='avatar'
-              width={42}
-              height={42}
+              width={60}
+              height={60}
             ></img>
           </button>
         </div>
@@ -180,4 +179,4 @@ const CollapsibleSidebar: React.FC = () => {
   );
 };
 
-export default React.memo(CollapsibleSidebar);
+export default React.memo(Sidebar);

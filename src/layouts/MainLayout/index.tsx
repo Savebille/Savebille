@@ -1,5 +1,5 @@
 import React from 'react';
-import CollapsibleSidebar from '../../components/CollapsibleSidebar';
+import Sidebar from '../../components/Sidebar';
 import { Bell, ArrowDown, MagnifyingGlass } from '@phosphor-icons/react';
 import Text from '../../components/Text';
 import MobileMenu from '../../components/MobileMenu';
@@ -10,13 +10,13 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
     <div className='flex h-screen relative'>
       {/* Sidebar */}
       <div className='hidden lg:flex lg:flex-col z-[80]'>
-        <CollapsibleSidebar />
+        <Sidebar />
       </div>
 
       <div className='flex flex-col w-full relative'>
-        <div className='bg-h-white w-full'>
+        <div className='bg-h-white w-full border-b border-h-gray'>
 
-          <div className='bg-h- flex w-full lg:hidden p-4 sticky justify-between'>
+          <div className='flex w-full lg:hidden p-4 sticky justify-between'>
             <div className='flex gap-4 ml-2'>
               <img
                 src='https://cdn.iconscout.com/icon/premium/png-512-thumb/finance-1433977-1212011.png?f=webp&w=256'
@@ -60,14 +60,14 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
         </div>
 
 
-        <div className='bg-h-whiter lg:flex hidden justify-between items-center  z-[150] h-[100px] border-b border-h-gray'>
+        <div className='bg-h-white lg:flex hidden justify-between items-center h-[100px] border-b border-h-gray'>
           {/* Leftside */}
 
           {/* Input */}
-          <div className='bg-h-gray-input lg:flex lg:items-center lg:justify-between p-2 rounded-md h-[42px] lg:w-[432px] md:hidden hidden ml-[340px]'>
+          <div className='bg-h-gray-input lg:flex lg:items-center lg:justify-between p-2 rounded-md h-[47px] lg:w-[432px] md:hidden hidden ml-[270px]'>
             <div className='flex items-center justify-between h-[20px] lg:w-auto gap-2'>
               <div className='flex justify-center items-center md:block'>
-                <MagnifyingGlass color='#233145' size={20} />
+                <MagnifyingGlass color='#233145' size={25} />
               </div>
               <input
                 type='text'

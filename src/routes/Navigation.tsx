@@ -4,6 +4,9 @@ import Home from '../pages/home';
 import { createTheme, ThemeProvider } from '@mui/material';
 import ProtectedRoutes from './Protected.routes';
 import Login from '../pages/auth/index';
+import Stats from '../pages/stats';
+import Balance from '../pages/balance';
+import Payments from '../pages/payments';
 
 const router = createBrowserRouter([
 	{
@@ -16,6 +19,22 @@ const router = createBrowserRouter([
 				path: ROUTES.ROOT,
 				element: <Home />,
 			},
+			{
+				id: 'stats',
+				path : ROUTES.STATS,
+				element : <Stats />
+			},
+			{
+				id: 'balance',
+				path : ROUTES.BALANCE,
+				element : <Balance />
+			},
+			{
+				id: 'payments',
+				path : ROUTES.PAYMENTS,
+				element : <Payments />
+			}
+
 		],
 	},
   {
