@@ -20,8 +20,7 @@ interface SidebarItemProps {
   onClick: () => void;
 }
 
-export const
-SidebarItem = ({
+export const SidebarItem = ({
   icon,
   text,
   active: initialActive,
@@ -116,7 +115,7 @@ const options = [
   {
     label: 'Cerrar sesión',
     icon: <SignOut size={20} color='var(--h-secondary)' />,
-    path: ROUTES.LOGIN,
+    path: ROUTES.AUTH,
   },
 ];
 
@@ -124,7 +123,7 @@ const Sidebar: React.FC = () => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState<string | null>(ROUTES.ROOT);
   const navigate = useNavigate();
-  
+
   const activeRouteIndex = useMemo(() => {
     return options.findIndex((route) => route.path === location.pathname);
   }, [options, location.pathname]);
@@ -139,7 +138,7 @@ const Sidebar: React.FC = () => {
 
   const onLogout = () => {
     localStorage.removeItem('token');
-    navigate(ROUTES.LOGIN);
+    navigate(ROUTES.AUTH);
   };
 
   return (

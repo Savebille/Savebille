@@ -1,6 +1,6 @@
 const ROUTES = {
   ROOT: '/',
-  LOGIN: '/login',
+  AUTH: '/auth',
   STATS: '/stats',
   BALANCE: '/balance',
   PAYMENTS: '/payments'

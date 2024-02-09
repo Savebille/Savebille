@@ -98,9 +98,9 @@ body {
   appearance: none;
   width: 16px;
   height: 16px;
-  border: 2px solid #DFE5F1;
+  border: 2px solid #dfe5f1;
   border-radius: 4px;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   outline: none;
   cursor: pointer;
 }
@@ -129,3 +129,14 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+@layer utilities {
+  .showContainer {
+    @apply transition duration-300 opacity-100;
+  }
+
+  .hiddeContainer {
+    @apply transition duration-300 opacity-0;
+  }
+}
+
