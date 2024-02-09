@@ -45,13 +45,12 @@ export const SidebarItem = ({
         <li
           onClick={handleClick}
           className={`
-        flex py-2 px-4 items-center justify-between my-1 cursor-pointer rounded-[10px] bg-h-info
+        // flex py-2 px-4 items-center justify-between my-1 cursor-pointer rounded-[10px] bg-h-info
     `}
         >
           <Text
             size='medium'
             weight='medium'
-            sx='mr-2'
             color={active ? 'white' : 'primary'}
           >
             {text}
@@ -61,10 +60,9 @@ export const SidebarItem = ({
       ) : (
         <li
           onClick={handleClick}
-          className={`
+          className='
         relative flex py-2 px-2 items-center my-1 cursor-pointer rounded-[10px]
-        ${active ? 'bg-h-info text-white' : 'hover:bg-h-blue-light'}
-    `}
+        hover:bg-h-blue-light'
         >
           {icon}
           <Text
@@ -159,10 +157,14 @@ const Sidebar: React.FC = () => {
 
         <div>
           <ul className='flex flex-col justify-between p-4'>
-            {options.map((route, index) => (
-              <Link to={route.path} key={index}>
+            {options.map((route) => (
+              <Link to={route.path} key={route.label}>
                 <SidebarItem
                   icon={React.cloneElement(route.icon, {
+                    color:
+                      route.path === activeItem
+                        ? 'var(--h-white)'
+                        : 'var(--h-secondary)',
                     weight: 'light',
                   })}
                   text={route.label}
