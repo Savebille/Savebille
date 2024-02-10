@@ -1,68 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #fcfcfc;
 
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /* NEW COLORS */
+  --h-info: #3183ff;
+  --h-success: #61b449;
+  --h-yellow: #edd92a;
+  --h-error: #ff5252;
+  --h-primary: #233145;
+  --h-secondary: #8e98a7;
+  --h-gray: #dfe5f1;
+  --h-white: #ffffff;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  text-decoration: none;
 }
-a:hover {
-  color: #535bf2;
+
+html,
+body,
+:root {
+  height: 100%;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  width: 100vw;
   min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #fbfcfd;
+  color: #1a1a1a;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+* {
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
-button {
+.Mui-error {
+  color: var(--h-red-40) !important;
+}
+
+.darktheme > .MuiInputBase-input {
+  color: white !important;
+}
+
+.darktheme > .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.23) !important;
+}
+
+.multiline .MuiInputBase-root {
+  background-color: #fff !important;
+  min-height: 31px !important;
+  padding: 12px;
+  height: fit-content !important;
+  border-radius: 8px 8px !important;
+}
+
+.customInput .MuiOutlinedInput-input {
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  height: 14px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.customInput .MuiInputLabel-animated {
+  color: var(--h-light) !important;
+  top: -4px;
+}
+
+.customInput .MuiInputLabel-shrink {
+  color: var(--h-blue-40) !important;
+  top: 0px;
+}
+
+.MuiAccordion-root::before {
+  display: none !important;
+}
+
+.checkbox-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #dfe5f1;
+  border-radius: 4px;
+  background-color: #fafafa;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkbox-input:checked {
+  background-color: var(--h-success);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--h-gray-40);
+  border-radius: 40px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@layer utilities {
+  .showContainer {
+    @apply transition duration-300 opacity-100;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+
+  .hiddeContainer {
+    @apply transition duration-300 opacity-0;
   }
 }
+
