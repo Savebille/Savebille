@@ -1,23 +1,21 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useMemo, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   ChartLine,
   Coins,
   House,
-  Gear,
-  User,
-  Info,
   SignOut,
-} from '@phosphor-icons/react';
-import ROUTES from '../../shared/constants/routes';
-import Text from '../Text';
-import React from 'react';
-
+  Book,
+  ArrowsOut,
+} from "@phosphor-icons/react";
+import ROUTES from "../../shared/constants/routes";
+import Text from "../Text";
+import React from "react";
 interface MenuItemProps {
   icon: JSX.Element;
   text: string;
   active?: boolean;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 export const MenuItem = ({
@@ -33,14 +31,10 @@ export const MenuItem = ({
   }, [initialActive]);
 
   const handleClick = () => {
-    if (text === 'Ajustes') {
-      setActive();
-    }
-
     if (!active) {
       setActive(true);
       onClick();
-    } else if (text === 'Ajustes') {
+    } else if (text === "") {
       setActive(false);
     }
   };
@@ -50,15 +44,15 @@ export const MenuItem = ({
       {active ? (
         <li
           onClick={handleClick}
-          className='
+          className="
         flex flex-col w-full py-2 items-center gap-1 cursor-pointer
-        bg-h-info transition duration-200'
+        bg-h-info transition duration-200"
         >
           {icon}
           <Text
-            size='small'
-            weight='regular'
-            color={active ? 'white' : 'primary'}
+            size="small"
+            weight="regular"
+            color={active ? "white" : "primary"}
           >
             {text}
           </Text>
@@ -66,15 +60,15 @@ export const MenuItem = ({
       ) : (
         <li
           onClick={handleClick}
-          className='
+          className="
         flex flex-col w-full py-2 items-center gap-1 cursor-pointer
-        hover:bg-h-blue-light transition duration-200'
+        hover:bg-h-blue-light transition duration-200"
         >
           {icon}
           <Text
-            size='small'
-            weight='regular'
-            color={active ? 'white' : 'primary'}
+            size="small"
+            weight="regular"
+            color={active ? "white" : "primary"}
           >
             {text}
           </Text>
@@ -88,41 +82,34 @@ const MobileMenu: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [ShowAccountMenu, setShowAccountMenu] = useState(false);
+  const [showAccountMenu, setShowAccountMenu] = useState(false);
 
   const [activeItem, setActiveItem] = useState(ROUTES.ROOT);
 
-  const handleItemClick = (path: string, label: string) => {
-    if (label === 'Ajustes') {
-      setShowAccountMenu(!ShowAccountMenu);
-      setActiveItem(path);
-    } else {
-      setActiveItem((prevActiveItem) =>
-        prevActiveItem === path ? null : path
-      );
-    }
+  const handleItemClick = (path: string) => {
+    setActiveItem((prevActiveItem) => (prevActiveItem === path ? null : path));
+    setShowAccountMenu(false);
+  };
+
+  const handleMoreOptions = () => {
+    setShowAccountMenu((prev) => !prev);
   };
 
   const options = [
     {
-      label: 'Home',
-      icon: <House size={20}   />,
+      label: "Home",
+      icon: <House size={20} />,
       path: ROUTES.ROOT,
     },
     {
-      label: 'Balance',
+      label: "Estadisticas",
       icon: <ChartLine size={20} />,
-      path: ROUTES.BALANCE,
+      path: ROUTES.STATS,
     },
     {
-      label: 'Pagos',
+      label: "Pagos",
       icon: <Coins size={20} />,
       path: ROUTES.PAYMENTS,
-    },
-    {
-      label: 'Ajustes',
-      icon: <Gear size={20} />,
-      path: '',
     },
   ];
 
@@ -136,58 +123,62 @@ const MobileMenu: React.FC = () => {
 
   const settingsOptions = [
     {
-      label: 'Cuenta',
-      icon: <User size={20} color='var(--h-secondary)' />,
-      onClick: () => navigate(ROUTES.ROOT),
+      label: "Mis categorias",
+      icon: <Book size={20} color="var(--h-secondary)" />,
+      onClick: () => navigate(ROUTES.CATEGORIES),
     },
     {
-      label: 'Ayuda',
-      icon: <Info size={20} color='var(--h-secondary)' />,
-      onClick: () => navigate(ROUTES.ROOT),
-    },
-    {
-      label: 'Cerrar Sesión',
-      icon: <SignOut size={20} color='var(--h-secondary)' />,
+      label: "Cerrar Sesión",
+      icon: <SignOut size={20} color="var(--h-secondary)" />,
       onClick: () => navigate(ROUTES.AUTH),
     },
   ];
 
   return (
     <>
-      <div className='bg-h-gray-input flex w-full bottom-0 fixed lg:hidden'>
-        <div className='w-full'>
-          <ul className='flex w-full text-base items-center justify-between border-t border-h-gray '>
+      <div className="bg-h-gray-input flex w-full bottom-0 fixed lg:hidden">
+        <div className="flex w-3/4">
+          <ul className="flex w-full text-base items-center justify-between border-t border-h-gray ">
             {options.map((option) => (
-              <Link to={option.path} key={option.label} className='w-full'>
+              <Link to={option.path} key={option.label} className="w-full">
                 <MenuItem
                   text={option.label}
                   icon={React.cloneElement(option.icon, {
                     color:
                       option.path === activeItem
-                        ? 'var(--h-white)'
-                        : 'var(--h-secondary)',
-                    weight: 'light',
+                        ? "var(--h-white)"
+                        : "var(--h-secondary)",
+                    weight: "light",
                   })}
-                  onClick={() => handleItemClick(option.path, option.label)}
+                  onClick={() => handleItemClick(option.path)}
                   active={option.path === activeItem}
                 />
               </Link>
             ))}
           </ul>
         </div>
+        <div
+          onClick={handleMoreOptions}
+          className="w-1/4 flex items-center justify-center border-t hover:bg-h-blue-light cursor-pointer"
+        >
+          <ArrowsOut size={20} color="var(--h-secondary)" />
+        </div>
       </div>
 
-      {ShowAccountMenu && (
-        <div className='bg-h-white shadow-md fixed bottom-[62px] right-0 rounded-md w-[200px] lg:hidden '>
-          <ul className='flex flex-col w-full h-auto  items-center'>
+      {showAccountMenu && (
+        <div className="bg-h-white shadow-md fixed bottom-[64px] right-0 rounded-md w-[200px] lg:hidden ">
+          <ul className="flex flex-col w-full h-auto  items-center">
             {settingsOptions.map((item) => (
               <li
                 onClick={item.onClick}
                 key={item.label}
-                className='flex justify-center items-center p-3 w-full h-full hover:bg-h-blue-light gap-2'
+                className="flex justify-center items-center p-3 w-full h-full hover:bg-h-blue-light gap-3"
               >
                 <div>{item.icon}</div>
-                <Text color='primary'>{item.label}</Text>
+
+                <Text color="primary" size="small" weight="regular">
+                  {item.label}
+                </Text>
               </li>
             ))}
           </ul>

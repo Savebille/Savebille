@@ -2,8 +2,11 @@ const ROUTES = {
   ROOT: '/',
   AUTH: '/auth',
   STATS: '/stats',
-  BALANCE: '/balance',
-  PAYMENTS: '/payments'
+  CATEGORIES: '/categories',
+  SETTINGS: '/settings',
+  HELP: '/help',
+  PAYMENTS: '/payments',
+  ACCOUNT: '/account',
 };
 
 
