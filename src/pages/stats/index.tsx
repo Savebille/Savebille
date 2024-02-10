@@ -1,11 +1,5 @@
-import React from 'react'
-
 const Stats = () => {
-  return (
-    <div>
-      Statspage
-    </div>
-  )
-}
+  return <div>Statspage</div>;
+};
 
-export default Stats
+export default Stats;

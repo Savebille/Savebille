@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '../../components/Sidebar';
-import { Bell, ArrowDown, MagnifyingGlass } from '@phosphor-icons/react';
+import { Bell, MagnifyingGlass } from '@phosphor-icons/react';
 import Text from '../../components/Text';
 import MobileMenu from '../../components/MobileMenu';
 

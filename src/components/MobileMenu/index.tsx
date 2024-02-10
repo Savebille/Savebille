@@ -87,6 +87,7 @@ const MobileMenu: React.FC = () => {
   const [activeItem, setActiveItem] = useState(ROUTES.ROOT);
 
   const handleItemClick = (path: string) => {
+    //@ts-expect-error
     setActiveItem((prevActiveItem) => (prevActiveItem === path ? null : path));
     setShowAccountMenu(false);
   };

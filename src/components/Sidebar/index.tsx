@@ -5,7 +5,6 @@ import {
   Book,
   ChartLine,
   Coins,
-  CreditCard,
   Gear,
   House,
   Info,
@@ -135,10 +134,6 @@ const Sidebar: React.FC = () => {
     setActiveItem((prevActiveItem) => (prevActiveItem === path ? null : path));
   };
 
-  const onLogout = () => {
-    localStorage.removeItem('token');
-    navigate(ROUTES.AUTH);
-  };
 
   return (
     <aside
