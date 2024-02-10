@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
+import IMAGES from '../../shared/constants/images';
 
 const Auth: React.FC = () => {
   const [step, setStep] = useState(0);
@@ -45,7 +46,7 @@ const Auth: React.FC = () => {
 
         <div className='hidden lg:block lg:w-[42%] lg:h-full overflow-hidden'>
           <img
-            src='src/assets/img/LoginBanner.png'
+            src={IMAGES.BANNER}
             alt='Login Banner'
             className='w-full h-full object-cover object-center rounded-t-3xl lg:rounded-r-3xl lg:rounded-l-none'
           />

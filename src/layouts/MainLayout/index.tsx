@@ -3,6 +3,7 @@ import Sidebar from '../../components/Sidebar';
 import { Bell, MagnifyingGlass } from '@phosphor-icons/react';
 import Text from '../../components/Text';
 import MobileMenu from '../../components/MobileMenu';
+import IMAGES from '../../shared/constants/images';
 
 const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
 
@@ -18,7 +19,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
           <div className='flex w-full lg:hidden px-4 py-2 lg:p-4 justify-between '>
             <div className='flex gap-3'>
               <img
-                src='https://cdn.iconscout.com/icon/premium/png-512-thumb/finance-1433977-1212011.png?f=webp&w=256'
+                src={IMAGES.CASHICON}
                 alt='avatar'
                 width={50}
                 height={50}
@@ -33,7 +34,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
                 <Bell size={20} />
               </div>
               <img
-                src='src/assets/img/LoginAvatar.png'
+                src={IMAGES.SAVEBILLE}
                 alt='logo'
                 className='w-[42px] h-[42px] rounded-full mr-2'
               />
@@ -90,7 +91,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
               <div className='w-auto h-full xl:flex xl:justify-between xl:items-center'>
                 <div className='flex items-center gap-3'>
                   <img
-                    src='src/assets/img/LoginAvatar.png'
+                    src={ IMAGES.SAVEBILLE}
                     alt='userAvatar'
                     className='w-11 h-11 rounded-full hidden lg:block'
                   />

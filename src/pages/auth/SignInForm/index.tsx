@@ -7,6 +7,7 @@ import IconButton from '../../../components/IconButton';
 import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
 import TextHeaders from '../../../components/TextHeaders';
+import IMAGES from '../../../shared/constants/images';
 
 interface SignInFormProps {
   containerAnimation: string;
@@ -27,7 +28,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
         {/* avatar */}
         <div className='w-[70px] h-[70px] lg:w-[90px] lg:h-[90px] overflow-hidden rounded-full shadow-xl'>
           <img
-            src='src/assets/img/LoginAvatar.png'
+            src={IMAGES.SAVEBILLE}
             alt='Savebille Icon'
             className='object-cover object-center'
           />
