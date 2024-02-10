@@ -1,110 +1,96 @@
 import React from 'react';
 import Sidebar from '../../components/Sidebar';
-import { Bell, MagnifyingGlass } from '@phosphor-icons/react';
 import Text from '../../components/Text';
 import MobileMenu from '../../components/MobileMenu';
 import IMAGES from '../../shared/constants/images';
+import { useNavigate } from 'react-router-dom';
+import ROUTES from '../../shared/constants/routes';
+import SearchInput from '../../components/SearchInput';
+import NotificationIcon from '../../components/NotificationIcon';
+import UserAvatar from '../../components/UserAvatar';
 
 const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
+  const navigate = useNavigate();
 
   return (
     <div className='flex h-screen relative'>
-      {/* Sidebar */}
+      {/* SIDEBAR */}
       <div className='hidden lg:flex lg:flex-col z-[80]'>
         <Sidebar />
       </div>
 
+      {/* NAVBAR */}
       <div className='flex flex-col w-full relative'>
-        <div className='bg-h-white w-full sticky top-0'>
-          <div className='flex w-full lg:hidden px-4 py-2 lg:p-4 justify-between '>
-            <div className='flex gap-3'>
+        {/* NAVBAR MOBILE */}
+        <div className='bg-h-white w-full h-auto flex flex-col justify-between px-6 py-2 sticky top-0 lg:hidden gap-2 border-b border-h-gray'>
+          {/* UP */}
+          <div className='w-full flex items-center justify-between h-[50px]'>
+            {/* Logo */}
+            <button
+              onClick={() => navigate(ROUTES.ROOT)}
+              className='flex items-center gap-3'
+            >
               <img
                 src={IMAGES.CASHICON}
                 alt='avatar'
                 width={50}
                 height={50}
+                className='hidden sm:block'
               />
               <Text color='info' size='title' weight='bold'>
                 Savebille
               </Text>
-            </div>
-            {/* Logo Info */}
-            <div className='flex items-center gap-1'>
-              <div className='flex bg-h-gray-input rounded-full items-center justify-center mx-4 p-2 border-b border-h-gray'>
-                <Bell size={20} />
-              </div>
-              <img
-                src={IMAGES.SAVEBILLE}
-                alt='logo'
-                className='w-[42px] h-[42px] rounded-full mr-2'
-              />
+            </button>
+
+            {/* User Information */}
+            <div className='flex items-center gap-3 overflow-hidden'>
+              <NotificationIcon />
+              <UserAvatar />
             </div>
           </div>
-          {/* Input Mobile */}
-          <div className='bg-h-white px-4 py-2 lg:hidden'>
-            <div className='bg-h-gray-input flex-start items-center place-content-center p-2 rounded-md h-[42px]lg:hidden xl:hidden'>
-              <div className='flex items-center justify-between h-[20px] gap-3'>
-                <div className='flex justify-center items-center'>
-                  <MagnifyingGlass color='#233145' size={20} />
-                </div>
-                <input
-                  type='text'
-                  placeholder='Type here to search'
-                  className='bg-h-gray-input h-full border-h-info focus:outline-none text-h-secondary text-sm w-full px-1 '
-                />
-              </div>
-            </div>
+
+          {/* DOWN */}
+          <div className='w-full flex items-center justify-between h-[50px] bg-h-gray-input border-2 border-h-gray rounded-md p-2'>
+            <SearchInput
+              width='w-full'
+              height='h-full'
+              placeHolder='Type here to search'
+            />
           </div>
         </div>
 
-        <div className='bg-h-white lg:flex hidden justify-between items-center h-[100px] border-b border-h-gray ml-60 p-6 gap-6'>
-          {/* Leftside */}
-          {/* Input */}
-          <div className='bg-h-gray-input lg:flex lg:items-center lg:justify-between p-2 rounded-md h-[47px] lg:w-[400px] md:hidden hidden'>
-            <div className='flex items-center justify-between h-[20px] lg:w-auto gap-2'>
-              <div className='flex justify-center items-center md:block'>
-                <MagnifyingGlass color='#233145' size={25} />
-              </div>
-              <input
-                type='text'
-                placeholder='Type here to search'
-                className='bg-h-gray-input h-full w-full border-h-info focus:outline-none text-h-secondary text-sm'
-              />
-            </div>
-
-            <div className='bg-h-white h-[32px] min-w-[52px] rounded-lg p-2 shadow md:hidden lg:block'>
+        {/* NAVBAR DESKTOP */}
+        <div className='bg-h-white hidden lg:flex lg:justify-between lg:items-center h-[100px] border-b border-h-gray ml-60 p-6 gap-6 sticky top-0'>
+          {/* Left Side */}
+          <div className='bg-h-gray-input flex items-center justify-between lg:w-[400px] rounded-md h-11 p-2 border-2 border-h-gray'>
+            <SearchInput
+              width='w-auto'
+              height='h-full'
+              placeHolder='Type here to search'
+            />
+            <button className='bg-h-white h-8 w-auto px-2 rounded-lg shadow hidden lg:flex lg:items-center lg:justify-center'>
               <Text size='medium' weight='semibold' color='primary'>
                 ⌘ F
               </Text>
-            </div>
+            </button>
           </div>
 
-          {/* Rightside */}
-          <div className='bg-h-white flex items-center justify-between w-auto h-11'>
-            {/* user-account */}
-            <div className='lg:flex items-center hidden gap-4'>
-              <button className='rounded-full h-11 w-11 flex items-center justify-center border-b border-h-gray'>
-                <Bell size={20} />
-              </button>
+          {/* Right-Side */}
+          <div className='bg-h-white flex items-center justify-between w-auto h-11 gap-3'>
+            <NotificationIcon />
 
-              {/* user-info */}
-              <div className='w-auto h-full xl:flex xl:justify-between xl:items-center'>
-                <div className='flex items-center gap-3'>
-                  <img
-                    src={ IMAGES.SAVEBILLE}
-                    alt='userAvatar'
-                    className='w-11 h-11 rounded-full hidden lg:block'
-                  />
+            {/* user-info */}
+            <div className='w-auto h-full flex items-center gap-3 overflow-hidden'>
+              <UserAvatar />
 
-                  <div className='hidden lg:flex lg:flex-col lg:h-[38px] gap-1'>
-                    <Text size='large' weight='bold' color='primary'>
-                      Martin Rubiano
-                    </Text>
-                    <Text size='small' color='secondary'>
-                      martin.savebille@gmail.com
-                    </Text>
-                  </div>
-                </div>
+              {/* user-details */}
+              <div className='hidden lg:flex lg:flex-col lg:justify-center lg:h-auto gap-1'>
+                <Text size='large' weight='bold' color='primary'>
+                  Martin Rubiano
+                </Text>
+                <Text size='medium' color='secondary'>
+                  martin.savebille@gmail.com
+                </Text>
               </div>
             </div>
           </div>

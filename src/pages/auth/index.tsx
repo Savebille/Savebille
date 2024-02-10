@@ -43,7 +43,6 @@ const Auth: React.FC = () => {
         )}
 
         {/* img */}
-
         <div className='hidden lg:block lg:w-[42%] lg:h-full overflow-hidden'>
           <img
             src={IMAGES.BANNER}

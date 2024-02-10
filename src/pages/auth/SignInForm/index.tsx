@@ -8,6 +8,7 @@ import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
 import TextHeaders from '../../../components/TextHeaders';
 import IMAGES from '../../../shared/constants/images';
+import GoogleIcon from '../../../../public/assets/google.svg';
 
 interface SignInFormProps {
   containerAnimation: string;
@@ -43,10 +44,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
 
       {/* buttons */}
       <div className='w-full h-auto flex flex-col justify-between lg:flex-row lg:justify-center items-center gap-2'>
-        <IconButton
-          iconSource='src/assets/img/google.svg'
-          iconAltText='google icon'
-        />
+        <IconButton iconSource={GoogleIcon} iconAltText='google icon' />
       </div>
 
       {/* OR */}
