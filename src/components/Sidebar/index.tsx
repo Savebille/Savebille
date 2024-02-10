@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 import {
+  Book,
   ChartLine,
   Coins,
   CreditCard,
@@ -86,29 +87,29 @@ const options = [
     path: ROUTES.ROOT,
   },
   {
+    label: 'Mis categorias',
+    icon: <Book size={20} color='var(--h-secondary)' />,
+    path: ROUTES.CATEGORIES,
+  },
+  {
     label: 'Estadisticas',
     icon: <ChartLine size={20} color='var(--h-secondary)' />,
     path: ROUTES.STATS,
   },
   {
-    label: 'Tarjetas',
-    icon: <CreditCard size={20} color='var(--h-secondary)' />,
-    path: '/cards',
-  },
-  {
     label: 'Proximos pagos',
     icon: <Coins size={20} color='var(--h-secondary)' />,
-    path: '/payments',
+    path: ROUTES.PAYMENTS,
   },
   {
     label: 'Ajustes',
     icon: <Gear size={20} color='var(--h-secondary)' />,
-    path: '/settings',
+    path: ROUTES.SETTINGS,
   },
   {
     label: 'Ayuda',
     icon: <Info size={20} color='var(--h-secondary)' />,
-    path: '/help',
+    path: ROUTES.HELP,
   },
   {
     label: 'Cerrar sesión',
