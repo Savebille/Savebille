@@ -27,7 +27,7 @@ const Auth: React.FC = () => {
   return (
     <div className='h-screen w-screen flex items-center justify-center'>
       {/* main container */}
-      <div className='bg-h-white flex flex-col-reverse lg:flex-row justify-between rounded-3xl shadow-lg max-w-[1438px] max-h-[954px] w-[90%] h-[80%]'>
+      <div className='bg-h-white flex flex-col-reverse lg:flex-row justify-between rounded-3xl shadow-lg max-w-[1438px] max-h-[954px] w-[90%] h-[90%]'>
         {step === 0 && (
           <SignInForm
             containerAnimation={containerAnimation}

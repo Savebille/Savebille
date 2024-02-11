@@ -50,7 +50,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
           </div>
 
           {/* DOWN */}
-          <div className='w-full flex items-center justify-between h-[50px] bg-h-gray-input border-2 border-h-gray rounded-md p-2'>
+          <div className='w-full h-11 flex items-center justify-between  bg-h-gray-input border-2 border-h-gray rounded-md p-2'>
             <SearchInput
               width='w-full'
               height='h-full'
@@ -88,7 +88,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
                 <Text size='large' weight='bold' color='primary'>
                   Martin Rubiano
                 </Text>
-                <Text size='medium' color='secondary'>
+                <Text size='small' color='secondary'>
                   martin.savebille@gmail.com
                 </Text>
               </div>

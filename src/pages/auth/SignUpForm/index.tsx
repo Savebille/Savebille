@@ -23,7 +23,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
   return (
     <div
       id='sign-up'
-      className={`w-full h-full lg:w-[58%] px-[30px] py-[80px] lg:px-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
+      className={`w-full h-full lg:w-[58%] p-5 sm:py-[60px] sm:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
     >
       {/* header */}
       <div className='w-full h-auto flex flex-col items-center'>
@@ -35,7 +35,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
       </div>
 
       {/* buttons */}
-      <div className='w-full h-auto flex flex-col justify-between lg:flex-row lg:justify-center items-center gap-2'>
+      <div className='w-full h-auto flex justify-center items-center'>
         <IconButton iconSource={GoogleIcon} iconAltText='google icon' />
       </div>
 
@@ -43,9 +43,9 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
       <TextDivider text='OR' />
 
       {/* form */}
-      <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-6 '>
+      <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-4'>
         {/* inputs */}
-        <form className='w-full h-auto flex flex-col justify-between gap-6'>
+        <form className='w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'>
           {/* name */}
           <TextInput
             labelText='First name'
@@ -67,7 +67,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
         </form>
 
         {/* Agree with Terms and Conditions desktop*/}
-        <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-start items-center gap-1'>
+        <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-between items-center gap-1'>
           <CheckboxInput
             labelText='You agree to our'
             anchorText='Terms and Conditions'

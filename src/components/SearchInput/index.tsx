@@ -22,7 +22,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
       <input
         type='text'
         placeholder={placeHolder}
-        className='bg-h-gray-input h-full w-full focus:outline-none text-h-secondary text-base'
+        className='bg-h-gray-input h-full w-full focus:outline-none text-h-secondary text-sm'
       />
     </div>
   );

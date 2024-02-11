@@ -139,7 +139,7 @@ const MobileMenu: React.FC = () => {
     <>
       <div className='bg-h-gray-input flex w-full bottom-0 fixed lg:hidden'>
         <div className='flex w-3/4'>
-          <ul className='flex w-full text-base items-center justify-between border-t border-h-gray '>
+          <ul className='flex w-full text-base items-center justify-between border-t border-h-gray'>
             {options.map((option) => (
               <Link to={option.path} key={option.label} className='w-full'>
                 <MenuItem
@@ -173,7 +173,7 @@ const MobileMenu: React.FC = () => {
               <li
                 onClick={item.onClick}
                 key={item.label}
-                className='flex justify-center items-center p-3 w-full h-full rounded-l-xl hover:bg-h-blue-light gap-3'
+                className='flex justify-center items-center p-3 w-full h-full rounded-l-xl   hover:bg-h-blue-light gap-3 transition duration-200'
               >
                 <div>{item.icon}</div>
 
