@@ -67,7 +67,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
         </form>
 
         {/* Agree with Terms and Conditions desktop*/}
-        <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-between items-center gap-1'>
+        <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-start items-center gap-1'>
           <CheckboxInput
             labelText='You agree to our'
             anchorText='Terms and Conditions'
