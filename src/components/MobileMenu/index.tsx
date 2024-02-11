@@ -160,7 +160,7 @@ const MobileMenu: React.FC = () => {
         </div>
         <div
           onClick={handleMoreOptions}
-          className='w-1/4 flex items-center justify-center border-t border-h-gray hover:bg-h-blue-light cursor-pointer'
+          className='w-1/4 flex items-center justify-center border-t border-h-gray hover:bg-h-blue-light cursor-pointer transition duration-200'
         >
           <ArrowsOut size={20} color='var(--h-secondary)' />
         </div>
