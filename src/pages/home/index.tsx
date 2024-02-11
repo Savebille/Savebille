@@ -148,7 +148,7 @@ const Home: React.FC = () => {
       {/* Header content */}
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
-          <Text color="primary" weight="bold" size="extraLarge">
+          <Text color="primary" weight="bold" size="large">
             Listado de gastos e ingresos
           </Text>
           <Text
