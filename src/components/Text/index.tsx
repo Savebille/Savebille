@@ -21,9 +21,9 @@ interface Props {
     | 'small'
     | 'medium'
     | 'large'
-    | 'extraLarge'
-    | 'extraextraLarge'
-    | 'mostLarge'
+    | 'extra-large'
+    | 'extra-extra-large'
+    | 'most-large'
     | 'title';
   weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold';
 

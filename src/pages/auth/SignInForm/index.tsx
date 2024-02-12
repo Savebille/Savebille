@@ -7,6 +7,8 @@ import IconButton from '../../../components/IconButton';
 import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
 import TextHeaders from '../../../components/TextHeaders';
+import IMAGES from '../../../shared/constants/images';
+import GoogleIcon from '../../../../public/assets/google.svg';
 
 interface SignInFormProps {
   containerAnimation: string;
@@ -20,14 +22,14 @@ const SignInForm: React.FC<SignInFormProps> = ({
   return (
     <div
       id='sign-in'
-      className={`w-full h-full lg:w-[58%] px-[30px] py-[80px] lg:px-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
+      className={`w-full h-full lg:w-[58%] p-5 sm:py-[60px] sm:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
     >
       {/* header */}
       <div className='w-full h-auto flex flex-col items-center justify-between gap-4'>
         {/* avatar */}
         <div className='w-[70px] h-[70px] lg:w-[90px] lg:h-[90px] overflow-hidden rounded-full shadow-xl'>
           <img
-            src='src/assets/img/LoginAvatar.png'
+            src={IMAGES.SAVEBILLE}
             alt='Savebille Icon'
             className='object-cover object-center'
           />
@@ -41,20 +43,17 @@ const SignInForm: React.FC<SignInFormProps> = ({
       </div>
 
       {/* buttons */}
-      <div className='w-full h-auto flex flex-col justify-between lg:flex-row lg:justify-center items-center gap-2'>
-        <IconButton
-          iconSource='src/assets/img/google.svg'
-          iconAltText='google icon'
-        />
+      <div className='w-full h-auto flex justify-center items-center'>
+        <IconButton iconSource={GoogleIcon} iconAltText='google icon' />
       </div>
 
       {/* OR */}
       <TextDivider text='OR' />
 
       {/* form */}
-      <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-6'>
+      <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-4'>
         {/* inputs */}
-        <form className='w-full h-auto flex flex-col justify-between gap-6'>
+        <form className='w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'>
           {/* email */}
           <TextInput
             labelText='Email'
@@ -68,7 +67,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
         </form>
 
         {/* remember password desktop*/}
-        <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-between items-center gap-2'>
+        <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-between items-center gap-1'>
           <CheckboxInput
             labelText='Remember me'
             anchorText='Forgot password?'
@@ -77,10 +76,10 @@ const SignInForm: React.FC<SignInFormProps> = ({
       </div>
 
       {/* remember password mobile*/}
-      <div className='w-full h-auto flex flex-col sm:hidden justify-between items-center gap-2'>
+      <div className='w-full h-auto flex flex-col sm:hidden justify-between items-center gap-1'>
         <CheckboxInput labelText='Remember me' anchorText='Forgot password?' />
-      </div>
 
+      </div>
       {/* Button SignIn */}
       <Button text='Sign In' />
 

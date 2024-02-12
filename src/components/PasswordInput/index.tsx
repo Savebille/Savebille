@@ -12,8 +12,8 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ idName }) => {
     setPasswordVisibility(!passwordVisibility);
 
   return (
-    <div className='flex flex-col items-start gap-2'>
-      <label htmlFor={idName} className='text-h-primary '>
+    <div className='flex flex-col items-start gap-1'>
+      <label htmlFor={idName} className='text-h-primary text-sm'>
         Password
       </label>
       <div className='relative w-full'>
@@ -21,19 +21,19 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ idName }) => {
           type={passwordVisibility ? 'text' : 'password'}
           id={idName}
           placeholder='Enter your password...'
-          className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] pl-4 pr-12 bg-h-gray-input focus:outline-none'
+          className='w-full h-auto pl-4 pr-12 py-3 border-[1px] border-h-gray rounded-[10px] bg-h-gray-input focus:outline-none text-sm'
         />
         {passwordVisibility ? (
           <Eye
-            className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary cursor-pointer'
+            className='absolute top-[25%] right-4 text-h-secondary cursor-pointer'
             onClick={() => handlePasswordVisibility()}
-            size={24}
+            size={20}
           />
         ) : (
           <EyeSlash
-            className='absolute top-1/2 -translate-y-3 right-4 text-h-secondary cursor-pointer'
+            className='absolute top-[25%] right-4 text-h-secondary cursor-pointer'
             onClick={() => handlePasswordVisibility()}
-            size={24}
+            size={20}
           />
         )}
       </div>

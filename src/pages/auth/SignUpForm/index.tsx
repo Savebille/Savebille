@@ -8,6 +8,7 @@ import IconButton from '../../../components/IconButton';
 import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
 import TextHeaders from '../../../components/TextHeaders';
+import GoogleIcon from '../../../../public/assets/google.svg';
 
 interface SignUnFormProps {
   containerAnimation: string;
@@ -22,7 +23,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
   return (
     <div
       id='sign-up'
-      className={`w-full h-full lg:w-[58%] px-[30px] py-[80px] lg:px-[80px] xl:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
+      className={`w-full h-full lg:w-[58%] p-5 sm:py-[60px] sm:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
     >
       {/* header */}
       <div className='w-full h-auto flex flex-col items-center'>
@@ -34,20 +35,17 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
       </div>
 
       {/* buttons */}
-      <div className='w-full h-auto flex flex-col justify-between lg:flex-row lg:justify-center items-center gap-2'>
-        <IconButton
-          iconSource='src/assets/img/google.svg'
-          iconAltText='google icon'
-        />
+      <div className='w-full h-auto flex justify-center items-center'>
+        <IconButton iconSource={GoogleIcon} iconAltText='google icon' />
       </div>
 
       {/* OR */}
       <TextDivider text='OR' />
 
       {/* form */}
-      <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-6 '>
+      <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-4'>
         {/* inputs */}
-        <form className='w-full h-auto flex flex-col justify-between gap-6'>
+        <form className='w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'>
           {/* name */}
           <TextInput
             labelText='First name'

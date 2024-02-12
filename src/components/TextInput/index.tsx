@@ -12,15 +12,15 @@ const TextInput: React.FC<TextInputProps> = ({
   idName,
 }) => {
   return (
-    <div className='flex flex-col items-start gap-2'>
-      <label htmlFor={idName} className='text-h-primary'>
+    <div className='flex flex-col items-start gap-1'>
+      <label htmlFor={idName} className='text-h-primary text-sm'>
         {labelText}
       </label>
       <input
         type={type}
         id={idName}
         placeholder={placeHolder}
-        className='w-full h-[50px] border-[1px] border-h-gray rounded-[10px] px-4 bg-h-gray-input focus:outline-none'
+        className='w-full h-auto px-4 py-3 border-[1px] border-h-gray rounded-[10px]  bg-h-gray-input focus:outline-none text-sm'
       />
     </div>
   );
