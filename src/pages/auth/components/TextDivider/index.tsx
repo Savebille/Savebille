@@ -8,9 +8,9 @@ interface TextDividerProps {
 const TextDivider: React.FC<TextDividerProps> = ({ text }) => {
   return (
     <div className='w-full h-auto items-center grid grid-cols-3'>
-      <hr className='border-[1.5px] border-h-gray' />
+      <hr className='border-[1px] border-h-gray' />
       <div className='flex justify-center'>
-        <Text weight='regular' color='primary' size='medium'>
+        <Text weight='regular' color='primary' size='small'>
           {text}
         </Text>
       </div>
