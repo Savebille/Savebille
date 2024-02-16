@@ -9,6 +9,8 @@ import TextDivider from '../components/TextDivider';
 import AuthOptionMessage from '../components/AuthOptionMessage';
 import IconButton from '../../../components/IconButton';
 import TextHeaders from '../../../components/TextHeaders';
+import Loader from '@/components/Loader';
+import Text from '@/components/Text';
 import GoogleIcon from '../../../../public/assets/icons/google.svg';
 
 import {
@@ -22,12 +24,12 @@ import {
 
 import { Button as ButtonCN } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
 
 import { SignupValidation } from '@/lib/validation';
+import { createUserAccount } from '@/lib/appwrite/api';
+
 import { z } from 'zod';
-import Loader from '@/components/Loader';
-import { Checkbox } from '@/components/ui/checkbox';
-import Text from '@/components/Text';
 
 interface SignUnFormProps {
   containerAnimation: string;
@@ -52,8 +54,9 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof SignupValidation>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof SignupValidation>) {
+    const newUser = await createUserAccount(values);
+    console.log(newUser)
   }
 
   return (
