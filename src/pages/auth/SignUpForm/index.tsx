@@ -1,10 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-// import PasswordInput from '../../../components/PasswordInput';
-// import TextInput from '../../../components/TextInput';
-// import CheckboxInput from '../components/CheckboxInput';
-// import Button from '../../../components/Button';
+
 import TextDivider from '../components/TextDivider';
 import AuthOptionMessage from '../components/AuthOptionMessage';
 import IconButton from '../../../components/IconButton';
@@ -22,7 +19,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-import { Button as ButtonCN } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 
@@ -43,7 +40,6 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
 }) => {
   const isLoading = false;
 
-  // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
     defaultValues: {
@@ -53,10 +49,9 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
     const newUser = await createUserAccount(values);
-    console.log(newUser)
+    console.log(newUser);
   }
 
   return (
@@ -64,7 +59,6 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
       id='sign-up'
       className={`w-full h-full lg:w-[58%] p-5 sm:py-[40px] sm:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
     >
-      {/* header */}
       <div className='w-full h-auto flex flex-col items-center'>
         <TextHeaders
           title='Create a new account'
@@ -82,7 +76,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className=' w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'
+            className='w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'
           >
             <FormField
               control={form.control}
@@ -142,23 +136,29 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
               )}
             />
 
-            <div className='flex items-center justify-start space-x-2'>
-              <Checkbox id='terms' />
-              <label
-                htmlFor='terms'
-                className='text-sm font-regular text-h-secondary leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+            <div className='flex items-center justify-start space-x-1 w-full'>
+              <div className='flex items-center space-x-2'>
+                <Checkbox id='terms' />
+                <label
+                  htmlFor='terms'
+                  className='text-sm font-regular text-h-secondary leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+                >
+                  <Text color='secondary' size='small'>
+                    Accept
+                  </Text>
+                </label>
+              </div>
+
+              <a
+                href='#'
+                className='text-sm font-regular text-h-info underline leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
               >
-                <Text color='secondary' size='small'>
-                  Accept{' '}
-                  <a href='#' className='text-h-info underline'>
-                    Terms and Conditions
-                  </a>
-                </Text>
-              </label>
+                Terms and Conditions
+              </a>
             </div>
 
             <div className='flex items-center justify-center'>
-              <ButtonCN type='submit'>
+              <Button type='submit'>
                 {isLoading ? (
                   <div className='flex-center gap-2'>
                     <Loader />
@@ -168,7 +168,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
                     Sign Up
                   </Text>
                 )}
-              </ButtonCN>
+              </Button>
             </div>
           </form>
         </Form>

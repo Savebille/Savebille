@@ -15,7 +15,7 @@ const AuthOptionMessage: React.FC<AuthOptionMessageProps> = ({
   onClick,
 }) => {
   return (
-    <div className='w-full h-auto flex flex-coljustify-between sm:flex-row sm:justify-center items-center text-center gap-1'>
+    <div className='w-full h-auto flex flex-col justify-between sm:flex-row sm:justify-center items-center text-center gap-1'>
       <Text color='secondary' weight='regular' size='small'>
         {paragraphText}
       </Text>
