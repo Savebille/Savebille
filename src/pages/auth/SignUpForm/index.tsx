@@ -1,14 +1,31 @@
-// SignUpForm.tsx
 import React from 'react';
-import PasswordInput from '../../../components/PasswordInput';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+// import PasswordInput from '../../../components/PasswordInput';
+// import TextInput from '../../../components/TextInput';
 import CheckboxInput from '../components/CheckboxInput';
 import TextDivider from '../components/TextDivider';
 import AuthOptionMessage from '../components/AuthOptionMessage';
 import IconButton from '../../../components/IconButton';
-import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
 import TextHeaders from '../../../components/TextHeaders';
 import GoogleIcon from '../../../../public/assets/google.svg';
+
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+
+import { Button as ButtonCN } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
+import { SignupValidation } from '@/lib/validation';
+import { z } from 'zod';
 
 interface SignUnFormProps {
   containerAnimation: string;
@@ -20,6 +37,22 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
 
   handleStepChange,
 }) => {
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof SignupValidation>>({
+    resolver: zodResolver(SignupValidation),
+    defaultValues: {
+      name: '',
+      username: '',
+      email: '',
+      password: '',
+    },
+  });
+
+  // 2. Define a submit handler.
+  function onSubmit(values: z.infer<typeof SignupValidation>) {
+    console.log(values);
+  }
+
   return (
     <div
       id='sign-up'
@@ -45,8 +78,8 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
       {/* form */}
       <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-4'>
         {/* inputs */}
-        <form className='w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'>
-          {/* name */}
+
+        {/* <form className='w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'>
           <TextInput
             labelText='First name'
             placeHolder='What is your name?'
@@ -54,7 +87,6 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
             idName='name'
           />
 
-          {/* email */}
           <TextInput
             labelText='Email'
             placeHolder='What is your email?'
@@ -62,9 +94,30 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
             idName='email'
           />
 
-          {/* password */}
           <PasswordInput idName='password-sign-up' />
-        </form>
+        </form> */}
+
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+            <FormField
+              control={form.control}
+              name='username'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder='shadcn' {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    This is your public display name.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <ButtonCN type='submit'>Submit</ButtonCN>
+          </form>
+        </Form>
 
         {/* Agree with Terms and Conditions desktop*/}
         <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-start items-center gap-1'>
