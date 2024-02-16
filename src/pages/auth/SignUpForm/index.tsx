@@ -3,18 +3,17 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 // import PasswordInput from '../../../components/PasswordInput';
 // import TextInput from '../../../components/TextInput';
-import CheckboxInput from '../components/CheckboxInput';
+// import CheckboxInput from '../components/CheckboxInput';
+// import Button from '../../../components/Button';
 import TextDivider from '../components/TextDivider';
 import AuthOptionMessage from '../components/AuthOptionMessage';
 import IconButton from '../../../components/IconButton';
-import Button from '../../../components/Button';
 import TextHeaders from '../../../components/TextHeaders';
-import GoogleIcon from '../../../../public/assets/google.svg';
+import GoogleIcon from '../../../../public/assets/icons/google.svg';
 
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -26,6 +25,9 @@ import { Input } from '@/components/ui/input';
 
 import { SignupValidation } from '@/lib/validation';
 import { z } from 'zod';
+import Loader from '@/components/Loader';
+import { Checkbox } from '@/components/ui/checkbox';
+import Text from '@/components/Text';
 
 interface SignUnFormProps {
   containerAnimation: string;
@@ -37,12 +39,13 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
 
   handleStepChange,
 }) => {
+  const isLoading = false;
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
     defaultValues: {
       name: '',
-      username: '',
       email: '',
       password: '',
     },
@@ -56,90 +59,118 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
   return (
     <div
       id='sign-up'
-      className={`w-full h-full lg:w-[58%] p-5 sm:py-[60px] sm:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
+      className={`w-full h-full lg:w-[58%] p-5 sm:py-[40px] sm:px-[120px] flex flex-col items-center justify-between  ${containerAnimation}`}
     >
       {/* header */}
       <div className='w-full h-auto flex flex-col items-center'>
-        {/* textos */}
         <TextHeaders
           title='Create a new account'
           subtitle='Please enter your details to sign up.'
         />
       </div>
 
-      {/* buttons */}
       <div className='w-full h-auto flex justify-center items-center'>
         <IconButton iconSource={GoogleIcon} iconAltText='google icon' />
       </div>
 
-      {/* OR */}
       <TextDivider text='OR' />
 
-      {/* form */}
-      <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-4'>
-        {/* inputs */}
-
-        {/* <form className='w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'>
-          <TextInput
-            labelText='First name'
-            placeHolder='What is your name?'
-            type='text'
-            idName='name'
-          />
-
-          <TextInput
-            labelText='Email'
-            placeHolder='What is your email?'
-            type='email'
-            idName='email'
-          />
-
-          <PasswordInput idName='password-sign-up' />
-        </form> */}
-
+      <div className='w-full h-auto flex flex-col justify-between items-center'>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className=' w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'
+          >
             <FormField
               control={form.control}
-              name='username'
+              name='name'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <div className='flex items-center justify-start space-x-1'>
+                    <FormLabel>Name</FormLabel>
+                    <FormMessage />
+                  </div>
                   <FormControl>
-                    <Input placeholder='shadcn' {...field} />
+                    <Input
+                      type='text'
+                      placeholder='What is your name?'
+                      {...field}
+                    />
                   </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
-                  <FormMessage />
                 </FormItem>
               )}
             />
-            <ButtonCN type='submit'>Submit</ButtonCN>
+            <FormField
+              control={form.control}
+              name='email'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='flex items-center justify-start space-x-1'>
+                    <FormLabel>Email</FormLabel>
+                    <FormMessage />
+                  </div>
+                  <FormControl>
+                    <Input
+                      type='email'
+                      placeholder='What is your email?'
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='password'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='flex items-center justify-start space-x-1'>
+                    <FormLabel>Password</FormLabel>
+                    <FormMessage />
+                  </div>
+                  <FormControl>
+                    <Input
+                      type='password'
+                      placeholder='Enter your password...'
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <div className='flex items-center justify-start space-x-2'>
+              <Checkbox id='terms' />
+              <label
+                htmlFor='terms'
+                className='text-sm font-regular text-h-secondary leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+              >
+                <Text color='secondary' size='small'>
+                  Accept{' '}
+                  <a href='#' className='text-h-info underline'>
+                    Terms and Conditions
+                  </a>
+                </Text>
+              </label>
+            </div>
+
+            <div className='flex items-center justify-center'>
+              <ButtonCN type='submit'>
+                {isLoading ? (
+                  <div className='flex-center gap-2'>
+                    <Loader />
+                  </div>
+                ) : (
+                  <Text weight='medium' color='white' size='small'>
+                    Sign Up
+                  </Text>
+                )}
+              </ButtonCN>
+            </div>
           </form>
         </Form>
-
-        {/* Agree with Terms and Conditions desktop*/}
-        <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-start items-center gap-1'>
-          <CheckboxInput
-            labelText='You agree to our'
-            anchorText='Terms and Conditions'
-          />
-        </div>
       </div>
 
-      {/* Agree with Terms and Conditions mobile*/}
-      <div className='w-full h-auto flex flex-col sm:hidden justify-start items-center gap-2'>
-        <CheckboxInput
-          labelText='You agree to our'
-          anchorText='Terms and Conditions'
-        />
-      </div>
-
-      {/* Button SignIn */}
-      <Button text='Register' />
-
-      {/* Sign Up */}
       <AuthOptionMessage
         anchorHref='#sign-in'
         paragraphText='Do you already have an account?'

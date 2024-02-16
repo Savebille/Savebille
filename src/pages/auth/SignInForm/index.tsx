@@ -8,7 +8,7 @@ import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
 import TextHeaders from '../../../components/TextHeaders';
 import IMAGES from '../../../shared/constants/images';
-import GoogleIcon from '../../../../public/assets/google.svg';
+import GoogleIcon from '../../../../public/assets/icons/google.svg';
 
 interface SignInFormProps {
   containerAnimation: string;
