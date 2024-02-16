@@ -1,14 +1,33 @@
+
+import { zodResolver } from "@hookform/resolvers/zod"
+
+import { Button as ButtonCN } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+
 import React from 'react';
-import PasswordInput from '../../../components/PasswordInput';
-import CheckboxInput from '../components/CheckboxInput';
+// import PasswordInput from '../../../components/PasswordInput';
+// import CheckboxInput from '../components/CheckboxInput';
+// import Button from '../../../components/Button';
+// import TextInput from '../../../components/TextInput';
 import TextDivider from '../components/TextDivider';
 import AuthOptionMessage from '../components/AuthOptionMessage';
 import IconButton from '../../../components/IconButton';
-import TextInput from '../../../components/TextInput';
-import Button from '../../../components/Button';
 import TextHeaders from '../../../components/TextHeaders';
 import IMAGES from '../../../shared/constants/images';
 import GoogleIcon from '../../../../public/assets/icons/google.svg';
+import { useForm } from "react-hook-form";
+import { SigninValidation } from "@/lib/validation/intex";
+import { z } from "zod";
+
+ 
 
 interface SignInFormProps {
   containerAnimation: string;
@@ -19,6 +38,23 @@ const SignInForm: React.FC<SignInFormProps> = ({
   containerAnimation,
   handleStepChange,
 }) => {
+
+   // 1. Define your form.
+   const form = useForm<z.infer<typeof SigninValidation>>({
+    resolver: zodResolver(SigninValidation),
+    defaultValues: {
+      username: '',
+      password: ''
+    },
+  })
+ 
+  // 2. Define a submit handler.
+  function onSubmit(values: z.infer<typeof SigninValidation>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values)
+  }
+
   return (
     <div
       id='sign-in'
@@ -53,43 +89,53 @@ const SignInForm: React.FC<SignInFormProps> = ({
       {/* form */}
       <div className='w-full h-auto flex flex-col justify-between items-center sm:gap-4'>
         {/* inputs */}
-        <form className='w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'>
-          {/* email */}
-          <TextInput
-            labelText='Email'
-            placeHolder='What is your email?'
-            type='email'
-            idName='email'
-          />
-
-          {/* password */}
-          <PasswordInput idName='password-sign-in' />
-        </form>
-
-        {/* remember password desktop*/}
-        <div className='sm:w-full sm:h-auto sm:flex sm:flex-row hidden justify-between items-center gap-1'>
-          <CheckboxInput
-            labelText='Remember me'
-            anchorText='Forgot password?'
-          />
-        </div>
-      </div>
-
-      {/* remember password mobile*/}
-      <div className='w-full h-auto flex flex-col sm:hidden justify-between items-center gap-1'>
-        <CheckboxInput labelText='Remember me' anchorText='Forgot password?' />
-
-      </div>
-      {/* Button SignIn */}
-      <Button text='Sign In' />
-
-      {/* Sign Up */}
+        <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 w-full mt-4">
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-h-secondary">Email</FormLabel>
+              <FormControl className="w-full h-auto bg-h-gray-input">
+                <Input type="email" placeholder="What is your email?" className='w-full h-auto pl-4 pr-12 py-3 border-[1px] border-h-gray rounded-[10px] bg-h-gray-input focus:outline-none text-sm' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-h-secondary">Password</FormLabel>
+              <FormControl className="w-full h-auto bg-h-gray-input">
+                <Input type="password" placeholder="Enter your password..." className='w-full h-auto pl-4 pr-12 py-3 border-[1px] border-h-gray rounded-[10px] bg-h-gray-input focus:outline-none text-sm' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <ButtonCN type="submit" className=" bg-h-info text-h-white w-full   my-4 h-auto p-2 rounded-xl transition ease-in-out hover:scale-105 duration-200">Sign In</ButtonCN>
+      </form>
       <AuthOptionMessage
         anchorHref='#sign-up'
         paragraphText="Don't have an account yet?"
         textButton='Sign Up'
         onClick={() => handleStepChange(1)}
       />
+    </Form>
+        {/* <form className='w-full h-auto flex flex-col justify-between gap-4 sm:gap-6'>
+          <TextInput
+            labelText='Email'
+            placeHolder='What is your email?'
+            type='email'
+            idName='email'
+          />
+          <PasswordInput idName='password-sign-in' />
+        </form> */}
+      </div>
     </div>
   );
 };
