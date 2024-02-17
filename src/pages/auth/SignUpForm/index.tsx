@@ -90,6 +90,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
                   <FormControl>
                     <Input
                       type='text'
+                      autoComplete='user-name'
                       placeholder='What is your name?'
                       {...field}
                     />
@@ -109,6 +110,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
                   <FormControl>
                     <Input
                       type='email'
+                      autoComplete='email'
                       placeholder='What is your email?'
                       {...field}
                     />
@@ -128,6 +130,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
                   <FormControl>
                     <Input
                       type='password'
+                      autoComplete='current-password'
                       placeholder='Enter your password...'
                       {...field}
                     />

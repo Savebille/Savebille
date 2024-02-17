@@ -94,6 +94,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
                   <FormControl>
                     <Input
                       type='email'
+                      autoComplete='email'
                       placeholder='What is your email?'
                       {...field}
                     />
@@ -113,6 +114,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
                   <FormControl>
                     <Input
                       type='password'
+                      autoComplete='current-password'
                       placeholder='Enter your password...'
                       {...field}
                     />
