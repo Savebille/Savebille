@@ -106,6 +106,16 @@ body {
 }
 
 .checkbox-input:checked {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #dfe5f1;
+  border-radius: 4px;
+  background-color: #fafafa;
+  outline: none;
+  cursor: pointer;
   background-color: var(--h-success);
 }
 
@@ -114,7 +124,6 @@ body {
   display: none;
   width: 10px;
 }
-
 
 /* Track */
 ::-webkit-scrollbar-track {
@@ -132,7 +141,6 @@ body {
   background: #dfe5f1;
 }
 
-
 @layer utilities {
   .showContainer {
     @apply transition duration-300 opacity-100;
@@ -143,3 +151,6 @@ body {
   }
 }
 
+@layer components {
+  /* SHADCN COMPONENTS */
+}

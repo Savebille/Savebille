@@ -24,7 +24,7 @@ const AuthOptionMessage: React.FC<AuthOptionMessageProps> = ({
           color='primary'
           weight='medium'
           size='small'
-          sx='hover:text-h-info transition duration-200'
+          sx='mr-4 hover:text-h-info transition duration-200'
         >
           {textButton}
         </Text>
