@@ -2,7 +2,7 @@ import { getCurrentUser } from '@/lib/appwrite/api';
 import ROUTES from '@/shared/constants/routes';
 import { IContext, IUser } from '@/types';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';}
+import { useNavigate } from 'react-router-dom';
 
 export const INITIAL_USER = {
   id: '',
@@ -22,7 +22,7 @@ const INITIAL_STATE = {
 
 const AuthContext = createContext<IContext>(INITIAL_STATE);
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<IUser>(INITIAL_USER);
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -53,10 +53,17 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setIsLoading(false);
     }
   };
-
   useEffect(() => {
-    if (localStorage.getItem('cookieFallback' === '[]' || 'cookieFallback' === null))
-      navigate(ROUTES.SIGNUP)
+    const cookieFallback = localStorage.getItem("cookieFallback");
+    if (
+      cookieFallback === "[]" ||
+      cookieFallback === null ||
+      cookieFallback === undefined
+    ) {
+      navigate(ROUTES.SIGNIN);
+    }
+
+    checkAuthUser();
   }, []);
 
   const value = {
@@ -71,4 +78,4 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export default AuthContext;
+export const useUserContext = () => useContext(AuthContext);
