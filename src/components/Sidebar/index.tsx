@@ -111,7 +111,7 @@ const options = [
   {
     label: 'Cerrar sesión',
     icon: <SignOut size={20} color='var(--h-secondary)' />,
-    path: ROUTES.AUTH,
+    path: ROUTES.SIGNUP,
   },
 ];
 

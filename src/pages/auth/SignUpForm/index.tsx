@@ -24,10 +24,13 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 
 import { SignupValidation } from '@/lib/validation';
-import { createUserAccount } from '@/lib/appwrite/api';
 
 import { z } from 'zod';
 import { useToast } from '@/components/ui/use-toast';
+import {
+  useCreateUserAccount,
+  useSignInAccount,
+} from '@/lib/react-query/queriesAndMutationts';
 
 interface SignUnFormProps {
   containerAnimation: string;
@@ -39,10 +42,13 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
 
   handleStepChange,
 }) => {
+  const { toast } = useToast();
 
-  const {toast} = useToast();
+  const { mutateAsync: createUserAccount, isLoading: isCreatingUser } =
+    useCreateUserAccount();
 
-  const isLoading = false;
+  const { mutateAsync: signInAccount, isLoading: isSigningIn } =
+    useSignInAccount();
 
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
@@ -56,8 +62,17 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
     const newUser = await createUserAccount(values);
 
-    if(!newUser) {
-      return toast({ title: 'Sign up failed. Please try again.'})
+    if (!newUser) {
+      return toast({ title: 'Sign up failed. Please try again.' });
+    }
+
+    const session = await signInAccount({
+      email: values.email,
+      password: values.password,
+    });
+
+    if (!session) {
+      return toast({ title: 'Sign in failed. Please try again.' });
     }
   }
 
@@ -169,7 +184,7 @@ const SignUpForm: React.FC<SignUnFormProps> = ({
 
             <div className='flex items-center justify-center'>
               <Button type='submit'>
-                {isLoading ? (
+                {isCreatingUser ? (
                   <div className='flex-center gap-2'>
                     <Loader />
                   </div>
