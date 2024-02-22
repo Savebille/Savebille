@@ -24,6 +24,7 @@ import {
 import { useUserContext } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import ROUTES from '@/shared/constants/routes';
+import Text from '@/components/Text';
 
 const SignUpForm = () => {
   const { toast } = useToast();
@@ -40,9 +41,9 @@ const SignUpForm = () => {
   });
 
   // Queries
-  const { mutateAsync: createUserAccount, isLoading: isCreatingAccount } =
+  const { mutateAsync: createUserAccount, isPending: isCreatingAccount } =
     useCreateUserAccount();
-  const { mutateAsync: signInAccount, isLoading: isSigningInUser } =
+  const { mutateAsync: signInAccount, isPending: isSigningInUser } =
     useSignInAccount();
 
   // Handler
@@ -64,7 +65,7 @@ const SignUpForm = () => {
       if (!session) {
         toast({ title: 'Something went wrong. Please login your new account' });
 
-        navigate(ROUTES.SIGNIN);
+        navigate(ROUTES.ROOT);
 
         return;
       }
@@ -88,7 +89,14 @@ const SignUpForm = () => {
   return (
     <div>
       <Form {...form}>
-        <form
+        <div className='sm:w-420 flex-center flex-col m-3'>
+          <Text color='info'weight='bold'size='most-large' sx='mb-1 justify-center' >
+              Register your account
+          </Text>
+          <Text size='extra-large' color='primary' sx='mb-5 justify-center'>
+            To use Savebille, please enter your details 
+          </Text>
+          <form
           onSubmit={form.handleSubmit(handleSignup)}
           className='flex flex-col gap-5 w-full mt-4'
         >
@@ -152,26 +160,17 @@ const SignUpForm = () => {
               </FormItem>
             )}
           />
-          <Button type='submit' className='shad-button_primary'>
-            {isCreatingAccount || isSigningInUser || isUserLoading ? (
-              <div className='flex-center gap-2'>
-                <Loader /> Loading...
+          <Button type='submit' className='shad-button_primary text-white w-full md:w-full lg:w-full'>
+            {isSigningInUser || isUserLoading ? (
+              <div className='flex-center'>
+                <Loader />
               </div>
             ) : (
               'Sign Up'
             )}
           </Button>
-
-          <p className='text-small-regular text-light-2 text-center mt-2'>
-            Already have an account?
-            <Link
-              to='/sign-in'
-              className='text-primary-500 text-small-semibold ml-1'
-            >
-              Log in
-            </Link>
-          </p>
         </form>
+        </div>
       </Form>
     </div>
   );

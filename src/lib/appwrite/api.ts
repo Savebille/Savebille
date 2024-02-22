@@ -7,9 +7,9 @@ export async function createUserAccount(user: INewUser) {
   try {
     const newAccount = await account.create(
       ID.unique(),
+      user.name,
       user.email,
       user.password,
-      user.name
     );
 
     if (!newAccount) throw Error;
@@ -18,8 +18,8 @@ export async function createUserAccount(user: INewUser) {
 
     const newUser = await saveUserToDB({
       accountId: newAccount.$id,
-      email: user.email,
-      name: user.name,
+      email: newAccount.email,
+      name: newAccount.name,
       imageUrl: avatarUrl,
     });
     return newUser;
@@ -33,7 +33,7 @@ export async function saveUserToDB(user: {
   accountId: string;
   email: string;
   name: string;
-  imageUrl: URL;
+  imageUrl?: URL;
 }) {
   try {
     const newUser = await databases.createDocument(
