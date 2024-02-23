@@ -34,7 +34,7 @@ const SigninForm = () => {
     const session = await signInAccount(user);
 
     if (!session) {
-      toast({ title: "Login failed. Please try again." });
+      toast({ title: "Credenciales incorrectas, inténtalo de nuevo.", variant:'default' });
       
       return;
     }
@@ -46,7 +46,7 @@ const SigninForm = () => {
 
       navigate("/");
     } else {
-      toast({ title: "Login failed. Please try again.", });
+      toast({ title: "Error, inténtalo de nuevo.", });
       
       return;
     }
@@ -94,7 +94,8 @@ const SigninForm = () => {
             )}
           />
 
-          <Button type="submit" className="shad-button_primary">
+          <Button
+            type="submit" className="shad-button_primary">
             {isLoading || isUserLoading ? (
               <div className="flex-center gap-2">
                 <Loader /> Loading...
