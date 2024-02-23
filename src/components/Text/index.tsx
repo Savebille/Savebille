@@ -15,16 +15,18 @@ interface Props {
     | 'gray'
     | 'white';
   size?:
-    | 'mini'
-    | 'mini-2'
-    | 'extraSmall'
-    | 'small'
-    | 'medium'
-    | 'large'
-    | 'extra-large'
-    | 'extra-extra-large'
-    | 'most-large'
-    | 'title';
+    | 'h1-medium'
+    | 'h2-medium'
+    | 'h3-medium'
+    | 'h4-medium'
+    | 'h5-medium'
+    | 'h6-normal'
+    | 'text-1-normal'
+    | 'text-2-normal'
+    | 'text-3-normal'
+    | 'text-4-normal'
+    | 'button-bold'
+    | 'base';
   weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold';
 
   sx?: string;
@@ -34,7 +36,7 @@ interface Props {
 const Text = ({
   children,
   color = 'primary',
-  size = 'medium',
+  size = 'base',
   sx,
   weight = 'regular',
   beforeIcon,

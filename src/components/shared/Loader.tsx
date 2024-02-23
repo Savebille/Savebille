@@ -1,11 +1,13 @@
+import IMAGES from '@/shared/constants/images';
+
 const Loader = () => (
-  <div className="flex-center w-full">
+  <div className='flex-center w-full'>
     <img
-      src="/assets/icons/.svg"
-      alt="loader"
-      width={24}
-      height={24}
-      className="animate-spin"
+      src={IMAGES.ICONS.LOADER}
+      alt='loader'
+      width={20}
+      height={20}
+      className='animate-spin'
     />
   </div>
 );

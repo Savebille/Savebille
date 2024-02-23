@@ -13,6 +13,8 @@ import { SigninValidation } from "@/lib/validation";
 import { useSignInAccount } from "@/lib/react-query/queries";
 import { useUserContext } from "@/context/AuthContext";
 import ROUTES from "@/shared/constants/routes";
+import Text from "@/components/Text";
+import IMAGES from "@/shared/constants/images";
 
 const SigninForm = () => {
   const { toast } = useToast();
@@ -54,26 +56,33 @@ const SigninForm = () => {
 
   return (
     <Form {...form}>
-      <div className="sm:w-420 flex-center flex-col">
-        <img src="/assets/images/logo.svg" alt="logo" />
+      <div className='w-[80%] sm:w-[400px] flex flex-col items-center justify-center'>
+        <div className='w-[70px] h-[70px] overflow-hidden rounded-full shadow-md'>
+          <img
+            src={IMAGES.SAVEBILLE}
+            alt='logo'
+            className='object-cover object-center'
+          />
+        </div>
 
-        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
-          Entra en tu cuenta
-        </h2>
-        <p className="text-light-3 small-medium md:base-regular mt-2">
-          Bienvenido de vuelta! Por favor ingresa tu información.
-        </p>
+        <Text color='primary' size='h2-medium' sx='pt-6 text-center'>
+          ¡Bienvenido de vuelta!
+        </Text>
+        <Text color='secondary' size='h4-medium' sx='mt-3 text-center'>
+          Por favor ingresa tu información.
+        </Text>
         <form
           onSubmit={form.handleSubmit(handleSignin)}
-          className="flex flex-col gap-5 w-full mt-4">
+          className='flex flex-col items-center justify-center gap-5 w-full mt-6'
+        >
           <FormField
             control={form.control}
-            name="email"
+            name='email'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Correo electrónico</FormLabel>
+                <FormLabel>Correo electrónico</FormLabel>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field} />
+                  <Input type='email' autoComplete='email' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -82,37 +91,44 @@ const SigninForm = () => {
 
           <FormField
             control={form.control}
-            name="password"
+            name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Conraseña</FormLabel>
+                <FormLabel>Contraseña</FormLabel>
                 <FormControl>
-                  <Input type="password" className="shad-input" {...field} />
+                  <Input
+                    type='password'
+                    autoComplete='current-password'
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button
-            type="submit" className="shad-button_primary">
+          <Button type='submit'>
             {isLoading || isUserLoading ? (
-              <div className="flex-center gap-2">
-                <Loader /> Loading...
+              <div className='flex flex-row justify-center items-center gap-2'>
+                <Loader />
+                <Text color='white' size='button-bold'>
+                  Cargando...
+                </Text>
               </div>
             ) : (
-              "Iniciar sesión"
+              'Iniciar sesión'
             )}
           </Button>
 
-          <p className="text-small-regular text-light-2 text-center mt-2">
-           No tienes una cuenta?
+          <Text color='secondary' size='text-1-normal' sx='text-center mt-2'>
+            ¿No tienes una cuenta?
             <Link
               to={ROUTES.SIGN_UP}
-              className="text-primary-500 text-small-semibold ml-1">
+              className='text-h-primary hover:text-h-info hover:underline'
+            >
               Regístrate
             </Link>
-          </p>
+          </Text>
         </form>
       </div>
     </Form>
