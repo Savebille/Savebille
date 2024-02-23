@@ -12,6 +12,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queries";
 import { SignupValidation } from "@/lib/validation";
 import { useUserContext } from "@/context/AuthContext";
+import ROUTES from "@/shared/constants/routes";
 
 const SignupForm = () => {
   const { toast } = useToast();
@@ -51,7 +52,7 @@ const SignupForm = () => {
       if (!session) {
         toast({ title: "Something went wrong. Please login your new account", });
         
-        navigate("/sign-in");
+        navigate(ROUTES.SIGN_IN);
         
         return;
       }
@@ -78,10 +79,10 @@ const SignupForm = () => {
         <img src="/assets/images/logo.svg" alt="logo" />
 
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
-          Create a new account
+          Crear una nueva cuenta
         </h2>
         <p className="text-light-3 small-medium md:base-regular mt-2">
-          To use snapgram, Please enter your details
+          Para acceder al dashboard, por favor ingresa los detalles de la cuenta.
         </p>
 
         <form
@@ -92,7 +93,7 @@ const SignupForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Name</FormLabel>
+                <FormLabel className="shad-form_label">Nombre</FormLabel>
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
@@ -106,7 +107,7 @@ const SignupForm = () => {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Username</FormLabel>
+                <FormLabel className="shad-form_label">Usuario</FormLabel>
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
@@ -120,7 +121,7 @@ const SignupForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Email</FormLabel>
+                <FormLabel className="shad-form_label">Correo electrónico</FormLabel>
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
@@ -134,7 +135,7 @@ const SignupForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Password</FormLabel>
+                <FormLabel className="shad-form_label">Contraseña</FormLabel>
                 <FormControl>
                   <Input type="password" className="shad-input" {...field} />
                 </FormControl>
@@ -149,16 +150,16 @@ const SignupForm = () => {
                 <Loader /> Loading...
               </div>
             ) : (
-              "Sign Up"
+              "Registrarme"
             )}
           </Button>
 
           <p className="text-small-regular text-light-2 text-center mt-2">
-            Already have an account?
+            Ya tienes una cuenta?
             <Link
-              to="/sign-in"
+              to={ROUTES.SIGN_IN}
               className="text-primary-500 text-small-semibold ml-1">
-              Log in
+              Inicia sesión
             </Link>
           </p>
         </form>

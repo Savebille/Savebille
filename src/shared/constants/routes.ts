@@ -6,8 +6,8 @@ const ROUTES = {
   HELP: '/help',
   PAYMENTS: '/payments',
   ACCOUNT: '/account',
-  SIGNIN: '/sign-in',
-  SIGNUP: '/sign-up'
+  SIGN_IN: '/iniciar-sesion',
+  SIGN_UP: '/registrarse',
 };
 
 

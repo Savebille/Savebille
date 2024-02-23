@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 import { IUser } from "@/types";
 import { getCurrentUser } from "@/lib/appwrite/api";
+import ROUTES from "@/shared/constants/routes";
 
 export const INITIAL_USER = {
   id: "",
@@ -71,7 +72,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       cookieFallback === null ||
       cookieFallback === undefined
     ) {
-      navigate("/sign-in");
+      navigate(ROUTES.SIGN_IN);
     }
 
     checkAuthUser();

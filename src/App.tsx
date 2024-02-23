@@ -13,8 +13,8 @@ const App = () => {
       <Routes>
         {/* Public Routes */}
         <Route element={<AuthLayout />}>
-          <Route path={ROUTES.SIGNIN} element={<SignInForm />}></Route>
-          <Route path={ROUTES.SIGNUP} element={<SignUpForm />}></Route>
+          <Route path={ROUTES.SIGN_IN} element={<SignInForm />}></Route>
+          <Route path={ROUTES.SIGN_UP} element={<SignUpForm />}></Route>
         </Route>
 
         {/* Private Routes */}
