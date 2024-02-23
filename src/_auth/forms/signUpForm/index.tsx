@@ -1,32 +1,19 @@
-import * as z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useForm } from 'react-hook-form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import Loader from "@/components/shared/Loader";
+import { useToast } from "@/components/ui/use-toast";
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { SignupValidation } from '@/lib/validation';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import Loader from '@/components/Loader';
-import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queries";
+import { SignupValidation } from "@/lib/validation";
+import { useUserContext } from "@/context/AuthContext";
 
-import {
-  useCreateUserAccount,
-  useSignInAccount,
-} from '../../../lib/react-query/queriesAndMutationts';
-import { useUserContext } from '@/context/AuthContext';
-import { useToast } from '@/components/ui/use-toast';
-import ROUTES from '@/shared/constants/routes';
-import Text from '@/components/Text';
-
-const SignUpForm = () => {
+const SignupForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
@@ -34,17 +21,16 @@ const SignUpForm = () => {
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
     defaultValues: {
-      name: '',
-      email: '',
-      password: '',
+      name: "",
+      username: "",
+      email: "",
+      password: "",
     },
   });
 
   // Queries
-  const { mutateAsync: createUserAccount, isPending: isCreatingAccount } =
-    useCreateUserAccount();
-  const { mutateAsync: signInAccount, isPending: isSigningInUser } =
-    useSignInAccount();
+  const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccount();
+  const { mutateAsync: signInAccount, isPending: isSigningInUser } = useSignInAccount();
 
   // Handler
   const handleSignup = async (user: z.infer<typeof SignupValidation>) => {
@@ -52,8 +38,8 @@ const SignUpForm = () => {
       const newUser = await createUserAccount(user);
 
       if (!newUser) {
-        toast({ title: 'Sign up failed. Please try again.' });
-
+        toast({ title: "Sign up failed. Please try again.", });
+        
         return;
       }
 
@@ -63,10 +49,10 @@ const SignUpForm = () => {
       });
 
       if (!session) {
-        toast({ title: 'Something went wrong. Please login your new account' });
-
-        navigate(ROUTES.ROOT);
-
+        toast({ title: "Something went wrong. Please login your new account", });
+        
+        navigate("/sign-in");
+        
         return;
       }
 
@@ -75,10 +61,10 @@ const SignUpForm = () => {
       if (isLoggedIn) {
         form.reset();
 
-        navigate('/');
+        navigate("/");
       } else {
-        toast({ title: 'Sign up failed. Please try again.' });
-
+        toast({ title: "Login failed. Please try again.", });
+        
         return;
       }
     } catch (error) {
@@ -87,93 +73,98 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <Form {...form}>
-        <div className='sm:w-420 flex-center flex-col m-3'>
-          <Text color='info'weight='bold'size='most-large' sx='mb-1 justify-center' >
-              Register your account
-          </Text>
-          <Text size='extra-large' color='primary' sx='mb-5 justify-center'>
-            To use Savebille, please enter your details 
-          </Text>
-          <form
+    <Form {...form}>
+      <div className="sm:w-420 flex-center flex-col">
+        <img src="/assets/images/logo.svg" alt="logo" />
+
+        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
+          Create a new account
+        </h2>
+        <p className="text-light-3 small-medium md:base-regular mt-2">
+          To use snapgram, Please enter your details
+        </p>
+
+        <form
           onSubmit={form.handleSubmit(handleSignup)}
-          className='flex flex-col gap-5 w-full mt-4'
-        >
+          className="flex flex-col gap-5 w-full mt-4">
           <FormField
             control={form.control}
-            name='name'
+            name="name"
             render={({ field }) => (
               <FormItem>
-                <div className='flex items-center justify-start space-x-1'>
-                  <FormLabel>Name</FormLabel>
-                  <FormMessage />
-                </div>
+                <FormLabel className="shad-form_label">Name</FormLabel>
                 <FormControl>
-                  <Input
-                    type='text'
-                    autoComplete='user-name'
-                    placeholder='What is your name?'
-                    {...field}
-                  />
+                  <Input type="text" className="shad-input" {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
-            name='email'
+            name="username"
             render={({ field }) => (
               <FormItem>
-                <div className='flex items-center justify-start space-x-1'>
-                  <FormLabel>Email</FormLabel>
-                  <FormMessage />
-                </div>
+                <FormLabel className="shad-form_label">Username</FormLabel>
                 <FormControl>
-                  <Input
-                    type='email'
-                    autoComplete='email'
-                    placeholder='What is your email?'
-                    {...field}
-                  />
+                  <Input type="text" className="shad-input" {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
-            name='password'
+            name="email"
             render={({ field }) => (
               <FormItem>
-                <div className='flex items-center justify-start space-x-1'>
-                  <FormLabel>Password</FormLabel>
-                  <FormMessage />
-                </div>
+                <FormLabel className="shad-form_label">Email</FormLabel>
                 <FormControl>
-                  <Input
-                    type='password'
-                    autoComplete='current-password'
-                    placeholder='Enter your password...'
-                    {...field}
-                  />
+                  <Input type="text" className="shad-input" {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
-          <Button type='submit' className='shad-button_primary text-white w-full md:w-full lg:w-full'>
-            {isSigningInUser || isUserLoading ? (
-              <div className='flex-center'>
-                <Loader />
+
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="shad-form_label">Password</FormLabel>
+                <FormControl>
+                  <Input type="password" className="shad-input" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button type="submit" className="shad-button_primary">
+            {isCreatingAccount || isSigningInUser || isUserLoading ? (
+              <div className="flex-center gap-2">
+                <Loader /> Loading...
               </div>
             ) : (
-              'Sign Up'
+              "Sign Up"
             )}
           </Button>
+
+          <p className="text-small-regular text-light-2 text-center mt-2">
+            Already have an account?
+            <Link
+              to="/sign-in"
+              className="text-primary-500 text-small-semibold ml-1">
+              Log in
+            </Link>
+          </p>
         </form>
-        </div>
-      </Form>
-    </div>
+      </div>
+    </Form>
   );
 };
 
-export default SignUpForm;
+export default SignupForm;

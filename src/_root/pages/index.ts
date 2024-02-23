@@ -1,1 +1,6 @@
 export {default as Home} from './home'
+export {default as Categories} from './categories'
+export {default as Stats} from './stats'
+export {default as Payments} from './payments'
+export {default as Settings} from './settings'
+export {default as Help} from './help'
