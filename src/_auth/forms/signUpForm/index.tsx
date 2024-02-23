@@ -13,6 +13,8 @@ import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/querie
 import { SignupValidation } from "@/lib/validation";
 import { useUserContext } from "@/context/AuthContext";
 import ROUTES from "@/shared/constants/routes";
+import Text from "@/components/Text";
+import IMAGES from "@/shared/constants/images";
 
 const SignupForm = () => {
   const { toast } = useToast();
@@ -39,7 +41,7 @@ const SignupForm = () => {
       const newUser = await createUserAccount(user);
 
       if (!newUser) {
-        toast({ title: "Sign up failed. Please try again.", });
+        toast({ title: 'Registro fallido. Por favor intenta de nuevo.' });
         
         return;
       }
@@ -50,7 +52,9 @@ const SignupForm = () => {
       });
 
       if (!session) {
-        toast({ title: "Something went wrong. Please login your new account", });
+        toast({
+          title: 'Algo salió mal. Por favor inicia sesión con tu nueva cuenta.',
+        });
         
         navigate(ROUTES.SIGN_IN);
         
@@ -64,7 +68,9 @@ const SignupForm = () => {
 
         navigate("/");
       } else {
-        toast({ title: "Login failed. Please try again.", });
+        toast({
+          title: 'Inicio de sesión fallido. Por favor intenta de nuevo.',
+        });
         
         return;
       }
@@ -75,27 +81,34 @@ const SignupForm = () => {
 
   return (
     <Form {...form}>
-      <div className="sm:w-420 flex-center flex-col">
-        <img src="/assets/images/logo.svg" alt="logo" />
+      <div className='w-[80%] sm:w-[400px] flex flex-col items-center justify-center'>
+        <div className='w-[70px] h-[70px] overflow-hidden rounded-full shadow-md'>
+          <img
+            src={IMAGES.SAVEBILLE}
+            alt='logo'
+            className='object-cover object-center'
+          />
+        </div>
 
-        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
-          Crear una nueva cuenta
-        </h2>
-        <p className="text-light-3 small-medium md:base-regular mt-2">
-          Para acceder al dashboard, por favor ingresa los detalles de la cuenta.
-        </p>
+        <Text color='primary' size='h2-medium' sx='pt-6 text-center'>
+          Crea una nueva cuenta
+        </Text>
+        <Text color='secondary' size='h4-medium' sx='mt-3 text-center'>
+          Por favor ingresa la siguiente información.
+        </Text>
 
         <form
           onSubmit={form.handleSubmit(handleSignup)}
-          className="flex flex-col gap-5 w-full mt-4">
+          className='flex flex-col items-center justify-center gap-5 w-full mt-6'
+        >
           <FormField
             control={form.control}
-            name="name"
+            name='name'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Nombre</FormLabel>
+                <FormLabel>Nombre</FormLabel>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field} />
+                  <Input type='text' autoComplete='name' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -104,12 +117,12 @@ const SignupForm = () => {
 
           <FormField
             control={form.control}
-            name="username"
+            name='username'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Usuario</FormLabel>
+                <FormLabel>Usuario</FormLabel>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field} />
+                  <Input type='text' autoComplete='username' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -118,12 +131,12 @@ const SignupForm = () => {
 
           <FormField
             control={form.control}
-            name="email"
+            name='email'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Correo electrónico</FormLabel>
+                <FormLabel>Correo electrónico</FormLabel>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field} />
+                  <Input type='email' autoComplete='email' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -132,36 +145,44 @@ const SignupForm = () => {
 
           <FormField
             control={form.control}
-            name="password"
+            name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Contraseña</FormLabel>
+                <FormLabel>Contraseña</FormLabel>
                 <FormControl>
-                  <Input type="password" className="shad-input" {...field} />
+                  <Input
+                    type='password'
+                    autoComplete='current-password'
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="shad-button_primary">
+          <Button type='submit'>
             {isCreatingAccount || isSigningInUser || isUserLoading ? (
-              <div className="flex-center gap-2">
-                <Loader /> Loading...
+              <div className='flex flex-row justify-center items-center gap-2'>
+                <Loader />
+                <Text color='white' size='button-bold'>
+                  Cargando...
+                </Text>
               </div>
             ) : (
-              "Registrarme"
+              'Registrarme'
             )}
           </Button>
 
-          <p className="text-small-regular text-light-2 text-center mt-2">
-            Ya tienes una cuenta?
+          <Text color='secondary' size='text-1-normal' sx='text-center mt-2'>
+            ¿Ya tienes una cuenta?
             <Link
               to={ROUTES.SIGN_IN}
-              className="text-primary-500 text-small-semibold ml-1">
+              className='text-h-primary hover:text-h-info hover:underline'
+            >
               Inicia sesión
             </Link>
-          </p>
+          </Text>
         </form>
       </div>
     </Form>

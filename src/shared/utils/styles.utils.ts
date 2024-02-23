@@ -14,38 +14,49 @@ const getTextColor = (textColor: string) => {
 };
 
 const getTextSize = (textSize: string) => {
-	switch (textSize) {
-		case 'mini':
-			return 'text-[11px]';
-		case 'mini-2':
-			return 'text-[12px]';
-		case 'extraSmall':
-			return 'text-[13px]';
-		case 'small':
-			return 'text-sm';
-		case 'medium':
-			return 'text-base';
-		case 'large':
-			return 'text-lg';
-		case 'extra-large':
-			return 'text-xl';
-		case 'extra-extra-large':
-			return 'text-2xl';
-    case 'most-large':
-      return 'text-[28px] leading-[28px]';
-    case 'title':
-      return 'text-[32px] leading-[38px]'
-		default:
-			return 'text-base';
-	}
+  switch (textSize) {
+    // HEADLINE
+    case 'h1-medium':
+      return 'text-[28px] font-medium';
+    case 'h2-medium':
+      return 'text-[24px] font-medium';
+    case 'h3-medium':
+      return 'text-[20px] font-medium';
+    case 'h4-medium':
+      return 'text-[18px] font-medium';
+    case 'h5-medium':
+      return 'text-[16px] font-medium';
+    case 'h6-normal':
+      return 'text-[14px] font-normal';
+
+    // PARAGRAPH
+    case 'text-1-normal':
+      return 'text-[14px] font-normal';
+    case 'text-2-normal':
+      return 'text-[13px] font-normal';
+    case 'text-3-normal':
+      return 'text-[12px] font-normal';
+    case 'text-4-normal':
+      return 'text-[11px] font-normal';
+
+    // Button
+    case 'button-bold':
+      return 'text-[14px] font-bold';
+
+    case 'base':
+      return 'text-base font-normal';
+
+    default:
+      return 'text-base font-normal';
+  }
 };
 
 const getTextWeight = (weight: string) => {
   switch (weight) {
     case 'light':
       return 'font-light';
-    case 'regular':
-      return 'font-regular';
+    case 'normal':
+      return 'font-normal';
     case 'medium':
       return 'font-medium';
     case 'semibold':
@@ -53,7 +64,7 @@ const getTextWeight = (weight: string) => {
     case 'bold':
       return 'font-bold';
     default:
-      return 'font-regular';
+      return 'font-normal';
   }
 };
 
