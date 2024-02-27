@@ -1,20 +1,27 @@
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate } from "react-router-dom";
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Loader from "@/components/shared/Loader";
-import { useToast } from "@/components/ui/use-toast";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import Loader from '@/components/shared/Loader';
+import { useToast } from '@/components/ui/use-toast';
 
-import { SigninValidation } from "@/lib/validation";
-import { useSignInAccount } from "@/lib/react-query/queries";
-import { useUserContext } from "@/context/AuthContext";
-import ROUTES from "@/shared/constants/routes";
-import Text from "@/components/Text";
-import IMAGES from "@/shared/constants/images";
+import { SigninValidation } from '@/lib/validation';
+import { useSignInAccount } from '@/lib/react-query/queries';
+import { useUserContext } from '@/context/AuthContext';
+import ROUTES from '@/shared/constants/routes';
+import Text from '@/components/Text';
+import IMAGES from '@/shared/constants/images';
 
 const SigninForm = () => {
   const { toast } = useToast();
@@ -22,13 +29,14 @@ const SigninForm = () => {
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
 
   // Query
-  const { mutateAsync: signInAccount, isPending:isLoading } = useSignInAccount();
+  const { mutateAsync: signInAccount, isPending: isLoading } =
+    useSignInAccount();
 
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -36,8 +44,11 @@ const SigninForm = () => {
     const session = await signInAccount(user);
 
     if (!session) {
-      toast({ title: "Credenciales incorrectas, inténtalo de nuevo.", variant:'default' });
-      
+      toast({
+        title: 'Credenciales incorrectas, inténtalo de nuevo.',
+        variant: 'default',
+      });
+
       return;
     }
 
@@ -46,10 +57,10 @@ const SigninForm = () => {
     if (isLoggedIn) {
       form.reset();
 
-      navigate("/");
+      navigate('/');
     } else {
-      toast({ title: "Error, inténtalo de nuevo.", });
-      
+      toast({ title: 'Error, inténtalo de nuevo.' });
+
       return;
     }
   };
