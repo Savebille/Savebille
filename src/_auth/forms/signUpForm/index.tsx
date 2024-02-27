@@ -1,20 +1,30 @@
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Loader from "@/components/shared/Loader";
-import { useToast } from "@/components/ui/use-toast";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import Loader from '@/components/shared/Loader';
+import { useToast } from '@/components/ui/use-toast';
 
-import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queries";
-import { SignupValidation } from "@/lib/validation";
-import { useUserContext } from "@/context/AuthContext";
-import ROUTES from "@/shared/constants/routes";
-import Text from "@/components/Text";
-import IMAGES from "@/shared/constants/images";
+import {
+  useCreateUserAccount,
+  useSignInAccount,
+} from '@/lib/react-query/queries';
+import { SignupValidation } from '@/lib/validation';
+import { useUserContext } from '@/context/AuthContext';
+import ROUTES from '@/shared/constants/routes';
+import Text from '@/components/Text';
+import IMAGES from '@/shared/constants/images';
 
 const SignupForm = () => {
   const { toast } = useToast();
@@ -24,16 +34,18 @@ const SignupForm = () => {
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
     defaultValues: {
-      name: "",
-      username: "",
-      email: "",
-      password: "",
+      name: '',
+      username: '',
+      email: '',
+      password: '',
     },
   });
 
   // Queries
-  const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccount();
-  const { mutateAsync: signInAccount, isPending: isSigningInUser } = useSignInAccount();
+  const { mutateAsync: createUserAccount, isPending: isCreatingAccount } =
+    useCreateUserAccount();
+  const { mutateAsync: signInAccount, isPending: isSigningInUser } =
+    useSignInAccount();
 
   // Handler
   const handleSignup = async (user: z.infer<typeof SignupValidation>) => {
@@ -42,7 +54,7 @@ const SignupForm = () => {
 
       if (!newUser) {
         toast({ title: 'Registro fallido. Por favor intenta de nuevo.' });
-        
+
         return;
       }
 
@@ -55,9 +67,9 @@ const SignupForm = () => {
         toast({
           title: 'Algo salió mal. Por favor inicia sesión con tu nueva cuenta.',
         });
-        
+
         navigate(ROUTES.SIGN_IN);
-        
+
         return;
       }
 
@@ -66,12 +78,12 @@ const SignupForm = () => {
       if (isLoggedIn) {
         form.reset();
 
-        navigate("/");
+        navigate('/');
       } else {
         toast({
           title: 'Inicio de sesión fallido. Por favor intenta de nuevo.',
         });
-        
+
         return;
       }
     } catch (error) {
@@ -90,10 +102,10 @@ const SignupForm = () => {
           />
         </div>
 
-        <Text color='primary' size='h2-medium' sx='pt-6 text-center'>
+        <Text color='primary' size='h2' weight='medium' sx='pt-6 text-center'>
           Crea una nueva cuenta
         </Text>
-        <Text color='secondary' size='h4-medium' sx='mt-3 text-center'>
+        <Text color='secondary' size='h4' weight='regular' sx='mt-3 text-center'>
           Por favor ingresa la siguiente información.
         </Text>
 
@@ -165,7 +177,7 @@ const SignupForm = () => {
             {isCreatingAccount || isSigningInUser || isUserLoading ? (
               <div className='flex flex-row justify-center items-center gap-2'>
                 <Loader />
-                <Text color='white' size='button-bold'>
+                <Text color='white' size='text-1' weight='medium'>
                   Cargando...
                 </Text>
               </div>
@@ -174,7 +186,7 @@ const SignupForm = () => {
             )}
           </Button>
 
-          <Text color='secondary' size='text-1-normal' sx='text-center mt-2'>
+          <Text color='secondary' size='text-1' weight='regular' sx='text-center mt-2'>
             ¿Ya tienes una cuenta?
             <Link
               to={ROUTES.SIGN_IN}

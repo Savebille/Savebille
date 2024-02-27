@@ -51,7 +51,7 @@ export const MenuItem = ({
         >
           {icon}
           <Text
-            size='h5-medium'
+            size='text-1'
             weight='regular'
             color={active ? 'white' : 'primary'}
           >
@@ -67,7 +67,7 @@ export const MenuItem = ({
         >
           {icon}
           <Text
-            size='h5-medium'
+            size='text-1'
             weight='regular'
             color={active ? 'white' : 'primary'}
           >
@@ -186,7 +186,7 @@ const Bottombar: React.FC = () => {
               >
                 <div>{item.icon}</div>
 
-                <Text color='primary' size='h5-medium' weight='regular'>
+                <Text color='primary' size='text-1' weight='regular'>
                   {item.label}
                 </Text>
               </li>

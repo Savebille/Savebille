@@ -48,7 +48,8 @@ export const SidebarItem = ({
           className={`flex py-2 px-4 gap-2 items-center justify-between cursor-pointer rounded-[10px] bg-h-info`}
         >
           <Text
-            size='h5-medium'
+            size='text-1'
+            weight='regular'
             color={active ? 'white' : 'primary'}
           >
             {text}
@@ -63,10 +64,7 @@ export const SidebarItem = ({
         hover:bg-h-blue-light gap-3'
         >
           {icon}
-          <Text
-            size='h5-medium'
-            color={active ? 'white' : 'primary'}
-          >
+          <Text size='text-1' color={active ? 'white' : 'primary'}>
             {text}
           </Text>
         </li>

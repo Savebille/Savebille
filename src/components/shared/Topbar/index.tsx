@@ -1,6 +1,5 @@
 import React from 'react';
 import Text from '../../../components/Text';
-import MobileMenu from '../../../components/MobileMenu';
 import IMAGES from '../../../shared/constants/images';
 import { Link, useNavigate } from 'react-router-dom';
 import ROUTES from '../../../shared/constants/routes';
@@ -31,7 +30,7 @@ const Topbar: React.FC<React.PropsWithChildren> = ({ children }) => {
               height={50}
               className='hidden sm:block'
             />
-            <Text color='info' size='h1-medium'>
+            <Text color='info' size='h1' weight='bold'>
               Savebille
             </Text>
           </button>
@@ -69,7 +68,7 @@ const Topbar: React.FC<React.PropsWithChildren> = ({ children }) => {
             placeHolder='Type here to search'
           />
           <button className='bg-h-white h-8 w-auto px-2 rounded-lg shadow hidden lg:flex lg:items-center lg:justify-center'>
-            <Text size='text-1-normal' color='primary'>
+            <Text size='h5' weight='semibold' color='primary'>
               ⌘ F
             </Text>
           </button>
@@ -94,10 +93,10 @@ const Topbar: React.FC<React.PropsWithChildren> = ({ children }) => {
                   />
                 </Link>
                 <div className='hidden lg:flex lg:flex-col lg:justify-center lg:h-auto gap-1'>
-                  <Text size='h3-medium' color='primary'>
+                  <Text size='h4' weight='bold' color='primary'>
                     {user.name}
                   </Text>
-                  <Text size='h4-medium' color='secondary'>
+                  <Text size='text-1' weight='regular' color='secondary'>
                     {user.email}
                   </Text>
                 </div>

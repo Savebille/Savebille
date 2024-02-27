@@ -76,10 +76,15 @@ const SigninForm = () => {
           />
         </div>
 
-        <Text color='primary' size='h2-medium' sx='pt-6 text-center'>
+        <Text color='primary' size='h2' weight='medium' sx='pt-6 text-center'>
           ¡Bienvenido de vuelta!
         </Text>
-        <Text color='secondary' size='h4-medium' sx='mt-3 text-center'>
+        <Text
+          color='secondary'
+          size='h4'
+          weight='regular'
+          sx='mt-3 text-center'
+        >
           Por favor ingresa tu información.
         </Text>
         <form
@@ -122,7 +127,7 @@ const SigninForm = () => {
             {isLoading || isUserLoading ? (
               <div className='flex flex-row justify-center items-center gap-2'>
                 <Loader />
-                <Text color='white' size='button-bold'>
+                <Text color='white' size='text-1' weight='medium'>
                   Cargando...
                 </Text>
               </div>
@@ -131,7 +136,12 @@ const SigninForm = () => {
             )}
           </Button>
 
-          <Text color='secondary' size='text-1-normal' sx='text-center mt-2'>
+          <Text
+            color='secondary'
+            size='text-1'
+            weight='regular'
+            sx='text-center mt-2'
+          >
             ¿No tienes una cuenta?
             <Link
               to={ROUTES.SIGN_UP}
