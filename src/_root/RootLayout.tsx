@@ -10,7 +10,7 @@ const RootLayout = () => {
 
       <div className='flex flex-col flex-grow'>
         <Topbar />
-        <section className='flex p-6 w-full h-full'>
+        <section className='flex p-6  h-full'>
           <Outlet />
         </section>
         <Bottombar />
