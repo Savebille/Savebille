@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Text from '../../../components/Text';
 import dayjs from 'dayjs';
-import { Plus } from '@phosphor-icons/react';
+import { Calculator, Plus } from '@phosphor-icons/react';
+import Modal from '@/components/Modal';
 
 const Home: React.FC = () => {
   const cardsInfo = [
@@ -55,7 +56,7 @@ const Home: React.FC = () => {
             sx='mt-2'
           >{`Revisa tu actividad - ${now}`}</Text>
         </div>
-
+        {/* 
         <button
           onClick={() => {}}
           className='flex items-center px-3 py-2 bg-h-info rounded-md mt-4 sm:mt-0 transition ease-in-out hover:scale-105 duration-200'
@@ -64,7 +65,29 @@ const Home: React.FC = () => {
           <Text color='white' size='text-1' weight='regular' sx='ml-2'>
             Agregar
           </Text>
-        </button>
+        </button> */}
+        
+        <Modal>
+          <div className='w-full h-full'>
+            <div className='bg-h-white'>
+              <Text size='h1' color='info' weight='bold' sx='p-4'>
+                New income
+              </Text>
+                <div
+                  className='flex h-7 m-4 items-center justify-start gap-2 border-b'
+                >
+                  <button className='flex justify-center items-center mb-2'>
+                    <Calculator size={30} className='bg-white rounded-full'/>
+                  </button>
+                  <input
+                    type='number'
+                    placeholder='Income...'
+                    className='bg-h-gray-input text-h-primary text-md mb-2 h-full w-full focus:outline-none appearance-none'
+                  />
+                </div>
+            </div>
+          </div>
+        </Modal>
       </div>
 
       {/* Main content */}
@@ -73,11 +96,10 @@ const Home: React.FC = () => {
           <div
             key={card.title}
             onClick={() => handleCardClick(card.title)}
-            className={`flex flex-col bg-white ${
-              currentCardInfo === card.title
-                ? 'border border-h-info shadow-md'
-                : 'border-none border-transparent shadow-sm'
-            }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
+            className={`flex flex-col bg-white ${currentCardInfo === card.title
+              ? 'border border-h-info shadow-md'
+              : 'border-none border-transparent shadow-sm'
+              }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
           >
             <div className='flex items-center justify-between mb-3'>
               <Text size='h5' color='secondary' weight='regular'>
