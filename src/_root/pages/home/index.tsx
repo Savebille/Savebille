@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import Text from '../../../components/Text';
 import dayjs from 'dayjs';
-import { Calculator, Plus } from '@phosphor-icons/react';
+import { ArrowDown, Calculator, X } from '@phosphor-icons/react';
 import Modal from '@/components/Modal';
 
 const Home: React.FC = () => {
@@ -41,6 +41,27 @@ const Home: React.FC = () => {
     }
   };
 
+  // Input Income value
+  const [inputValue, setInputValue] = useState<string>('');
+
+  const formatNumber = (input: string): string => {
+    input = input.replace(/[^0-9.]/g, '').replace(/^\.+/g, '');
+
+    const parts = input.split('.');
+    let integerPart = parts[0] || '';
+    let decimalPart = parts[1] || '';
+
+    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    decimalPart = decimalPart.slice(0, 2);
+
+    return integerPart + (decimalPart ? '.' + decimalPart : '');
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const formattedValue = formatNumber(e.target.value);
+    setInputValue(formattedValue);
+  };
+
   return (
     <div className='w-full flex flex-col'>
       {/* Header content */}
@@ -56,36 +77,51 @@ const Home: React.FC = () => {
             sx='mt-2'
           >{`Revisa tu actividad - ${now}`}</Text>
         </div>
-        {/* 
-        <button
-          onClick={() => {}}
-          className='flex items-center px-3 py-2 bg-h-info rounded-md mt-4 sm:mt-0 transition ease-in-out hover:scale-105 duration-200'
-        >
-          <Plus size={16} color={'var(--h-white)'} />
-          <Text color='white' size='text-1' weight='regular' sx='ml-2'>
-            Agregar
-          </Text>
-        </button> */}
-        
-        <Modal>
-          <div className='w-full h-full'>
-            <div className='bg-h-white'>
-              <Text size='h1' color='info' weight='bold' sx='p-4'>
-                New income
-              </Text>
-                <div
-                  className='flex h-7 m-4 items-center justify-start gap-2 border-b'
-                >
-                  <button className='flex justify-center items-center mb-2'>
-                    <Calculator size={30} className='bg-white rounded-full'/>
-                  </button>
-                  <input
-                    type='number'
-                    placeholder='Income...'
-                    className='bg-h-gray-input text-h-primary text-md mb-2 h-full w-full focus:outline-none appearance-none'
-                  />
-                </div>
+
+        <Modal buttonText='Agregar'>
+          {/* Header */}
+          <div className='flex items-center justify-between w-full'>
+            <Text size='h3' color='primary' weight='medium'>
+              New Income
+            </Text>
+            <button>
+              <X size={20} />
+            </button>
+          </div>
+
+          {/*Main Content */}
+
+          <div className='flex flex-col w-full justify-center'>
+            {/* First Field */}
+            <div className='flex flex-row items-center justify-between'>
+              <div className='flex flex-row items-center'>
+                <button>
+                  <Calculator size={24} />
+                </button>
+                <Text size='h2' color='success' sx='ml-6 mr-4'>
+                  $
+                </Text>
+                <input
+                  className='text-[24px] leading-none text-h-success placeholder:text-h-success focus:outline-none'
+                  type='text'
+                  id='myInput'
+                  placeholder='0.00'
+                  value={inputValue}
+                  onChange={handleInputChange}
+                />
+              </div>
+
+              <div>
+                <button className='flex items-center gap-2 cursor-pointer'>
+                  <Text size='h4' color='secondary'>
+                    COP
+                  </Text>
+                  <ArrowDown color='#8e98a7' size={18} />
+                </button>
+              </div>
             </div>
+
+            {/* Secondd Field */}
           </div>
         </Modal>
       </div>
@@ -96,10 +132,11 @@ const Home: React.FC = () => {
           <div
             key={card.title}
             onClick={() => handleCardClick(card.title)}
-            className={`flex flex-col bg-white ${currentCardInfo === card.title
-              ? 'border border-h-info shadow-md'
-              : 'border-none border-transparent shadow-sm'
-              }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
+            className={`flex flex-col bg-white ${
+              currentCardInfo === card.title
+                ? 'border border-h-info shadow-md'
+                : 'border-none border-transparent shadow-sm'
+            }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
           >
             <div className='flex items-center justify-between mb-3'>
               <Text size='h5' color='secondary' weight='regular'>
