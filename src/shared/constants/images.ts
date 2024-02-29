@@ -8,6 +8,7 @@ const IMAGES = {
   ICONS: {
     GOOGLE: '/assets/icons/google.svg',
     LOADER: '/assets/icons/loader.svg',
+    USERPROFILE: '/assets/icons/userprofile.svg',
   },
 };
 

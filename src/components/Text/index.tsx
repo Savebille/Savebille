@@ -15,17 +15,15 @@ interface Props {
     | 'gray'
     | 'white';
   size?:
-    | 'h1-medium'
-    | 'h2-medium'
-    | 'h3-medium'
-    | 'h4-medium'
-    | 'h5-medium'
-    | 'h6-normal'
-    | 'text-1-normal'
-    | 'text-2-normal'
-    | 'text-3-normal'
-    | 'text-4-normal'
-    | 'button-bold'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'text-1'
+    | 'text-2'
+    | 'text-3'
+    | 'text-4'
     | 'base';
   weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold';
 

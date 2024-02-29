@@ -11,9 +11,9 @@ import {
   SignOut,
 } from '@phosphor-icons/react';
 import { useLocation } from 'react-router-dom';
-import Text from '../Text';
-import ROUTES from '../../shared/constants/routes';
-import IMAGES from '../../shared/constants/images';
+import Text from '@/components/Text';
+import ROUTES from '../../../shared/constants/routes';
+import IMAGES from '../../../shared/constants/images';
 interface SidebarItemProps {
   icon: JSX.Element;
   text: string;
@@ -45,11 +45,11 @@ export const SidebarItem = ({
       {active ? (
         <li
           onClick={handleClick}
-          className={`flex py-2 px-4 items-center justify-between cursor-pointer rounded-[10px] bg-h-info`}
+          className={`flex py-2 px-4 gap-2 items-center justify-between cursor-pointer rounded-[10px] bg-h-info`}
         >
           <Text
-            size='medium'
-            weight='medium'
+            size='text-1'
+            weight='regular'
             color={active ? 'white' : 'primary'}
           >
             {text}
@@ -64,11 +64,7 @@ export const SidebarItem = ({
         hover:bg-h-blue-light gap-3'
         >
           {icon}
-          <Text
-            size='small'
-            weight='regular'
-            color={active ? 'white' : 'primary'}
-          >
+          <Text size='text-1' color={active ? 'white' : 'primary'}>
             {text}
           </Text>
         </li>
@@ -111,11 +107,11 @@ const options = [
   {
     label: 'Cerrar sesión',
     icon: <SignOut size={20} color='var(--h-secondary)' />,
-    path: ROUTES.SIGNUP,
+    path: ROUTES.SIGN_IN,
   },
 ];
 
-const Sidebar: React.FC = () => {
+const LeftSidebar: React.FC = () => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState<string | null>(ROUTES.ROOT);
   const navigate = useNavigate();
@@ -134,7 +130,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <aside
-      className={`h-full fixed top-0 left-0 z-[90] bg-white border-r border-h-gray w-60 hidden lg:block`}
+      className={`h-full bg-white border-r w-60 border-h-gray hidden lg:block`}
     >
       <nav className='flex flex-col h-full'>
         <div className='p-4 flex items-center justify-center h-[100px] border-b border-h-gray'>
@@ -149,7 +145,7 @@ const Sidebar: React.FC = () => {
         </div>
 
         <div>
-          <ul className='flex flex-col justify-between p-4 gap-2'>
+          <ul className='flex flex-col justify-between p-5 gap-2'>
             {options.map((route) => (
               <Link to={route.path} key={route.label}>
                 <SidebarItem
@@ -173,4 +169,4 @@ const Sidebar: React.FC = () => {
   );
 };
 
-export default React.memo(Sidebar);
+export default React.memo(LeftSidebar);

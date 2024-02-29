@@ -141,16 +141,6 @@ body {
   background: #dfe5f1;
 }
 
-@layer utilities {
-  .showContainer {
-    @apply transition duration-300 opacity-100;
-  }
-
-  .hiddeContainer {
-    @apply transition duration-300 opacity-0;
-  }
-}
-
 @layer components {
   /* SHADCN COMPONENTS */
 }

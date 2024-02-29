@@ -16,38 +16,31 @@ const getTextColor = (textColor: string) => {
 const getTextSize = (textSize: string) => {
   switch (textSize) {
     // HEADLINE
-    case 'h1-medium':
-      return 'text-[28px] font-medium';
-    case 'h2-medium':
-      return 'text-[24px] font-medium';
-    case 'h3-medium':
-      return 'text-[20px] font-medium';
-    case 'h4-medium':
-      return 'text-[18px] font-medium';
-    case 'h5-medium':
-      return 'text-[16px] font-medium';
-    case 'h6-normal':
-      return 'text-[14px] font-normal';
+    case 'h1':
+      return 'text-[28px]';
+    case 'h2':
+      return 'text-[24px]';
+    case 'h3':
+      return 'text-[20px]';
+    case 'h4':
+      return 'text-[18px]';
+    case 'h5':
+      return 'text-[16px]';
 
     // PARAGRAPH
-    case 'text-1-normal':
-      return 'text-[14px] font-normal';
-    case 'text-2-normal':
-      return 'text-[13px] font-normal';
-    case 'text-3-normal':
-      return 'text-[12px] font-normal';
-    case 'text-4-normal':
-      return 'text-[11px] font-normal';
-
-    // Button
-    case 'button-bold':
-      return 'text-[14px] font-bold';
-
+    case 'text-1':
+      return 'text-[14px]';
+    case 'text-2':
+      return 'text-[13px]';
+    case 'text-3':
+      return 'text-[12px]';
+    case 'text-4':
+      return 'text-[11px]';
     case 'base':
-      return 'text-base font-normal';
+      return 'text-base';
 
     default:
-      return 'text-base font-normal';
+      return 'text-base';
   }
 };
 
@@ -55,7 +48,7 @@ const getTextWeight = (weight: string) => {
   switch (weight) {
     case 'light':
       return 'font-light';
-    case 'normal':
+    case 'regular':
       return 'font-normal';
     case 'medium':
       return 'font-medium';

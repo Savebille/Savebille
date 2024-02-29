@@ -7,9 +7,10 @@ import {
   SignOut,
   Book,
   ArrowsOut,
+  Info,
 } from '@phosphor-icons/react';
-import ROUTES from '../../shared/constants/routes';
-import Text from '../Text';
+import ROUTES from '../../../shared/constants/routes';
+import Text from '../../Text';
 import React from 'react';
 interface MenuItemProps {
   icon: JSX.Element;
@@ -50,7 +51,7 @@ export const MenuItem = ({
         >
           {icon}
           <Text
-            size='small'
+            size='text-1'
             weight='regular'
             color={active ? 'white' : 'primary'}
           >
@@ -66,7 +67,7 @@ export const MenuItem = ({
         >
           {icon}
           <Text
-            size='small'
+            size='text-1'
             weight='regular'
             color={active ? 'white' : 'primary'}
           >
@@ -78,7 +79,7 @@ export const MenuItem = ({
   );
 };
 
-const MobileMenu: React.FC = () => {
+const Bottombar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -96,23 +97,26 @@ const MobileMenu: React.FC = () => {
     setShowAccountMenu((prev) => !prev);
   };
 
-  const options = [
-    {
-      label: 'Home',
-      icon: <House size={20} />,
-      path: ROUTES.ROOT,
-    },
-    {
-      label: 'Estadisticas',
-      icon: <ChartLine size={20} />,
-      path: ROUTES.STATS,
-    },
-    {
-      label: 'Pagos',
-      icon: <Coins size={20} />,
-      path: ROUTES.PAYMENTS,
-    },
-  ];
+  const options = useMemo(
+    () => [
+      {
+        label: 'Home',
+        icon: <House size={20} />,
+        path: ROUTES.ROOT,
+      },
+      {
+        label: 'Estadisticas',
+        icon: <ChartLine size={20} />,
+        path: ROUTES.STATS,
+      },
+      {
+        label: 'Pagos',
+        icon: <Coins size={20} />,
+        path: ROUTES.PAYMENTS,
+      },
+    ],
+    []
+  );
 
   const activeRouteIndex = useMemo(() => {
     return options.findIndex((route) => route.path === location.pathname);
@@ -124,6 +128,11 @@ const MobileMenu: React.FC = () => {
 
   const settingsOptions = [
     {
+      label: 'Ayuda',
+      icon: <Info size={20} color='var(--h-secondary)' />,
+      onClick: () => navigate(ROUTES.HELP),
+    },
+    {
       label: 'Mis categorias',
       icon: <Book size={20} color='var(--h-secondary)' />,
       onClick: () => navigate(ROUTES.CATEGORIES),
@@ -131,7 +140,7 @@ const MobileMenu: React.FC = () => {
     {
       label: 'Cerrar Sesión',
       icon: <SignOut size={20} color='var(--h-secondary)' />,
-      onClick: () => navigate(ROUTES.SIGNUP),
+      onClick: () => navigate(ROUTES.SIGN_IN),
     },
   ];
 
@@ -167,17 +176,17 @@ const MobileMenu: React.FC = () => {
       </div>
 
       {showAccountMenu && (
-        <div className='bg-h-white shadow fixed bottom-[61.2px] right-0 rounded-l-xl w-[200px] lg:hidden'>
+        <div className='bg-h-white shadow fixed bottom-[61px] right-0 rounded-l-xl w-[200px] lg:hidden'>
           <ul className='flex flex-col w-full h-auto  items-center'>
             {settingsOptions.map((item) => (
               <li
                 onClick={item.onClick}
                 key={item.label}
-                className='flex justify-center items-center p-3 w-full h-full rounded-l-xl   hover:bg-h-blue-light gap-3 transition duration-200'
+                className='flex justify-center items-center p-3 w-full h-full rounded-l-xl hover:bg-h-blue-light gap-3 transition duration-200'
               >
                 <div>{item.icon}</div>
 
-                <Text color='primary' size='small' weight='regular'>
+                <Text color='primary' size='text-1' weight='regular'>
                   {item.label}
                 </Text>
               </li>
@@ -189,4 +198,4 @@ const MobileMenu: React.FC = () => {
   );
 };
 
-export default MobileMenu;
+export default Bottombar;
