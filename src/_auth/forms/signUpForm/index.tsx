@@ -13,7 +13,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import Loader from '@/components/shared/Loader';
 import { useToast } from '@/components/ui/use-toast';
 
 import {
@@ -25,6 +24,7 @@ import { useUserContext } from '@/context/AuthContext';
 import ROUTES from '@/shared/constants/routes';
 import Text from '@/components/Text';
 import IMAGES from '@/shared/constants/images';
+import CustomLoader from '@/components/shared/CustomLoader';
 
 const SignupForm = () => {
   const { toast } = useToast();
@@ -105,7 +105,12 @@ const SignupForm = () => {
         <Text color='primary' size='h2' weight='medium' sx='pt-6 text-center'>
           Crea una nueva cuenta
         </Text>
-        <Text color='secondary' size='h4' weight='regular' sx='mt-3 text-center'>
+        <Text
+          color='secondary'
+          size='h4'
+          weight='regular'
+          sx='mt-3 text-center'
+        >
           Por favor ingresa la siguiente información.
         </Text>
 
@@ -176,7 +181,7 @@ const SignupForm = () => {
           <Button type='submit'>
             {isCreatingAccount || isSigningInUser || isUserLoading ? (
               <div className='flex flex-row justify-center items-center gap-2'>
-                <Loader />
+                <CustomLoader color='#ffffff' height={24} width={24} />
                 <Text color='white' size='text-1' weight='medium'>
                   Cargando...
                 </Text>
@@ -186,7 +191,12 @@ const SignupForm = () => {
             )}
           </Button>
 
-          <Text color='secondary' size='text-1' weight='regular' sx='text-center mt-2'>
+          <Text
+            color='secondary'
+            size='text-1'
+            weight='regular'
+            sx='text-center mt-2'
+          >
             ¿Ya tienes una cuenta?
             <Link
               to={ROUTES.SIGN_IN}

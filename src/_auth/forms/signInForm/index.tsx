@@ -13,7 +13,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import Loader from '@/components/shared/Loader';
 import { useToast } from '@/components/ui/use-toast';
 
 import { SigninValidation } from '@/lib/validation';
@@ -22,6 +21,7 @@ import { useUserContext } from '@/context/AuthContext';
 import ROUTES from '@/shared/constants/routes';
 import Text from '@/components/Text';
 import IMAGES from '@/shared/constants/images';
+import CustomLoader from '@/components/shared/CustomLoader';
 
 const SigninForm = () => {
   const { toast } = useToast();
@@ -126,7 +126,7 @@ const SigninForm = () => {
           <Button type='submit'>
             {isLoading || isUserLoading ? (
               <div className='flex flex-row justify-center items-center gap-2'>
-                <Loader />
+                <CustomLoader color='#ffffff' height={24} width={24} />
                 <Text color='white' size='text-1' weight='medium'>
                   Cargando...
                 </Text>
