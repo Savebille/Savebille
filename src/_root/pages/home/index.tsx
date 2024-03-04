@@ -1,8 +1,16 @@
 import React, { useState, ChangeEvent } from 'react';
 import Text from '../../../components/Text';
 import dayjs from 'dayjs';
-import { ArrowDown, Calculator, X } from '@phosphor-icons/react';
+import {
+  ArrowDown,
+  BookmarkSimple,
+  Calculator,
+  CalendarBlank,
+  File,
+  X,
+} from '@phosphor-icons/react';
 import Modal from '@/components/Modal';
+import Selector from '@/components/Selector';
 
 const Home: React.FC = () => {
   const cardsInfo = [
@@ -29,7 +37,24 @@ const Home: React.FC = () => {
     },
   ];
 
+  const dateSelections = [
+    {
+      id: 1,
+      title: 'Hoy',
+    },
+    {
+      id: 2,
+      title: 'Ayer',
+    },
+    {
+      id: 3,
+      title: 'Otra fecha',
+    },
+  ];
+
   const now = dayjs();
+
+  // Card Header State
 
   const [currentCardInfo, setCurrentCardInfo] = useState<string | null>(null);
 
@@ -38,6 +63,18 @@ const Home: React.FC = () => {
       setCurrentCardInfo(null);
     } else {
       setCurrentCardInfo(cardTitle);
+    }
+  };
+
+  // Date Selected State
+
+  const [currentDate, setCurrentDate] = useState<string | null>('Hoy');
+
+  const handleDateClick = (buttonTitle: string) => {
+    if (currentDate === buttonTitle) {
+      setCurrentDate(null);
+    } else {
+      setCurrentDate(buttonTitle);
     }
   };
 
@@ -80,9 +117,9 @@ const Home: React.FC = () => {
 
         <Modal buttonText='Agregar'>
           {/* Header */}
-          <div className='flex items-center justify-between w-full'>
-            <Text size='h3' color='primary' weight='medium'>
-              New Income
+          <div className='flex items-center justify-between w-full mb-10'>
+            <Text size='h1' color='primary' weight='medium'>
+              Nuevo ingreso
             </Text>
             <button>
               <X size={20} />
@@ -93,16 +130,16 @@ const Home: React.FC = () => {
 
           <div className='flex flex-col w-full justify-center'>
             {/* First Field */}
-            <div className='flex flex-row items-center justify-between'>
+            <div className='flex flex-row items-center justify-between mb-10'>
               <div className='flex flex-row items-center'>
                 <button>
-                  <Calculator size={24} />
+                  <Calculator size={24} color='#8e98a7'/>
                 </button>
-                <Text size='h2' color='success' sx='ml-6 mr-4'>
+                <Text size='h3' color='success' sx='ml-6 mr-2'>
                   $
                 </Text>
                 <input
-                  className='text-[24px] leading-none text-h-success placeholder:text-h-success focus:outline-none'
+                  className='text-[20px] leading-none text-h-success placeholder:text-h-success focus:outline-none'
                   type='text'
                   id='myInput'
                   placeholder='0.00'
@@ -113,15 +150,72 @@ const Home: React.FC = () => {
 
               <div>
                 <button className='flex items-center gap-2 cursor-pointer'>
-                  <Text size='h4' color='secondary'>
+                  <Text size='h3' color='secondary'>
                     COP
                   </Text>
-                  <ArrowDown color='#8e98a7' size={18} />
+                  <ArrowDown color='#8e98a7' size={20} />
                 </button>
               </div>
             </div>
 
-            {/* Secondd Field */}
+            {/* Second Field */}
+            <div className='flex w-full flex-row items-center justify-start mb-10'>
+              <div className='flex flex-row items-center'>
+                <button>
+                  <CalendarBlank size={24} color='#8e98a7'/>
+                </button>
+              </div>
+
+              {dateSelections.map((date) => (
+                <button
+                  key={date.id}
+                  onClick={() => handleDateClick(date.title)}
+                  className={`ml-6 p-2 rounded-xl shadow transition duration-200 ${
+                    currentDate === date.title
+                      ? 'bg-h-success'
+                      : 'bg-h-gray-input'
+                  }`}
+                >
+                  <Text
+                    color={`${
+                      currentDate === date.title ? 'white' : 'secondary'
+                    }`}
+                    size='text-1'
+                    weight='light'
+                  >
+                    {date.title}
+                  </Text>
+                </button>
+              ))}
+            </div>
+
+            {/* Third Field */}
+            <div className='flex w-full flex-row items-center justify-start mb-10'>
+              <div className='flex flex-row items-center'>
+                <button>
+                  <File size={24} color='#8e98a7'/>
+                </button>
+              </div>
+
+              <input
+                className='w ml-6 text-[14px] leading-none text-h-primary placeholder:text-h-secondary focus:outline-none'
+                type='text'
+                placeholder='Descripción'
+              />
+            </div>
+
+            {/*Fourth Field */}
+            <div className='flex w-full flex-row items-center justify-start mb-10'>
+              <div className='flex flex-row items-center'>
+                <button>
+                  <BookmarkSimple size={24} color='#8e98a7' />
+                </button>
+              </div>
+
+              <div className='ml-6 w-full'>
+                <Selector />
+              </div>
+            </div>
           </div>
         </Modal>
       </div>
