@@ -6,41 +6,46 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import Text from '../Text';
-import { ChartLineUp, Gift, Money } from '@phosphor-icons/react';
+import { ChartLineUp, Gift, Money, X } from '@phosphor-icons/react';
+import { ReactNode } from 'react';
 
-const Selector = () => {
+export interface Option {
+  icon: ReactNode,
+  label: string,
+  color:
+  | 'info'
+  | 'success'
+  | 'yellow'
+  | 'error'
+  | 'primary'
+  | 'secondary'
+  | 'gray'
+  | 'white'
+}
+
+interface selectorProps {
+  options : any
+}
+
+const Selector = ({ options }: selectorProps) => {
   return (
     <Select>
       <SelectTrigger className='w-full'>
-        <SelectValue placeholder='Theme' />
+        <SelectValue placeholder='Categoria' />
       </SelectTrigger>
-      <SelectContent>
-        <SelectItem value='Salario'>
-          <div className='flex flex-row items-center justify-start gap-2'>
-            <Money size={24} />
-            <Text size='text-1' color='primary'>
-              Salario
-            </Text>
-          </div>
-        </SelectItem>
-
-        <SelectItem value='Inversión'>
-          <div className='flex flex-row items-center justify-start gap-2'>
-            <ChartLineUp size={24} />
-            <Text size='text-1' color='primary'>
-              Inversión
-            </Text>
-          </div>
-        </SelectItem>
-
-        <SelectItem value='Regalo'>
-          <div className='flex flex-row items-center justify-start gap-2'>
-            <Gift size={24} />
-            <Text size='text-1' color='primary'>
-              Regalo
-            </Text>
-          </div>
-        </SelectItem>
+      <SelectContent >
+      { options.map(( item : Option ) => (
+                    ( <div>
+                      <SelectItem value={item.label}>
+                        <div className='flex flex-row items-center justify-start gap-2'>
+                          {item.icon}
+                          <Text size='text-1' color={item.color}>
+                            {item.label}
+                          </Text>
+                        </div>
+                      </SelectItem>
+                    </div> )
+                  )) }
       </SelectContent>
     </Select>
   );
