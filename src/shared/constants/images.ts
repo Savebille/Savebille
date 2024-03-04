@@ -9,6 +9,7 @@ const IMAGES = {
     GOOGLE: '/assets/icons/google.svg',
     USERPROFILE: '/assets/icons/userprofile.svg',
   },
+  COLFLAG: '/assets/Images/COL.png',
 };
 
 export default IMAGES;

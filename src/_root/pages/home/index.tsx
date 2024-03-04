@@ -2,7 +2,6 @@ import React, { useState, ChangeEvent } from 'react';
 import Text from '../../../components/Text';
 import dayjs from 'dayjs';
 import {
-  ArrowDown,
   BookmarkSimple,
   Calculator,
   CalendarBlank,
@@ -13,8 +12,8 @@ import {
 } from '@phosphor-icons/react';
 import Modal from '@/components/Modal';
 import Selector from '@/components/Selector';
-import { SelectItem } from '@/components/ui/select';
 import { TrendUp } from '@phosphor-icons/react/dist/ssr';
+import IMAGES from '@/shared/constants/images';
 
 const Home: React.FC = () => {
   const cardsInfo = [
@@ -58,22 +57,21 @@ const Home: React.FC = () => {
 
   const categoryOptions = [
     {
-      icon: <Money size={24} color='#61B449'/>,
+      icon: <Money size={24} color='#61B449' />,
       label: 'Salario',
-      color: 'success'
+      color: 'success',
     },
     {
-      icon: <TrendUp size={24} color='#3183FF'/>,
+      icon: <TrendUp size={24} color='#3183FF' />,
       label: 'Inversión',
-      color: 'info'
+      color: 'info',
     },
     {
-      icon: <Gift size={24} color='#FF5252'/>,
+      icon: <Gift size={24} color='#FF5252' />,
       label: 'Regalo',
-      color: 'error'
+      color: 'error',
     },
-
-  ]
+  ];
 
   const now = dayjs();
 
@@ -141,7 +139,7 @@ const Home: React.FC = () => {
         <Modal buttonText='Agregar'>
           {/* Header */}
           <div className='flex items-center justify-between w-full mb-10'>
-            <Text size='h1' color='primary' weight='medium'>
+            <Text size='h1' color='primary' weight='semibold'>
               Nuevo ingreso
             </Text>
             <button>
@@ -171,13 +169,16 @@ const Home: React.FC = () => {
                 />
               </div>
 
-              <div>
-                <button className='flex items-center gap-2 cursor-pointer'>
-                  <Text size='h3' color='secondary'>
-                    COP
-                  </Text>
-                  <ArrowDown color='#8e98a7' size={20} />
-                </button>
+              <div className='flex items-center gap-2'>
+                <img
+                  src={IMAGES.COLFLAG}
+                  alt='bandera de Colombia'
+                  width={24}
+                  height={24}
+                />
+                <Text size='h3' color='secondary' weight='light'>
+                  COP
+                </Text>
               </div>
             </div>
 
@@ -193,14 +194,16 @@ const Home: React.FC = () => {
                 <button
                   key={date.id}
                   onClick={() => handleDateClick(date.title)}
-                  className={`ml-6 p-2 rounded-xl shadow transition duration-200 ${currentDate === date.title
+                  className={`ml-6 p-2 rounded-xl shadow transition duration-200 ${
+                    currentDate === date.title
                       ? 'bg-h-success'
                       : 'bg-h-gray-input'
-                    }`}
+                  }`}
                 >
                   <Text
-                    color={`${currentDate === date.title ? 'white' : 'secondary'
-                      }`}
+                    color={`${
+                      currentDate === date.title ? 'white' : 'secondary'
+                    }`}
                     size='text-1'
                     weight='light'
                   >
@@ -234,7 +237,7 @@ const Home: React.FC = () => {
               </div>
 
               <div className='ml-6 w-full'>
-                <Selector options={ categoryOptions } />
+                <Selector options={categoryOptions} />
               </div>
             </div>
           </div>
@@ -247,10 +250,11 @@ const Home: React.FC = () => {
           <div
             key={card.title}
             onClick={() => handleCardClick(card.title)}
-            className={`flex flex-col bg-white ${currentCardInfo === card.title
+            className={`flex flex-col bg-white ${
+              currentCardInfo === card.title
                 ? 'border border-h-info shadow-md'
                 : 'border-none border-transparent shadow-sm'
-              }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
+            }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
           >
             <div className='flex items-center justify-between mb-3'>
               <Text size='h5' color='secondary' weight='regular'>
