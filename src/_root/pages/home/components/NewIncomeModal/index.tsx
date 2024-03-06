@@ -1,0 +1,189 @@
+import { ChangeEvent, useState } from "react";
+
+import {
+  BookmarkSimple,
+  Calculator,
+  CalendarBlank,
+  File,
+  Gift,
+  Money,
+  TrendUp,
+  X,
+} from "@phosphor-icons/react";
+
+import Text from "@/components/Text";
+import Modal from "@/components/Modal";
+import Selector from "@/components/Selector";
+import IMAGES from "@/shared/constants/images";
+
+const categoryOptions = [
+  {
+    icon: <Money size={24} color="#61B449" />,
+    label: "Salario",
+    color: "success",
+  },
+  {
+    icon: <TrendUp size={24} color="#3183FF" />,
+    label: "Inversión",
+    color: "info",
+  },
+  {
+    icon: <Gift size={24} color="#FF5252" />,
+    label: "Regalo",
+    color: "error",
+  },
+];
+
+const dateSelections = [
+  {
+    id: 1,
+    title: "Hoy",
+  },
+  {
+    id: 2,
+    title: "Ayer",
+  },
+  {
+    id: 3,
+    title: "Otra fecha",
+  },
+];
+
+const NewIncomeModal = () => {
+  const [inputValue, setInputValue] = useState<string>("");
+
+  const formatNumber = (input: string): string => {
+    input = input.replace(/[^0-9.]/g, "").replace(/^\.+/g, "");
+
+    const parts = input.split(".");
+    let integerPart = parts[0] || "";
+    let decimalPart = parts[1] || "";
+
+    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    decimalPart = decimalPart.slice(0, 2);
+
+    return integerPart + (decimalPart ? "." + decimalPart : "");
+  };
+
+  const [currentDate, setCurrentDate] = useState<string | null>("Hoy");
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const formattedValue = formatNumber(e.target.value);
+    setInputValue(formattedValue);
+  };
+
+  const handleDateClick = (buttonTitle: string) => {
+    if (currentDate === buttonTitle) {
+      setCurrentDate(null);
+    } else {
+      setCurrentDate(buttonTitle);
+    }
+  };
+
+  return (
+    <Modal buttonText="Agregar">
+      {/* Header */}
+      <div className="flex items-center justify-between w-full mb-10">
+        <Text size="h1" color="primary" weight="semibold">
+          Nuevo ingreso
+        </Text>
+        <button>
+          <X size={20} />
+        </button>
+      </div>
+
+      {/*Main Content */}
+
+      <div className="flex flex-col w-full justify-center">
+        {/* First Field */}
+        <div className="flex flex-row items-center justify-between mb-10">
+          <div className="flex flex-row items-center">
+            <button>
+              <Calculator size={24} color="#8e98a7" />
+            </button>
+            <Text size="h3" color="success" sx="ml-6 mr-2">
+              $
+            </Text>
+            <input
+              className="text-[20px] leading-none text-h-success placeholder:text-h-success focus:outline-none"
+              type="text"
+              id="myInput"
+              placeholder="0.00"
+              value={inputValue}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <img
+              src={IMAGES.COLFLAG}
+              alt="bandera de Colombia"
+              width={24}
+              height={24}
+            />
+            <Text size="h3" color="secondary" weight="light">
+              COP
+            </Text>
+          </div>
+        </div>
+
+        {/* Second Field */}
+        <div className="flex w-full flex-row items-center justify-start mb-10">
+          <div className="flex flex-row items-center">
+            <button>
+              <CalendarBlank size={24} color="#8e98a7" />
+            </button>
+          </div>
+
+          {dateSelections.map((date) => (
+            <button
+              key={date.id}
+              onClick={() => handleDateClick(date.title)}
+              className={`ml-6 p-2 rounded-xl shadow transition duration-200 ${
+                currentDate === date.title ? "bg-h-success" : "bg-h-gray-input"
+              }`}
+            >
+              <Text
+                color={`${currentDate === date.title ? "white" : "secondary"}`}
+                size="text-1"
+                weight="light"
+              >
+                {date.title}
+              </Text>
+            </button>
+          ))}
+        </div>
+
+        {/* Third Field */}
+        <div className="flex w-full flex-row items-center justify-start mb-10">
+          <div className="flex flex-row items-center">
+            <button>
+              <File size={24} color="#8e98a7" />
+            </button>
+          </div>
+
+          <input
+            className="w ml-6 text-[14px] leading-none text-h-primary placeholder:text-h-secondary focus:outline-none"
+            type="text"
+            placeholder="Descripción"
+          />
+        </div>
+
+        {/*Fourth Field */}
+        <div className="flex w-full flex-row items-center justify-start mb-10">
+          <div className="flex flex-row items-center">
+            <button>
+              <BookmarkSimple size={24} color="#8e98a7" />
+            </button>
+          </div>
+
+          <div className="ml-6 w-full">
+            <Selector options={categoryOptions} />
+          </div>
+        </div>
+      </div>
+    </Modal>
+  );
+};
+
+export default NewIncomeModal;
