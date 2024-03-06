@@ -44,14 +44,17 @@ const Home: React.FC = () => {
     {
       id: 1,
       title: 'Hoy',
+      openCalendar: false,
     },
     {
       id: 2,
       title: 'Ayer',
+      openCalendar: false,
     },
     {
       id: 3,
       title: 'Otra fecha',
+      openCalendar: true,
     },
   ];
 
@@ -142,59 +145,58 @@ const Home: React.FC = () => {
             <Text size='h1' color='primary' weight='semibold'>
               Nuevo ingreso
             </Text>
-            <button>
-              <X size={20} />
-            </button>
           </div>
 
-          {/*Main Content */}
-
-          <div className='flex flex-col w-full justify-center'>
-            {/* First Field */}
-            <div className='flex flex-row items-center justify-between mb-10'>
-              <div className='flex flex-row items-center'>
-                <button>
-                  <Calculator size={24} color='#8e98a7' />
-                </button>
-                <Text size='h3' color='success' sx='ml-6 mr-2'>
-                  $
-                </Text>
-                <input
-                  className='text-[20px] leading-none text-h-success placeholder:text-h-success focus:outline-none'
-                  type='text'
-                  id='myInput'
-                  placeholder='0.00'
-                  value={inputValue}
-                  onChange={handleInputChange}
+          {/* Form */}
+          <form action='' className='flex flex-col'>
+            {/* First field */}
+            <fieldset className='flex w-full items-center justify-between mb-10'>
+              <label htmlFor='amount' className='flex items-center'>
+                <Calculator
+                  size={24}
+                  color='#8e98a7'
+                  className='cursor-pointer'
                 />
-              </div>
+                <div className='flex items-center ml-6'>
+                  <Text size='h3' color='success' sx='mr-2'>
+                    $
+                  </Text>
+                  <input
+                    className='text-[20px] leading-none text-h-success placeholder:text-h-success focus:outline-none'
+                    type='text'
+                    id='amount'
+                    placeholder='0.00'
+                    value={inputValue}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </label>
 
-              <div className='flex items-center gap-2'>
+              <div className='flex items-center'>
                 <img
                   src={IMAGES.COLFLAG}
                   alt='bandera de Colombia'
                   width={24}
                   height={24}
                 />
-                <Text size='h3' color='secondary' weight='light'>
+                <Text size='h3' color='secondary' weight='light' sx='ml-2'>
                   COP
                 </Text>
               </div>
-            </div>
+            </fieldset>
 
-            {/* Second Field */}
-            <div className='flex w-full flex-row items-center justify-start mb-10'>
-              <div className='flex flex-row items-center'>
-                <button>
-                  <CalendarBlank size={24} color='#8e98a7' />
-                </button>
-              </div>
+            {/* Second field */}
+            <fieldset className='flex w-full  items-center justify-start mb-10'>
+              <button type='button'>
+                <CalendarBlank size={24} color='#8e98a7' />
+              </button>
 
               {dateSelections.map((date) => (
                 <button
                   key={date.id}
+                  type='button'
                   onClick={() => handleDateClick(date.title)}
-                  className={`ml-6 p-2 rounded-xl shadow transition duration-200 ${
+                  className={`ml-6 p-2 rounded-xl shadow transition duration-200 min-w-14 flex items-center justify-center ${
                     currentDate === date.title
                       ? 'bg-h-success'
                       : 'bg-h-gray-input'
@@ -202,7 +204,7 @@ const Home: React.FC = () => {
                 >
                   <Text
                     color={`${
-                      currentDate === date.title ? 'white' : 'secondary'
+                      currentDate === date.title ? 'white' : 'primary'
                     }`}
                     size='text-1'
                     weight='light'
@@ -211,36 +213,35 @@ const Home: React.FC = () => {
                   </Text>
                 </button>
               ))}
-            </div>
+            </fieldset>
 
-            {/* Third Field */}
-            <div className='flex w-full flex-row items-center justify-start mb-10'>
-              <div className='flex flex-row items-center'>
-                <button>
-                  <File size={24} color='#8e98a7' />
-                </button>
-              </div>
+            {/* Third  field */}
+            <fieldset className='flex w-full  items-center justify-start mb-10'>
+              <label
+                htmlFor='description'
+                className='flex flex-row items-center'
+              >
+                <File size={24} color='#8e98a7' className='cursor-pointer' />
+                <input
+                  className='w ml-6 text-[14px] leading-none text-h-primary placeholder:text-h-secondary focus:outline-none'
+                  id='description'
+                  type='text'
+                  placeholder='Descripción'
+                />
+              </label>
+            </fieldset>
 
-              <input
-                className='w ml-6 text-[14px] leading-none text-h-primary placeholder:text-h-secondary focus:outline-none'
-                type='text'
-                placeholder='Descripción'
-              />
-            </div>
+            {/* Fourth field */}
+            <fieldset className='flex w-full items-center mb-10'>
+              <label htmlFor='category' className='flex items-center w-full'>
+                <BookmarkSimple size={24} color='#8e98a7' />
 
-            {/*Fourth Field */}
-            <div className='flex w-full flex-row items-center justify-start mb-10'>
-              <div className='flex flex-row items-center'>
-                <button>
-                  <BookmarkSimple size={24} color='#8e98a7' />
-                </button>
-              </div>
-
-              <div className='ml-6 w-full'>
-                <Selector options={categoryOptions} />
-              </div>
-            </div>
-          </div>
+                <div className='flex flex-grow ml-6'>
+                  <Selector options={categoryOptions} />
+                </div>
+              </label>
+            </fieldset>
+          </form>
         </Modal>
       </div>
 

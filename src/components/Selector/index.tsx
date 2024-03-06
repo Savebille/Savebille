@@ -34,16 +34,17 @@ const Selector = ({ options }: selectorProps) => {
       </SelectTrigger>
       <SelectContent>
         {options.map((item: Option) => (
-          <div key={item.label}>
-            <SelectItem value={item.label}>
-              <div className='flex flex-row items-center justify-start gap-2'>
-                {item.icon}
-                <Text size='text-1' color={item.color}>
-                  {item.label}
-                </Text>
-              </div>
-            </SelectItem>
-          </div>
+          <SelectItem key={item.label} value={item.label}>
+            <label className='flex flex-row items-center justify-start gap-2'>
+              {item.icon}
+              <input
+                type='text'
+                readOnly
+                value={item.label}
+                className={`text-h-${item.color} text-[14px] bg-transparent focus:outline-none cursor-default`}
+              />
+            </label>
+          </SelectItem>
         ))}
       </SelectContent>
     </Select>
