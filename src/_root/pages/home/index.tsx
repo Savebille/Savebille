@@ -4,6 +4,12 @@ import dayjs from 'dayjs';
 
 import Text from '../../../components/Text';
 import NewIncomeModal from './components/NewIncomeModal';
+import { AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { Plus } from '@phosphor-icons/react';
+import BottomSheet from '@/components/BottomSheet';
+import { Button } from '@/components/ui/button';
+import ModalMovement from '@/components/Modal';
+import NewExpenseModal from './components/NewExpenseModal';
 
 const Home: React.FC = () => {
   const cardsInfo = [
@@ -44,6 +50,12 @@ const Home: React.FC = () => {
     }
   };
 
+  const handleCloseBottomSheet = () => {
+    setTimeout(() => {
+      console.log('Tres Seg');
+    }, 3000);
+  };
+
   return (
     <div className='w-full flex flex-col'>
       {/* Header content */}
@@ -60,7 +72,20 @@ const Home: React.FC = () => {
           >{`Revisa tu actividad - ${now}`}</Text>
         </div>
 
-        <NewIncomeModal />
+        <BottomSheet
+          onCloseBottomSheet={handleCloseBottomSheet}
+          openButton={
+            <button className='flex items-center justify-between px-3 py-2 bg-h-info rounded-md mt-4 sm:mt-0 transition ease-in-out hover:scale-105 duration-200 text-h-white text-[14px] font-normal gap-2'>
+              Agregar
+              <Plus size={16} color={'var(--h-white)'} />
+            </button>
+          }
+        >
+          <div className='flex flex-col w-full items-center justify-center gap-4'>
+            <NewIncomeModal />
+            <NewExpenseModal />
+          </div>
+        </BottomSheet>
       </div>
 
       {/* Main content */}
