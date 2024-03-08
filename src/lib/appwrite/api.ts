@@ -1,7 +1,7 @@
 import { ID, Query } from "appwrite";
 
 import { appwriteConfig, account, databases, avatars } from "./config";
-import { INewUser } from "@/types";
+import { INewMovement, INewUser } from "@/types";
 
 export async function createUserAccount(user: INewUser) {
   try {
@@ -95,6 +95,34 @@ export async function signOutAccount() {
   try {
     const session = await account.deleteSession("current");
     return session;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function createMovement(movement: INewMovement) {
+  try {
+    
+    // Create movement
+    const newMovement = await databases.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.movementCollectionId,
+      ID.unique(),
+      {
+        creator: movement.userId,
+        type: movement.type,
+        amount: movement.amount,
+        date: movement.date,
+        description: movement.description,
+        category: movement.category,
+      }
+    );
+
+    if (!newMovement) {
+      throw Error;
+    }
+
+    return newMovement;
   } catch (error) {
     console.log(error);
   }

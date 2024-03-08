@@ -12,3 +12,12 @@ export type INewUser = {
   username: string;
   password: string;
 };
+
+export type INewMovement = {
+  userId: string;
+  type: string;
+  amount: string;
+  date: Date;
+  description: string;
+  category: string;
+};

@@ -1,13 +1,15 @@
 import {
-  useMutation,
+  useMutation, useQueryClient,
 } from "@tanstack/react-query";
 
 import {
+  createMovement,
   createUserAccount,
   signInAccount,
   signOutAccount,
 } from "@/lib/appwrite/api";
-import { INewUser } from "@/types";
+import { INewMovement, INewUser } from "@/types";
+import { QUERY_KEYS } from "./queryKeys";
 
 export const useCreateUserAccount = () => {
   return useMutation({
@@ -28,3 +30,14 @@ export const useSignOutAccount = () => {
   });
 };
 
+export const useCreateMovement = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (movement: INewMovement) => createMovement(movement),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_RECENT_MOVEMENTS],
+      });
+    },
+  });
+};

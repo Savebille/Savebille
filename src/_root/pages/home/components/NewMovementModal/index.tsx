@@ -30,39 +30,52 @@ import IMAGES from '@/shared/constants/images';
 import Selector from '@/components/Selector';
 import { DatePickerWithPresets } from '@/components/DatePicker';
 import Modal from '@/components/Modal';
-
-const formSchema = z.object({
-  type: z.enum(['ingreso', 'gasto'], {
-    required_error: 'Selecciona el tipo de movimiento',
-  }),
-  amount: z.string().min(2, {
-    message: 'Debes ingresar un valor.',
-  }),
-  date: z.date({
-    required_error: 'Por favor ingresa una fecha de registro.',
-  }),
-  description: z.string().min(2, {
-    message: 'Ingresa una descripción.',
-  }),
-  category: z.string({
-    required_error: 'Por favor selecciona una categoría.',
-  }),
-});
+import { useCreateMovement } from '@/lib/react-query/queries';
+import { useUserContext } from '@/context/AuthContext';
+import { useToast } from '@/components/ui/use-toast';
+import { MovementValidation } from '@/lib/validation';
 
 const NewMovementModal = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+
+  const form = useForm<z.infer<typeof MovementValidation>>({
+    resolver: zodResolver(MovementValidation),
     defaultValues: {
+      type: '',
       amount: '',
+      date: new Date(),    
       description: '',
+      category: '',
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
+  const { user } = useUserContext();
+
+  const { toast } = useToast();
+
+  const { mutateAsync: createMovement, isPending: isLoadingCreate } =
+    useCreateMovement();
+
+   // Handler
+   const handleSubmit = async (value: z.infer<typeof MovementValidation>) => {
+
+    console.log('value', value);
+    
+    // ACTION = CREATE
+    const newMovement = await createMovement({
+      ...value,
+      userId: user.id,
+    });
+
+    if (!newMovement) {
+      toast({
+        title: `create movement failed. Please try again.`,
+      });
+    }
+    toast({
+      title: `REGISTRADO EN DB PAPU.`,
+    });
+    form.reset();
+  };
 
   // First Field
   // const [inputValue, setInputValue] = useState<string>('');
@@ -122,7 +135,7 @@ const NewMovementModal = () => {
       mainContent={
         <div className='mt-4'>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-10'>
+            <form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-10'>
               {/* Income or Expense */}
               <FormField
                 control={form.control}
@@ -280,8 +293,10 @@ const NewMovementModal = () => {
                 >
                   Guardar y crear nuevo
                 </Button>
-                <Button type='submit' className='w-auto lg:w-auto'>
-                  Guardar
+                <Button 
+                  disabled={isLoadingCreate}
+                  type='submit' className='w-auto lg:w-auto'>
+                  Crear movimiento
                 </Button>
               </div>
             </form>
