@@ -1,20 +1,17 @@
+import Modal from '@/components/Modal';
+import Text from '@/components/Text';
+import { Button } from '@/components/ui/button';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import ModalMovement from '@/components/Modal';
-import Text from '@/components/Text';
+interface Props {
+	showModal: boolean;
+	setShowModal: Dispatch<SetStateAction<any>>;
+}
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -22,8 +19,12 @@ const formSchema = z.object({
   }),
 });
 
-const NewExpenseModal = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
+const NewExpenseModal = ({
+	showModal,
+	setShowModal,
+}: Props) => {
+
+	const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: '',
@@ -36,9 +37,14 @@ const NewExpenseModal = () => {
     console.log(values);
   }
 
-  return (
-    <ModalMovement buttonText='Gasto'>
-      <header className='flex items-center justify-between w-full mb-10'>
+	return (
+		<Modal
+			open={showModal}
+			onClose={() => setShowModal(false)}
+			sx='w-[94%] !max-w-[662px]'
+		>
+      <div>
+			<header className='flex items-center justify-between w-full mb-10'>
         <Text size='h1' color='primary' weight='semibold'>
           Nuevo gasto
         </Text>
@@ -64,8 +70,9 @@ const NewExpenseModal = () => {
           <Button type='submit'>Submit</Button>
         </form>
       </Form>
-    </ModalMovement>
-  );
+			</div>
+		</Modal>
+	);
 };
 
 export default NewExpenseModal;

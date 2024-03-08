@@ -3,37 +3,34 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerTrigger,
-} from '@/components/ui/drawer';
-import { X } from '@phosphor-icons/react';
-
+} from "@/components/ui/drawer";
+import { X } from "@phosphor-icons/react";
 interface BottomSheetProps {
-  children: React.ReactNode;
-  openButton: React.ReactNode;
-  onCloseBottomSheet?: () => void;
+  triggerContent: React.ReactNode;
+  closeContent: React.ReactNode;
+  mainContent?: React.ReactNode;
 }
 
 const BottomSheet = ({
-  children,
-  openButton,
-  onCloseBottomSheet,
+  triggerContent,
+  mainContent,
+  closeContent,
 }: BottomSheetProps) => {
   return (
-    <Drawer>
-      <DrawerTrigger>{openButton}</DrawerTrigger>
-
-      <DrawerContent className='p-5'>
-        {children}
-
-        <DrawerClose>
-          <>
-            <button className='absolute top-5 right-5'>
-              <X size={20} color={'var(--h-primary)'} />
+    <>
+      <Drawer>
+        <DrawerTrigger>{triggerContent}</DrawerTrigger>
+        <DrawerContent>
+          {mainContent}
+          <DrawerClose>
+            <button className="absolute top-5 right-5">
+              <X size={20} color={"var(--h-primary)"} />
             </button>
-            {onCloseBottomSheet && onCloseBottomSheet()}
-          </>
-        </DrawerClose>
-      </DrawerContent>
-    </Drawer>
+            {closeContent}
+          </DrawerClose>
+        </DrawerContent>
+      </Drawer>
+    </>
   );
 };
 
