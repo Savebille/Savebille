@@ -1,9 +1,8 @@
 import {
-  BookmarkSimple,
   Calculator,
-  CalendarBlank,
   File,
   Gift,
+  HandCoins,
   Money,
   Plus,
   TrendUp,
@@ -15,6 +14,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Text from '@/components/Text';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 import {
   Form,
@@ -31,6 +32,9 @@ import { DatePickerWithPresets } from '@/components/DatePicker';
 import Modal from '@/components/Modal';
 
 const formSchema = z.object({
+  type: z.enum(['ingreso', 'gasto'], {
+    required_error: 'Selecciona el tipo de movimiento',
+  }),
   amount: z.string().min(2, {
     message: 'Debes ingresar un valor.',
   }),
@@ -40,14 +44,18 @@ const formSchema = z.object({
   description: z.string().min(2, {
     message: 'Ingresa una descripción.',
   }),
-  category: z.string().min(2, {
-    message: 'Debes elegir una categoría.',
+  category: z.string({
+    required_error: 'Por favor selecciona una categoría.',
   }),
 });
 
 const NewMovementModal = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      amount: '',
+      description: '',
+    },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -79,19 +87,24 @@ const NewMovementModal = () => {
 
   const categoryOptions = [
     {
-      icon: <Money size={24} color='#61B449' />,
+      icon: <Money size={24} color='#2ECC71' />,
       label: 'Salario',
-      color: 'success',
+      color: 'lightGreen',
     },
     {
-      icon: <TrendUp size={24} color='#3183FF' />,
+      icon: <TrendUp size={24} color='#3498DB' />,
       label: 'Inversión',
-      color: 'info',
+      color: 'blue',
     },
     {
-      icon: <Gift size={24} color='#FF5252' />,
+      icon: <Gift size={24} color='#8E44AD' />,
       label: 'Regalo',
-      color: 'error',
+      color: 'purple',
+    },
+    {
+      icon: <HandCoins size={24} color='#E67E22' />,
+      label: 'Prestamo',
+      color: 'orange',
     },
   ];
 
@@ -110,6 +123,42 @@ const NewMovementModal = () => {
         <div className='mt-4'>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-10'>
+              {/* Income or Expense */}
+              <FormField
+                control={form.control}
+                name='type'
+                render={({ field }) => (
+                  <FormItem className='flex flex-col w-full items-center '>
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className='flex w-full items-center justify-evenly'
+                      >
+                        <FormItem className='flex w-auto items-center gap-4 space-y-0'>
+                          <FormControl>
+                            <RadioGroupItem value='ingreso' />
+                          </FormControl>
+                          <FormLabel className='font-normal text-h-success'>
+                            Ingreso
+                          </FormLabel>
+                        </FormItem>
+
+                        <FormItem className='flex w-auto items-center gap-4 space-y-0'>
+                          <FormControl>
+                            <RadioGroupItem value='gasto' />
+                          </FormControl>
+                          <FormLabel className='font-normal text-h-error'>
+                            Gasto
+                          </FormLabel>
+                        </FormItem>
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage  />
+                  </FormItem>
+                )}
+              />
+
               {/* First Field */}
               <FormField
                 control={form.control}
@@ -133,7 +182,7 @@ const NewMovementModal = () => {
                             </Text>
                             <Input
                               className='text-[20px] bg-transparent p-0 border-none leading-none text-h-success placeholder:text-h-success focus:outline-none'
-                              type='text'
+                              type='number'
                               id='amount'
                               placeholder='0.00'
                               // value={inputValue}
@@ -214,30 +263,22 @@ const NewMovementModal = () => {
               <FormField
                 control={form.control}
                 name='category'
-                render={() => (
+                render={({ field }) => (
                   <FormItem>
-                    <FormControl>
-                      <div className='flex items-center w-full'>
-                        <FormLabel htmlFor='category'>
-                          <BookmarkSimple size={24} color='#8e98a7' />
-                        </FormLabel>
+                    <Selector options={categoryOptions} fieldProps={field} />
 
-                        <div className='flex flex-grow ml-4'>
-                          <Selector options={categoryOptions} />
-                        </div>
-                      </div>
-                    </FormControl>
                     <FormMessage className='ml-10' />
                   </FormItem>
                 )}
               />
+
               <div className='flex w-full items-center justify-end gap-2'>
                 <Button
                   onClick={() => {}}
                   type='button'
                   className='w-auto lg:w-auto bg-transparent text-hprimary'
                 >
-                  Cancelar
+                  Guardar y crear nuevo
                 </Button>
                 <Button type='submit' className='w-auto lg:w-auto'>
                   Guardar

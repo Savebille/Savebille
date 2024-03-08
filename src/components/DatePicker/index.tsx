@@ -46,7 +46,7 @@ export function DatePickerWithPresets({
               </Text>
             ) : (
               <Text color='secondary' size='text-1' sx='leading-none'>
-                Seleciona una fecha
+                Selecciona una fecha
               </Text>
             )}
           </Button>

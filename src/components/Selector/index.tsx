@@ -1,3 +1,4 @@
+import { FormControl, FormLabel } from '@/components/ui/form';
 import {
   Select,
   SelectContent,
@@ -5,49 +6,62 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import Text from '../Text';
+
 import { ReactNode } from 'react';
+import { Input } from '../ui/input';
+import { BookmarkSimple } from '@phosphor-icons/react';
 
 export interface Option {
   icon: ReactNode;
   label: string;
   color:
-    | 'info'
-    | 'success'
+    | 'red'
+    | 'purple'
+    | 'blue'
+    | 'darkGreen'
+    | 'lightGreen'
     | 'yellow'
-    | 'error'
-    | 'primary'
-    | 'secondary'
-    | 'gray'
-    | 'white';
+    | 'orange';
 }
 
 interface selectorProps {
   options: any;
+  fieldProps: any;
 }
 
-const Selector = ({ options }: selectorProps) => {
+const Selector = ({ options, fieldProps }: selectorProps) => {
   return (
-    <Select>
-      <SelectTrigger className='w-full text-h-secondary'>
-        <SelectValue placeholder='Categoria' />
-      </SelectTrigger>
-      <SelectContent>
-        {options.map((item: Option) => (
-          <SelectItem key={item.label} value={item.label}>
-            <label className='flex flex-row items-center justify-start gap-2'>
-              {item.icon}
-              <input
-                type='text'
-                readOnly
-                value={item.label}
-                className={`text-h-${item.color} text-[14px] bg-transparent focus:outline-none cursor-default`}
-              />
-            </label>
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <div className='flex items-center gap-4'>
+      <FormLabel>
+        <BookmarkSimple size={24} color='#8e98a7' />
+      </FormLabel>
+
+      <Select
+        onValueChange={fieldProps.onChange}
+        defaultValue={fieldProps.value}
+      >
+        <FormControl>
+          <SelectTrigger className='w-full text-h-secondary'>
+            <SelectValue placeholder='Categoria' />
+          </SelectTrigger>
+        </FormControl>
+        <SelectContent>
+          {options.map((item: Option) => (
+            <SelectItem key={item.label} value={item.label}>
+              <FormLabel className='flex flex-row items-center justify-start '>
+                {item.icon}
+                <Input
+                  type='text'
+                  readOnly
+                  value={item.label}
+                  className={`text-ct-${ item.color } outline-none cursor-default border-none bg-transparent -ml-2`}
+                />
+              </FormLabel>
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
   );
 };
 
