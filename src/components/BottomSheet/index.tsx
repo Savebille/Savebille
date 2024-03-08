@@ -7,14 +7,15 @@ import {
 import { X } from "@phosphor-icons/react";
 interface BottomSheetProps {
   triggerContent: React.ReactNode;
-  closeContent: React.ReactNode;
+  closeContent?: React.ReactNode;
   mainContent?: React.ReactNode;
+  close: boolean;
 }
 
 const BottomSheet = ({
   triggerContent,
   mainContent,
-  closeContent,
+  close,
 }: BottomSheetProps) => {
   return (
     <>
@@ -23,10 +24,13 @@ const BottomSheet = ({
         <DrawerContent>
           {mainContent}
           <DrawerClose>
-            <button className="absolute top-5 right-5">
-              <X size={20} color={"var(--h-primary)"} />
-            </button>
-            {closeContent}
+            <>
+              {close && (
+                <button className="absolute top-5 right-5">
+                  <X size={20} color={"var(--h-primary)"} />
+                </button>
+              )}
+            </>
           </DrawerClose>
         </DrawerContent>
       </Drawer>
