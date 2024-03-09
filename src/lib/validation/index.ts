@@ -37,12 +37,11 @@ export const ProfileValidation = z.object({
   }),
 });
 
-
 // Movement
 
 export const MovementValidation = z.object({
-  type: z.string({
-    required_error: 'Selecciona el tipo de movimiento',
+  type: z.string().min(2, {
+    message: 'Selecciona el tipo de movimiento',
   }),
   amount: z.string().min(2, {
     message: 'Debes ingresar un valor.',
@@ -53,7 +52,7 @@ export const MovementValidation = z.object({
   description: z.string().min(2, {
     message: 'Ingresa una descripción.',
   }),
-  category: z.string({
-    required_error: 'Por favor selecciona una categoría.',
+  category: z.string().min(2, {
+    message: 'Por favor selecciona una categoría.',
   }),
 });

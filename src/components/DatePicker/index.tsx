@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { addDays, format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { es } from 'date-fns/locale';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -42,7 +41,9 @@ export function DatePickerWithPresets({
             <CalendarBlank size={24} color='#8e98a7' />
             {fieldProps.value ? (
               <Text color='secondary' size='text-1' sx='leading-none'>
-                {format(fieldProps.value, 'PPP')}
+                {format(fieldProps.value, 'PPP', {
+                  locale: es,
+                })}
               </Text>
             ) : (
               <Text color='secondary' size='text-1' sx='leading-none'>
@@ -107,6 +108,7 @@ export function DatePickerWithPresets({
 
         <div className='rounded-md border'>
           <Calendar
+            locale={es}
             mode='single'
             selected={fieldProps.value}
             onSelect={fieldProps.onChange}

@@ -41,20 +41,20 @@ const Selector = ({ options, fieldProps }: selectorProps) => {
         defaultValue={fieldProps.value}
       >
         <FormControl>
-          <SelectTrigger className='w-full text-h-secondary'>
+          <SelectTrigger className='w-full h-6 text-h-secondary'>
             <SelectValue placeholder='Categoria' />
           </SelectTrigger>
         </FormControl>
         <SelectContent>
           {options.map((item: Option) => (
             <SelectItem key={item.label} value={item.label}>
-              <FormLabel className='flex flex-row items-center justify-start '>
+              <FormLabel className='flex  flex-row items-center justify-start '>
                 {item.icon}
                 <Input
                   type='text'
                   readOnly
                   value={item.label}
-                  className={`text-ct-${ item.color } outline-none cursor-default border-none bg-transparent -ml-2`}
+                  className={`text-ct-${item.color} outline-none cursor-default border-none bg-transparent -ml-2`}
                 />
               </FormLabel>
             </SelectItem>

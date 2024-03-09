@@ -34,15 +34,15 @@ import { useCreateMovement } from '@/lib/react-query/queries';
 import { useUserContext } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { MovementValidation } from '@/lib/validation';
+import { ChangeEvent } from 'react';
 
 const NewMovementModal = () => {
-
   const form = useForm<z.infer<typeof MovementValidation>>({
     resolver: zodResolver(MovementValidation),
     defaultValues: {
       type: '',
       amount: '',
-      date: new Date(),    
+      date: new Date(),
       description: '',
       category: '',
     },
@@ -55,11 +55,10 @@ const NewMovementModal = () => {
   const { mutateAsync: createMovement, isPending: isLoadingCreate } =
     useCreateMovement();
 
-   // Handler
-   const handleSubmit = async (value: z.infer<typeof MovementValidation>) => {
-
+  // Handler
+  const handleSubmit = async (value: z.infer<typeof MovementValidation>) => {
     console.log('value', value);
-    
+
     // ACTION = CREATE
     const newMovement = await createMovement({
       ...value,
@@ -77,26 +76,25 @@ const NewMovementModal = () => {
     form.reset();
   };
 
-  // First Field
-  // const [inputValue, setInputValue] = useState<string>('');
+  // Amount Field
 
-  // const formatNumber = (input: string): string => {
-  //   input = input.replace(/[^0-9.]/g, '').replace(/^\.+/g, '');
+  const formatNumber = (input: string): string => {
+    input = input.replace(/[^0-9.]/g, '').replace(/^\.+/g, '');
 
-  //   const parts = input.split('.');
-  //   let integerPart = parts[0] || '';
-  //   let decimalPart = parts[1] || '';
+    const parts = input.split('.');
+    let integerPart = parts[0] || '';
+    let decimalPart = parts[1] || '';
 
-  //   integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  //   decimalPart = decimalPart.slice(0, 2);
+    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    decimalPart = decimalPart.slice(0, 2);
 
-  //   return integerPart + (decimalPart ? '.' + decimalPart : '');
-  // };
+    return integerPart + (decimalPart ? '.' + decimalPart : '');
+  };
 
-  // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const formattedValue = formatNumber(e.target.value);
-  //   setInputValue(formattedValue);
-  // };
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const formattedValue = formatNumber(e.target.value);
+    form.setValue('amount', formattedValue);
+  };
 
   const categoryOptions = [
     {
@@ -135,7 +133,10 @@ const NewMovementModal = () => {
       mainContent={
         <div className='mt-4'>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-10'>
+            <form
+              onSubmit={form.handleSubmit(handleSubmit)}
+              className='space-y-10'
+            >
               {/* Income or Expense */}
               <FormField
                 control={form.control}
@@ -148,7 +149,7 @@ const NewMovementModal = () => {
                         defaultValue={field.value}
                         className='flex w-full items-center justify-evenly'
                       >
-                        <FormItem className='flex w-auto items-center gap-4 space-y-0'>
+                        <FormItem className='flex w-auto items-center gap-4 space-y-0 '>
                           <FormControl>
                             <RadioGroupItem value='ingreso' />
                           </FormControl>
@@ -167,7 +168,7 @@ const NewMovementModal = () => {
                         </FormItem>
                       </RadioGroup>
                     </FormControl>
-                    <FormMessage  />
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -194,13 +195,12 @@ const NewMovementModal = () => {
                               $
                             </Text>
                             <Input
-                              className='text-[20px] bg-transparent p-0 border-none leading-none text-h-success placeholder:text-h-success focus:outline-none'
-                              type='number'
+                              className='text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-success placeholder:text-h-success focus:outline-none'
+                              type='text'
                               id='amount'
                               placeholder='0.00'
-                              // value={inputValue}
-                              // onChange={handleInputChange}
                               {...field}
+                              onChange={handleInputChange}
                             />
                           </div>
                         </div>
@@ -236,7 +236,6 @@ const NewMovementModal = () => {
                 render={({ field }) => (
                   <FormItem>
                     <DatePickerWithPresets fieldProps={field} />
-
                     <FormMessage className='ml-10' />
                   </FormItem>
                 )}
@@ -259,7 +258,7 @@ const NewMovementModal = () => {
                         </FormLabel>
 
                         <Input
-                          className='w ml-4 text-[14px] bg-transparent p-0 border-none leading-none text-h-primary placeholder:text-h-secondary focus:outline-none'
+                          className='w ml-4 text-[14px] bg-transparent rounded-none p-0 border-none leading-none text-h-primary focus:outline-none'
                           id='description'
                           type='text'
                           placeholder='Descripción'
@@ -289,13 +288,15 @@ const NewMovementModal = () => {
                 <Button
                   onClick={() => {}}
                   type='button'
-                  className='w-auto lg:w-auto bg-transparent text-hprimary'
+                  className='w-auto lg:w-auto bg-transparent text-h-primary'
                 >
                   Guardar y crear nuevo
                 </Button>
-                <Button 
+                <Button
                   disabled={isLoadingCreate}
-                  type='submit' className='w-auto lg:w-auto'>
+                  type='submit'
+                  className='w-auto lg:w-auto'
+                >
                   Crear movimiento
                 </Button>
               </div>
