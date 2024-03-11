@@ -16,7 +16,7 @@ export type INewUser = {
 export type INewMovement = {
   userId: string;
   type: string;
-  amount: string;
+  amount: number;
   date: Date;
   description: string;
   category: string;

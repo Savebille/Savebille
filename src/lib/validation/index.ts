@@ -44,7 +44,7 @@ export const MovementValidation = z.object({
     message: 'Selecciona el tipo de movimiento',
   }),
   amount: z.string().min(2, {
-    message: 'Debes ingresar un valor.',
+    message: 'Debes ingresar un valor',
   }),
   date: z.date({
     required_error: 'Por favor ingresa una fecha de registro.',

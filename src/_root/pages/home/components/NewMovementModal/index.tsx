@@ -35,6 +35,7 @@ import { useUserContext } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { MovementValidation } from '@/lib/validation';
 import { ChangeEvent } from 'react';
+import { log } from 'console';
 
 const NewMovementModal = () => {
   const form = useForm<z.infer<typeof MovementValidation>>({
@@ -60,8 +61,15 @@ const NewMovementModal = () => {
     console.log('value', value);
 
     // ACTION = CREATE
+
+    const cleanAmount = Number(value.amount.replace(/[.,]/g, ''));
+
     const newMovement = await createMovement({
-      ...value,
+      type: value.type,
+      amount: cleanAmount,
+      date: value.date,
+      description: value.description,
+      category: value.category,
       userId: user.id,
     });
 
@@ -74,26 +82,16 @@ const NewMovementModal = () => {
       title: `REGISTRADO EN DB PAPU.`,
     });
     form.reset();
+
   };
 
   // Amount Field
 
-  const formatNumber = (input: string): string => {
-    input = input.replace(/[^0-9.]/g, '').replace(/^\.+/g, '');
-
-    const parts = input.split('.');
-    let integerPart = parts[0] || '';
-    let decimalPart = parts[1] || '';
-
-    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    decimalPart = decimalPart.slice(0, 2);
-
-    return integerPart + (decimalPart ? '.' + decimalPart : '');
-  };
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const formattedValue = formatNumber(e.target.value);
-    form.setValue('amount', formattedValue);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Aquí puedes agregar validación adicional si es necesario
+    let value = e.target.value.replace(/\D/g, ""); // Eliminar caracteres no numéricos
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Agregar separadores de miles
+    form.setValue('amount', value);
   };
 
   const categoryOptions = [
@@ -196,11 +194,12 @@ const NewMovementModal = () => {
                             </Text>
                             <Input
                               className='text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-success placeholder:text-h-success focus:outline-none'
-                              type='text'
+                              type='text' // Cambiar el tipo de entrada a 'number'
                               id='amount'
                               placeholder='0.00'
+                              inputMode='numeric'
                               {...field}
-                              onChange={handleInputChange}
+                              onChange={handleInputChange} // Agregar el manejador de cambio de entrad
                             />
                           </div>
                         </div>
@@ -286,7 +285,7 @@ const NewMovementModal = () => {
 
               <div className='flex w-full items-center justify-end gap-2'>
                 <Button
-                  onClick={() => {}}
+                  onClick={() => { }}
                   type='button'
                   className='w-auto lg:w-auto bg-transparent text-h-primary'
                 >
