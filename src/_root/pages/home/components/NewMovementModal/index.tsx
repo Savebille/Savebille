@@ -34,8 +34,6 @@ import { useCreateMovement } from '@/lib/react-query/queries';
 import { useUserContext } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { MovementValidation } from '@/lib/validation';
-import { ChangeEvent } from 'react';
-import { log } from 'console';
 
 const NewMovementModal = () => {
   const form = useForm<z.infer<typeof MovementValidation>>({
