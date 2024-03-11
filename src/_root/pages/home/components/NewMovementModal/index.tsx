@@ -1,8 +1,12 @@
 import {
   Calculator,
+  Carrot,
+  CoatHanger,
   File,
+  GasPump,
   Gift,
   HandCoins,
+  House,
   Money,
   Plus,
   TrendUp,
@@ -27,13 +31,16 @@ import {
 } from '@/components/ui/form';
 
 import IMAGES from '@/shared/constants/images';
-import Selector from '@/components/Selector';
+import Selector from '@/components/IncomeSelector';
 import { DatePickerWithPresets } from '@/components/DatePicker';
 import Modal from '@/components/Modal';
 import { useCreateMovement } from '@/lib/react-query/queries';
 import { useUserContext } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { MovementValidation } from '@/lib/validation';
+import { SetStateAction, useState } from 'react';
+import { log } from 'console';
+import ExpenseSelector from '@/components/ExpenseSelector';
 
 const NewMovementModal = () => {
   const form = useForm<z.infer<typeof MovementValidation>>({
@@ -95,25 +102,63 @@ const NewMovementModal = () => {
   const categoryOptions = [
     {
       icon: <Money size={24} color='#2ECC71' />,
+      type: 'Ingreso',
       label: 'Salario',
       color: 'lightGreen',
     },
     {
       icon: <TrendUp size={24} color='#3498DB' />,
+      type: 'Ingreso',
       label: 'Inversión',
       color: 'blue',
     },
     {
       icon: <Gift size={24} color='#8E44AD' />,
+      type: 'Ingreso',
       label: 'Regalo',
       color: 'purple',
     },
     {
       icon: <HandCoins size={24} color='#E67E22' />,
+      type: 'Ingreso',
       label: 'Prestamo',
       color: 'orange',
     },
+    {
+      icon: <House size={24} color='#2ECC71' />,
+      type: 'Gasto',
+      label: 'Arriendo',
+      color: 'lightGreen',
+    },
+    {
+      icon: <Carrot size={24} color='#E67E22' />,
+      type: 'Gasto',
+      label: 'Comida',
+      color: 'orange',
+    },
+    {
+      icon: <CoatHanger size={24} color='#3498DB' />,
+      type: 'Gasto',
+      label: 'Ropa',
+      color: 'blue',
+    },
+    {
+      icon: <GasPump size={24} color='#8E44AD' />,
+      type: 'Gasto',
+      label: 'Gasolina',
+      color: 'purple',
+    },
   ];
+
+  const [selectedType, setselectedType] = useState('Ingreso')
+
+  const tottleSelectedType = (type: SetStateAction<string>) => {
+    if (type !== selectedType)
+      setselectedType(type)
+
+  }
+
+
 
   return (
     <Modal
@@ -146,7 +191,7 @@ const NewMovementModal = () => {
                         className='flex w-full items-center justify-evenly'
                       >
                         <FormItem className='flex w-auto items-center gap-4 space-y-0 '>
-                          <FormControl>
+                          <FormControl onClick={() => tottleSelectedType('Ingreso')}>
                             <RadioGroupItem value='ingreso' />
                           </FormControl>
                           <FormLabel className='font-normal text-h-success'>
@@ -154,8 +199,8 @@ const NewMovementModal = () => {
                           </FormLabel>
                         </FormItem>
 
-                        <FormItem className='flex w-auto items-center gap-4 space-y-0'>
-                          <FormControl>
+                        <FormItem className='flex w-auto items-center gap-4 space-y-0 ' >
+                          <FormControl  onClick={() => tottleSelectedType('Gasto')}>
                             <RadioGroupItem value='gasto' />
                           </FormControl>
                           <FormLabel className='font-normal text-h-error'>
@@ -186,20 +231,37 @@ const NewMovementModal = () => {
                             />
                           </FormLabel>
 
-                          <div className='flex items-center ml-4'>
-                            <Text size='h3' color='success' sx='mr-2'>
-                              $
-                            </Text>
-                            <Input
-                              className='text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-success placeholder:text-h-success focus:outline-none'
-                              type='text' // Cambiar el tipo de entrada a 'number'
-                              id='amount'
-                              placeholder='0.00'
-                              inputMode='numeric'
-                              {...field}
-                              onChange={handleInputChange} // Agregar el manejador de cambio de entrad
-                            />
-                          </div>
+
+                          {selectedType === 'Ingreso' && (
+                            <div className='flex items-center ml-4'>
+                              <Text size='h3' color='success' sx='mr-2'>
+                                +
+                              </Text>
+                              <Input
+                                className='text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-success placeholder:text-h-success focus:outline-none'
+                                type='text'
+                                placeholder='0.00'
+                                inputMode='numeric'
+                                {...field}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          )}
+                          {selectedType === 'Gasto' && (
+                            <div className='flex items-center ml-4'>
+                              <Text size='h3' color='error' sx='mr-2'>
+                                -
+                              </Text>
+                              <Input
+                                className='text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-error placeholder:text-h-error focus:outline-none'
+                                type='text'
+                                placeholder='0.00'
+                                inputMode='numeric'
+                                {...field}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          )}
                         </div>
 
                         <div className='flex items-center'>
@@ -269,17 +331,37 @@ const NewMovementModal = () => {
               />
 
               {/* Fourth Field */}
-              <FormField
-                control={form.control}
-                name='category'
-                render={({ field }) => (
-                  <FormItem>
-                    <Selector options={categoryOptions} fieldProps={field} />
+              {selectedType === 'Ingreso' && (
 
-                    <FormMessage className='ml-10' />
-                  </FormItem>
-                )}
-              />
+                <FormField
+                  control={form.control}
+                  name='category'
+                  render={({ field }) => (
+                    <FormItem>
+                      <Selector options={categoryOptions} fieldProps={field} />
+
+                      <FormMessage className='ml-10' />
+                    </FormItem>
+                  )}
+                />
+
+              )}
+
+              {selectedType === 'Gasto' && (
+
+                <FormField
+                  control={form.control}
+                  name='category'
+                  render={({ field }) => (
+                    <FormItem>
+                      <ExpenseSelector options={categoryOptions} fieldProps={field} />
+
+                      <FormMessage className='ml-10' />
+                    </FormItem>
+                  )}
+                />
+
+              )}
 
               <div className='flex w-full items-center justify-end gap-2'>
                 <Button

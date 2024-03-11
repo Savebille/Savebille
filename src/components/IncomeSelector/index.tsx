@@ -15,13 +15,13 @@ export interface Option {
   icon: ReactNode;
   label: string;
   color:
-    | 'red'
-    | 'purple'
-    | 'blue'
-    | 'darkGreen'
-    | 'lightGreen'
-    | 'yellow'
-    | 'orange';
+  | 'red'
+  | 'purple'
+  | 'blue'
+  | 'darkGreen'
+  | 'lightGreen'
+  | 'yellow'
+  | 'orange';
 }
 
 interface selectorProps {
@@ -46,19 +46,22 @@ const Selector = ({ options, fieldProps }: selectorProps) => {
           </SelectTrigger>
         </FormControl>
         <SelectContent>
-          {options.map((item: Option) => (
-            <SelectItem key={item.label} value={item.label}>
-              <FormLabel className='flex  flex-row items-center justify-start '>
-                {item.icon}
-                <Input
-                  type='text'
-                  readOnly
-                  value={item.label}
-                  className={`text-ct-${item.color} outline-none cursor-default border-none bg-transparent -ml-2`}
-                />
-              </FormLabel>
-            </SelectItem>
-          ))}
+          {options
+            .filter(( item: { type: string; } ) => item.type === 'Ingreso') 
+            .map((item: Option) => (
+              <SelectItem key={item.label} value={item.label}>
+                <FormLabel className='flex  flex-row items-center justify-start '>
+                  {item.icon}
+                  <Input
+                    type='text'
+                    readOnly
+                    value={item.label}
+                    className={`text-ct-${item.color} outline-none cursor-default border-none bg-transparent -ml-2`}
+                  />
+                </FormLabel>
+              </SelectItem>
+            ))
+          }
         </SelectContent>
       </Select>
     </div>
