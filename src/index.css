@@ -26,7 +26,15 @@
   --h-secondary: #8e98a7;
   --h-gray: #dfe5f1;
   --h-white: #ffffff;
-}
+
+    /* CATEGORY COLORS */
+    --ct-red : #E74C3C ;
+    --ct-purple : #8E44AD;
+    --ct-blue : #3498DB ;
+    --ct-darkGreen : #16A085;
+    --ct-lightGreen : #2ECC71 ;
+    --ct-yellow : #F1C40F ;
+    --ct-orange : #E67E22 ;
 
 a {
   text-decoration: none;
@@ -143,4 +151,6 @@ body {
 
 @layer components {
   /* SHADCN COMPONENTS */
+}
+
 }

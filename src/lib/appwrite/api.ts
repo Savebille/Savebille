@@ -1,7 +1,7 @@
-import { ID, Query } from "appwrite";
+import { ID, Query } from 'appwrite';
 
-import { appwriteConfig, account, databases, avatars } from "./config";
-import { INewUser } from "@/types";
+import { appwriteConfig, account, databases, avatars } from './config';
+import { INewMovement, INewUser } from '@/types';
 
 export async function createUserAccount(user: INewUser) {
   try {
@@ -79,7 +79,7 @@ export async function getCurrentUser() {
     const currentUser = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userCollectionId,
-      [Query.equal("accountId", currentAccount.$id)]
+      [Query.equal('accountId', currentAccount.$id)]
     );
 
     if (!currentUser) throw Error;
@@ -93,9 +93,59 @@ export async function getCurrentUser() {
 
 export async function signOutAccount() {
   try {
-    const session = await account.deleteSession("current");
+    const session = await account.deleteSession('current');
     return session;
   } catch (error) {
     console.log(error);
   }
 }
+
+export async function createMovement(movement: INewMovement) {
+  try {
+    // Create movement
+    const newMovement = await databases.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.movementCollectionId,
+      ID.unique(),
+      {
+        creator: movement.userId,
+        type: movement.type,
+        amount: movement.amount,
+        date: movement.date,
+        description: movement.description,
+        category: movement.category,
+      }
+    );
+
+    if (!newMovement) {
+      throw Error;
+    }
+
+    return newMovement;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getMovementByUserId() {
+  try {
+    const currentUser = await getCurrentUser();
+
+    const movementDocuments = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.movementCollectionId,
+      [Query.equal('creator', currentUser.$id)]
+    );
+
+    const { documents } = movementDocuments;
+
+    if (!movementDocuments) {
+      throw Error;
+    }
+
+    return documents;
+  } catch (error) {
+    console.error(error);
+  }
+}
+

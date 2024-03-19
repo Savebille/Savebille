@@ -6,9 +6,9 @@ import ROUTES from '../../../shared/constants/routes';
 import SearchInput from '../../../components/SearchInput';
 import NotificationIcon from '../../../components/NotificationIcon';
 import { useUserContext } from '@/context/AuthContext';
-import Loader from '../../shared/Loader';
+import CustomLoader from '@/components/shared/CustomLoader';
 
-const Topbar: React.FC<React.PropsWithChildren> = ({ children }) => {
+const Topbar: React.FC = () => {
   const navigate = useNavigate();
   const { user, isLoading: isUserLoading } = useUserContext();
 
@@ -79,9 +79,9 @@ const Topbar: React.FC<React.PropsWithChildren> = ({ children }) => {
           <NotificationIcon />
 
           {/* user-info */}
-          <div className='w-auto h-full flex items-center gap-3 overflow-hidden'>
+          <div className='w-auto h-full flex items-center gap-3 overflow-hidden '>
             {isUserLoading ? (
-              <Loader />
+              <CustomLoader color='#3183ff' height={44} width={44} />
             ) : (
               <>
                 {' '}

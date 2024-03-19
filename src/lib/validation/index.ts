@@ -36,3 +36,23 @@ export const ProfileValidation = z.object({
     message: 'Correo electrónico no valido.',
   }),
 });
+
+// Movement
+
+export const MovementValidation = z.object({
+  type: z.string().min(2, {
+    message: 'Selecciona el tipo de movimiento',
+  }),
+  amount: z.string().min(2, {
+    message: 'Debes ingresar un valor',
+  }),
+  date: z.date({
+    required_error: 'Por favor ingresa una fecha de registro.',
+  }),
+  description: z.string().min(2, {
+    message: 'Ingresa una descripción.',
+  }),
+  category: z.string().min(2, {
+    message: 'Por favor selecciona una categoría.',
+  }),
+});

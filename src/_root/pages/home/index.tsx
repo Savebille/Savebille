@@ -1,34 +1,177 @@
-import React, { useState } from 'react';
-import Text from '../../../components/Text';
+import React, { useEffect, useState } from 'react';
+
 import dayjs from 'dayjs';
-import { Plus } from '@phosphor-icons/react';
+
+import Text from '../../../components/Text';
+import NewMovementModal from './components/NewMovementModal';
+import { getIconByCategory } from '@/shared/utils/general.utils';
+import { CaretDown, Pencil, Trash } from '@phosphor-icons/react';
+import MovementList from './components/MovementList';
+import { getMovementByUserId } from '@/lib/appwrite/api';
+
+const headersTable = [
+  {
+    id: 1,
+    title: 'Registro',
+  },
+  {
+    id: 2,
+    title: 'Categoria',
+  },
+  {
+    id: 3,
+    title: 'Fecha de creación',
+  },
+  {
+    id: 4,
+    title: 'Monto',
+  },
+  {
+    id: 5,
+    title: 'Tipo',
+  },
+  {
+    id: 6,
+    title: 'Acciones',
+  },
+];
+
+const dataTable = [
+  {
+    id: 1,
+    title: 'ID-1',
+    date: '2021-10-10',
+    category: 'Carro',
+    amount: 10000,
+    status: 'Ingreso',
+  },
+  {
+    id: 2,
+    title: 'ID-2',
+    date: '2021-10-10',
+    category: 'Comida',
+    amount: 2000,
+    status: 'Gasto',
+  },
+  {
+    id: 3,
+    title: 'ID-3',
+    date: '2021-10-10',
+    category: 'Viaje',
+    amount: 1000,
+    status: 'Ingreso',
+  },
+  {
+    id: 4,
+    title: 'ID-4',
+    date: '2021-10-10',
+    category: 'Casa',
+    amount: 1000,
+    status: 'Gasto',
+  },
+  {
+    id: 5,
+    title: 'ID-4',
+    date: '2021-10-10',
+    category: 'Casa',
+    amount: 1000,
+    status: 'Ingreso',
+  },
+  {
+    id: 6,
+    title: 'ID-4',
+    date: '2021-10-10',
+    category: 'Casa',
+    amount: 1000,
+    status: 'Gasto',
+  },
+  {
+    id: 7,
+    title: 'ID-4',
+    date: '2021-10-10',
+    category: 'Casa',
+    amount: 1000,
+    status: 'Gasto',
+  },
+  {
+    id: 8,
+    title: 'ID-4',
+    date: '2021-10-10',
+    category: 'Casa',
+    amount: 1000,
+    status: 'Gasto',
+  },
+  {
+    id: 9,
+    title: 'ID-4',
+    date: '2021-10-10',
+    category: 'Casa',
+    amount: 1000,
+    status: 'Gasto',
+  },
+  {
+    id: 10,
+    title: 'ID-4',
+    date: '2021-10-10',
+    category: 'Casa',
+    amount: 1000,
+    status: 'Gasto',
+  },
+];
+
+const cardsInfo = [
+  {
+    id: 1,
+    title: 'Balance',
+    amount: 6000,
+    currency: 'COP',
+    desc: '4 registros',
+  },
+  {
+    id: 2,
+    title: 'Ingresos',
+    amount: 10000,
+    currency: 'COP',
+    desc: '1 registro',
+  },
+  {
+    id: 3,
+    title: 'Gastos',
+    amount: 4000,
+    currency: 'COP',
+    desc: '3 registros',
+  },
+];
+
+export interface Movements {
+  $id: string;
+  category: string;
+  date: any;
+  amount: number;
+  type: string;
+  description: string;
+}
 
 const Home: React.FC = () => {
-  const cardsInfo = [
-    {
-      id: 1,
-      title: 'Balance',
-      amount: 6000,
-      currency: 'COP',
-      desc: '4 registros',
-    },
-    {
-      id: 2,
-      title: 'Ingresos',
-      amount: 10000,
-      currency: 'COP',
-      desc: '1 registro',
-    },
-    {
-      id: 3,
-      title: 'Gastos',
-      amount: 4000,
-      currency: 'COP',
-      desc: '3 registros',
-    },
-  ];
+  const [movements, setMovements] = useState<Movements[]>([]);
+
+  const getUserMovements = async () => {
+    try {
+      const response: Movements[] = await getMovementByUserId();
+
+      setMovements(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserMovements();
+  }, []);
 
   const now = dayjs();
+
+  // Card Header State
 
   const [currentCardInfo, setCurrentCardInfo] = useState<string | null>(null);
 
@@ -55,16 +198,7 @@ const Home: React.FC = () => {
             sx='mt-2'
           >{`Revisa tu actividad - ${now}`}</Text>
         </div>
-
-        <button
-          onClick={() => {}}
-          className='flex items-center px-3 py-2 bg-h-info rounded-md mt-4 sm:mt-0 transition ease-in-out hover:scale-105 duration-200'
-        >
-          <Plus size={16} color={'var(--h-white)'} />
-          <Text color='white' size='text-1' weight='regular' sx='ml-2'>
-            Agregar
-          </Text>
-        </button>
+        <NewMovementModal fetchMovements={getUserMovements} />
       </div>
 
       {/* Main content */}
@@ -96,6 +230,9 @@ const Home: React.FC = () => {
           </div>
         ))}
       </div>
+
+      {/* Movement List */}
+      <MovementList data={movements} />
     </div>
   );
 };
