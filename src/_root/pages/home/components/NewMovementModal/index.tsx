@@ -1,6 +1,5 @@
 import {
   Calculator,
-  Carrot,
   CoatHanger,
   File,
   GasPump,
@@ -8,6 +7,7 @@ import {
   HandCoins,
   House,
   Money,
+  Pizza,
   Plus,
   TrendUp,
 } from '@phosphor-icons/react';
@@ -41,7 +41,13 @@ import { MovementValidation } from '@/lib/validation';
 import { SetStateAction, useState } from 'react';
 import ExpenseSelector from '@/components/ExpenseSelector';
 
-const NewMovementModal = () => {
+interface NewMovementModalProps {
+  fetchMovements: () => void;
+}
+
+const NewMovementModal: React.FC<NewMovementModalProps> = ({
+  fetchMovements,
+}) => {
   const form = useForm<z.infer<typeof MovementValidation>>({
     resolver: zodResolver(MovementValidation),
     defaultValues: {
@@ -87,14 +93,15 @@ const NewMovementModal = () => {
     });
     form.reset();
 
+    fetchMovements();
   };
 
   // Amount Field
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Aquí puedes agregar validación adicional si es necesario
-    let value = e.target.value.replace(/\D/g, ""); // Eliminar caracteres no numéricos
-    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Agregar separadores de miles
+    let value = e.target.value.replace(/\D/g, ''); // Eliminar caracteres no numéricos
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Agregar separadores de miles
     form.setValue('amount', value);
   };
 
@@ -130,7 +137,7 @@ const NewMovementModal = () => {
       color: 'lightGreen',
     },
     {
-      icon: <Carrot size={24} color='#E67E22' />,
+      icon: <Pizza size={24} color='#E67E22' />,
       type: 'Gasto',
       label: 'Comida',
       color: 'orange',
@@ -149,15 +156,11 @@ const NewMovementModal = () => {
     },
   ];
 
-  const [selectedType, setselectedType] = useState('Ingreso')
+  const [selectedType, setselectedType] = useState('Ingreso');
 
   const tottleSelectedType = (type: SetStateAction<string>) => {
-    if (type !== selectedType)
-      setselectedType(type)
-
-  }
-
-
+    if (type !== selectedType) setselectedType(type);
+  };
 
   return (
     <Modal
@@ -190,7 +193,9 @@ const NewMovementModal = () => {
                         className='flex w-full items-center justify-evenly'
                       >
                         <FormItem className='flex w-auto items-center gap-4 space-y-0 '>
-                          <FormControl onClick={() => tottleSelectedType('Ingreso')}>
+                          <FormControl
+                            onClick={() => tottleSelectedType('Ingreso')}
+                          >
                             <RadioGroupItem value='ingreso' />
                           </FormControl>
                           <FormLabel className='font-normal text-h-success'>
@@ -198,8 +203,10 @@ const NewMovementModal = () => {
                           </FormLabel>
                         </FormItem>
 
-                        <FormItem className='flex w-auto items-center gap-4 space-y-0 ' >
-                          <FormControl  onClick={() => tottleSelectedType('Gasto')}>
+                        <FormItem className='flex w-auto items-center gap-4 space-y-0 '>
+                          <FormControl
+                            onClick={() => tottleSelectedType('Gasto')}
+                          >
                             <RadioGroupItem value='gasto' />
                           </FormControl>
                           <FormLabel className='font-normal text-h-error'>
@@ -229,7 +236,6 @@ const NewMovementModal = () => {
                               className='cursor-pointer'
                             />
                           </FormLabel>
-
 
                           {selectedType === 'Ingreso' && (
                             <div className='flex items-center ml-4'>
@@ -331,7 +337,6 @@ const NewMovementModal = () => {
 
               {/* Fourth Field */}
               {selectedType === 'Ingreso' && (
-
                 <FormField
                   control={form.control}
                   name='category'
@@ -343,28 +348,28 @@ const NewMovementModal = () => {
                     </FormItem>
                   )}
                 />
-
               )}
 
               {selectedType === 'Gasto' && (
-
                 <FormField
                   control={form.control}
                   name='category'
                   render={({ field }) => (
                     <FormItem>
-                      <ExpenseSelector options={categoryOptions} fieldProps={field} />
+                      <ExpenseSelector
+                        options={categoryOptions}
+                        fieldProps={field}
+                      />
 
                       <FormMessage className='ml-10' />
                     </FormItem>
                   )}
                 />
-
               )}
 
               <div className='flex w-full items-center justify-end gap-2'>
                 <Button
-                  onClick={() => { }}
+                  onClick={() => {}}
                   type='button'
                   className='w-auto lg:w-auto bg-transparent text-h-primary'
                 >
