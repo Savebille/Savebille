@@ -14,30 +14,34 @@ const getTextColor = (textColor: string) => {
 };
 
 const getTextSize = (textSize: string) => {
-	switch (textSize) {
-		case 'mini':
-			return 'text-[11px]';
-		case 'mini-2':
-			return 'text-[12px]';
-		case 'extraSmall':
-			return 'text-[13px]';
-		case 'small':
-			return 'text-sm';
-		case 'medium':
-			return 'text-base';
-		case 'large':
-			return 'text-lg';
-		case 'extra-large':
-			return 'text-xl';
-		case 'extra-extra-large':
-			return 'text-2xl';
-    case 'most-large':
-      return 'text-[28px] leading-[28px]';
-    case 'title':
-      return 'text-[32px] leading-[38px]'
-		default:
-			return 'text-base';
-	}
+  switch (textSize) {
+    // HEADLINE
+    case 'h1':
+      return 'text-[28px]';
+    case 'h2':
+      return 'text-[24px]';
+    case 'h3':
+      return 'text-[20px]';
+    case 'h4':
+      return 'text-[18px]';
+    case 'h5':
+      return 'text-[16px]';
+
+    // PARAGRAPH
+    case 'text-1':
+      return 'text-[14px]';
+    case 'text-2':
+      return 'text-[13px]';
+    case 'text-3':
+      return 'text-[12px]';
+    case 'text-4':
+      return 'text-[11px]';
+    case 'base':
+      return 'text-base';
+
+    default:
+      return 'text-base';
+  }
 };
 
 const getTextWeight = (weight: string) => {
@@ -45,7 +49,7 @@ const getTextWeight = (weight: string) => {
     case 'light':
       return 'font-light';
     case 'regular':
-      return 'font-regular';
+      return 'font-normal';
     case 'medium':
       return 'font-medium';
     case 'semibold':
@@ -53,7 +57,7 @@ const getTextWeight = (weight: string) => {
     case 'bold':
       return 'font-bold';
     default:
-      return 'font-regular';
+      return 'font-normal';
   }
 };
 

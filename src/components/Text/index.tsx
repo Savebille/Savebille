@@ -15,16 +15,16 @@ interface Props {
     | 'gray'
     | 'white';
   size?:
-    | 'mini'
-    | 'mini-2'
-    | 'extraSmall'
-    | 'small'
-    | 'medium'
-    | 'large'
-    | 'extra-large'
-    | 'extra-extra-large'
-    | 'most-large'
-    | 'title';
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'text-1'
+    | 'text-2'
+    | 'text-3'
+    | 'text-4'
+    | 'base';
   weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold';
 
   sx?: string;
@@ -34,7 +34,7 @@ interface Props {
 const Text = ({
   children,
   color = 'primary',
-  size = 'medium',
+  size = 'base',
   sx,
   weight = 'regular',
   beforeIcon,
