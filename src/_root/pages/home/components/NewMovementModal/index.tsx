@@ -245,6 +245,7 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
                               <Input
                                 className='text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-success placeholder:text-h-success focus:outline-none'
                                 type='text'
+                                autoComplete='off'
                                 placeholder='0.00'
                                 inputMode='numeric'
                                 {...field}
@@ -260,6 +261,7 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
                               <Input
                                 className='text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-error placeholder:text-h-error focus:outline-none'
                                 type='text'
+                                autoComplete='off'
                                 placeholder='0.00'
                                 inputMode='numeric'
                                 {...field}
@@ -324,6 +326,7 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
                         <Input
                           className='w ml-4 text-[14px] bg-transparent rounded-none p-0 border-none leading-none text-h-primary focus:outline-none'
                           id='description'
+                          autoComplete='off'
                           type='text'
                           placeholder='Descripción'
                           {...field}
