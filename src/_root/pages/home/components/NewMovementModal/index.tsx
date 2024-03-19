@@ -39,7 +39,6 @@ import { useUserContext } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { MovementValidation } from '@/lib/validation';
 import { SetStateAction, useState } from 'react';
-import { log } from 'console';
 import ExpenseSelector from '@/components/ExpenseSelector';
 
 const NewMovementModal = () => {
