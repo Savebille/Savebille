@@ -26,7 +26,15 @@
   --h-secondary: #8e98a7;
   --h-gray: #dfe5f1;
   --h-white: #ffffff;
-}
+
+    /* CATEGORY COLORS */
+    --ct-red : #E74C3C ;
+    --ct-purple : #8E44AD;
+    --ct-blue : #3498DB ;
+    --ct-darkGreen : #16A085;
+    --ct-lightGreen : #2ECC71 ;
+    --ct-yellow : #F1C40F ;
+    --ct-orange : #E67E22 ;
 
 a {
   text-decoration: none;
@@ -106,6 +114,16 @@ body {
 }
 
 .checkbox-input:checked {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #dfe5f1;
+  border-radius: 4px;
+  background-color: #fafafa;
+  outline: none;
+  cursor: pointer;
   background-color: var(--h-success);
 }
 
@@ -114,7 +132,6 @@ body {
   display: none;
   width: 10px;
 }
-
 
 /* Track */
 ::-webkit-scrollbar-track {
@@ -132,14 +149,8 @@ body {
   background: #dfe5f1;
 }
 
-
-@layer utilities {
-  .showContainer {
-    @apply transition duration-300 opacity-100;
-  }
-
-  .hiddeContainer {
-    @apply transition duration-300 opacity-0;
-  }
+@layer components {
+  /* SHADCN COMPONENTS */
 }
 
+}
