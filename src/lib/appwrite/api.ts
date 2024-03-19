@@ -134,6 +134,7 @@ export async function getMovementByUserId() {
     const movementDocuments = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.movementCollectionId,
+      //@ts-ignore
       [Query.equal('creator', currentUser.$id)]
     );
 
