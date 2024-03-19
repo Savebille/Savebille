@@ -1,12 +1,13 @@
 const ROUTES = {
   ROOT: '/',
-  AUTH: '/auth',
   STATS: '/stats',
   CATEGORIES: '/categories',
   SETTINGS: '/settings',
   HELP: '/help',
   PAYMENTS: '/payments',
   ACCOUNT: '/account',
+  SIGN_IN: '/iniciar-sesion',
+  SIGN_UP: '/registrarse',
 };
 
 
