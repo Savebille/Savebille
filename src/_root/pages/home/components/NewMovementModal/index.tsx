@@ -94,6 +94,7 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
     form.reset();
 
     fetchMovements();
+    setActivateCloseModal(true);
   };
 
   // Amount Field
@@ -162,8 +163,11 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
     if (type !== selectedType) setselectedType(type);
   };
 
+  const [activateCloseModal, setActivateCloseModal] = useState(false);
+
   return (
     <Modal
+      closeModal={activateCloseModal}
       hasHeader
       title='Nuevo movimiento'
       description='Ingresa la información de tu movimiento'

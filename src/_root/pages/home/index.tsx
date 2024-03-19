@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
-import Text from '../../../components/Text';
-import NewMovementModal from './components/NewMovementModal';
-import MovementList from './components/MovementList';
-import { getMovementByUserId } from '@/lib/appwrite/api';
+import Text from "../../../components/Text";
+import NewMovementModal from "./components/NewMovementModal";
+import MovementList from "./components/MovementList";
+import { getMovementByUserId } from "@/lib/appwrite/api";
+import CustomLoader from "@/components/shared/CustomLoader";
+interface CardInfo {
+  id: number;
+  title: string;
+  currency: string;
+}
 
 const cardsInfo = [
   {
     id: 1,
-    title: 'Balance',
-    amount: 6000,
-    currency: 'COP',
-    desc: '4 registros',
+    title: "Balance",
+    currency: "COP",
   },
   {
     id: 2,
-    title: 'Ingresos',
-    amount: 10000,
-    currency: 'COP',
-    desc: '1 registro',
+    title: "Ingresos",
+    currency: "COP",
   },
   {
     id: 3,
-    title: 'Gastos',
-    amount: 4000,
-    currency: 'COP',
-    desc: '3 registros',
+    title: "Gastos",
+    currency: "COP",
   },
 ];
-
 export interface Movements {
   $id: string;
   category: string;
@@ -41,28 +40,55 @@ export interface Movements {
 }
 
 const Home: React.FC = () => {
+  const now = dayjs();
+
   const [movements, setMovements] = useState<Movements[]>([]);
+  const [currentCardInfo, setCurrentCardInfo] = useState<string | null>(null);
+  const [isLoadingMovements, setIsLoadingMovements] = useState(false);
 
   const getUserMovements = async () => {
     try {
+      setIsLoadingMovements(true);
       //@ts-ignore
       const response: Movements[] = await getMovementByUserId();
-
       setMovements(response);
+      setIsLoadingMovements(false);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoadingMovements(false);
     }
   };
 
-  useEffect(() => {
-    getUserMovements();
-  }, []);
+  const getTotalIncome = () => {
+    return movements.reduce((total, movement) => {
+      if (movement.type === "ingreso") {
+        return total + movement.amount;
+      }
+      return total;
+    }, 0);
+  };
 
-  const now = dayjs();
+  const getTotalExpenses = () => {
+    return movements.reduce((total, movement) => {
+      if (movement.type === "gasto") {
+        return total + movement.amount;
+      }
+      return total;
+    }, 0);
+  };
 
-  // Card Header State
+  const getIncomeCount = () => {
+    return movements.filter((movement) => movement.type === "ingreso").length;
+  };
 
-  const [currentCardInfo, setCurrentCardInfo] = useState<string | null>(null);
+  const getExpenseCount = () => {
+    return movements.filter((movement) => movement.type === "gasto").length;
+  };
+
+  const getBalance = () => {
+    return getTotalIncome() - getTotalExpenses();
+  };
 
   const handleCardClick = (cardTitle: string) => {
     if (currentCardInfo === cardTitle) {
@@ -72,58 +98,101 @@ const Home: React.FC = () => {
     }
   };
 
+  const getValueByInfo = (card: CardInfo) => {
+    if (card.title === "Ingresos") {
+      return getTotalIncome();
+    } else if (card.title === "Gastos") {
+      return getTotalExpenses();
+    } else {
+      return getBalance();
+    }
+  };
+
+  const getColorByInfo = (card: CardInfo) => {
+    if (card.title === "Ingresos") {
+      return "success";
+    } else if (card.title === "Gastos") {
+      return "error";
+    } else {
+      return getBalance() >= 0 ? "success" : "error";
+    }
+  };
+
+  useEffect(() => {
+    getUserMovements();
+  }, []);
+
   return (
-    <div className='w-full flex flex-col'>
+    <div className="w-full flex flex-col">
       {/* Header content */}
-      <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between'>
-        <div className='flex flex-col'>
-          <Text color='primary' weight='bold' size='h4'>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+        <div className="flex flex-col">
+          <Text color="primary" weight="bold" size="h4">
             Listado de gastos e ingresos
           </Text>
           <Text
-            color='secondary'
-            weight='regular'
-            size='text-1'
-            sx='mt-2'
+            color="secondary"
+            weight="regular"
+            size="text-1"
+            sx="mt-2"
           >{`Revisa tu actividad - ${now}`}</Text>
         </div>
         <NewMovementModal fetchMovements={getUserMovements} />
       </div>
+      {isLoadingMovements ? (
+        <div className="mt-10">
+          <CustomLoader color="#3183ff" height={44} width={44} />
+        </div>
+      ) : (
+        <>
+          {/* Main content */}
+          <div className="flex flex-col sm:flex-row items-start gap-6 mt-6 w-full">
+            {cardsInfo.map((card) => (
+              <div
+                key={card.title}
+                onClick={() => handleCardClick(card.title)}
+                className={`flex flex-col bg-white ${
+                  currentCardInfo === card.title
+                    ? "border border-h-info shadow-md"
+                    : "border-none border-transparent shadow-sm"
+                }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <Text size="h5" color="secondary" weight="regular">
+                    {card.title}
+                  </Text>
+                  <Text size="h5" color="secondary" weight="regular">
+                    {card.currency}
+                  </Text>
+                </div>
 
-      {/* Main content */}
-      <div className='flex flex-col sm:flex-row items-start gap-6 mt-6 w-full'>
-        {cardsInfo.map((card) => (
-          <div
-            key={card.title}
-            onClick={() => handleCardClick(card.title)}
-            className={`flex flex-col bg-white ${
-              currentCardInfo === card.title
-                ? 'border border-h-info shadow-md'
-                : 'border-none border-transparent shadow-sm'
-            }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
-          >
-            <div className='flex items-center justify-between mb-3'>
-              <Text size='h5' color='secondary' weight='regular'>
-                {card.title}
-              </Text>
-              <Text size='h5' color='secondary' weight='regular'>
-                {card.currency}
-              </Text>
-            </div>
-            <Text size='h5' color='primary' weight='bold' sx='mb-2'>
-              ${card.amount}
-            </Text>
-            <Text size='text-1' color='info' weight='regular'>
-              {card.desc}
-            </Text>
+                <div className="flex items-center justify-between">
+                  <Text size="h5" color={getColorByInfo(card)} weight="bold">
+                    {getValueByInfo(card).toLocaleString("es-CO", {
+                      style: "currency",
+                      currency: "COP",
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    })}
+                  </Text>
+                  {currentCardInfo === card.title && (
+                    <Text size="text-3" color="info" weight="regular">
+                      {card.title === "Ingresos"
+                        ? `${getIncomeCount()} registros`
+                        : card.title === "Gastos"
+                        ? `${getExpenseCount()} registros`
+                        : movements.length + " registros"}
+                    </Text>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-
-      {/* Movement List */}
-      <MovementList data={movements} />
+          <MovementList data={movements} />
+        </>
+      )}
     </div>
   );
 };
 
-export default React.memo(Home);
+export default Home;
