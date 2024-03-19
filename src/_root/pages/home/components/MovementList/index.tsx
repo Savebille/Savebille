@@ -71,17 +71,17 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
               {data.date.slice(0, 10)}
             </Text>
             <Text size='text-1' color='primary' weight='regular'>
-              ${data.amount}
+              {Number(data.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 })}
             </Text>
             {data.type === 'ingreso' ? (
               <div className='bg-[#F4F9F2] px-2 rounded-md py-1.5'>
-                <Text size='text-1' color='success' weight='regular'>
+                <Text size='text-1' color='success' weight='bold'>
                   Ingreso
                 </Text>
               </div>
             ) : (
               <div className='bg-[#FFF2ED] px-2 rounded-md py-1.5'>
-                <Text size='text-1' color='error' weight='regular'>
+                <Text size='text-1' color='error' weight='bold'>
                   Gasto
                 </Text>
               </div>
