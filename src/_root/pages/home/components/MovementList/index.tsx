@@ -3,7 +3,6 @@ import { getIconByCategory } from '@/shared/utils/general.utils';
 import { Pencil, Trash } from '@phosphor-icons/react';
 import { Movements } from '../..';
 
-
 interface MovementListProps {
   data: Movements[];
 }
