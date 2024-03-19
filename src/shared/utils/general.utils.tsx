@@ -1,23 +1,39 @@
-import { Airplane, Car, Hamburger, House } from "@phosphor-icons/react";
+import { CoatHanger, GasPump, Gift, HandCoins, House, Money, Pizza, TrendUp } from "@phosphor-icons/react";
 
 const getIconByCategory = (category: string) => {
   switch (category) {
-    case 'Carro':
+    case 'Salario':
       return (
-        <Car className="w-4 h-4" />
+        <Money size={24} color='#2ECC71' />
       )
-    case 'Casa':
+    case 'Inversion':
       return (
-        <House className="w-4 h-4" />
+        <TrendUp size={24} color='#E67E22' />
       )
+    case 'Regalo':
+      return (
+        <Gift size={24} color='#8E44AD' />
+      )
+    case 'Prestamo':
+      return (
+        <HandCoins size={24} color='#3498DB' />
+      )
+    case 'Arriendo':
+      return (
+        <House size={24} color='#2ECC71' />
+        )
     case 'Comida':
       return (
-        <Hamburger className="w-4 h-4" />
-      )
-    case 'Viaje':
+        <Pizza size={24} color='#E67E22' />
+        ) 
+    case 'Ropa':
       return (
-        <Airplane className="w-4 h-4" />
-      )
+        <CoatHanger size={24} color='#3498DB' />
+        )
+    case 'Gasolina':
+        return (
+        <GasPump size={24} color='#8E44AD' />
+        )
 
     default:
       return <></>
