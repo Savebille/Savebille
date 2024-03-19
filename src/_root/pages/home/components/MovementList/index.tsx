@@ -2,7 +2,6 @@ import Text from '@/components/Text';
 import { getIconByCategory } from '@/shared/utils/general.utils';
 import { Pencil, Trash } from '@phosphor-icons/react';
 import { Movements } from '../..';
-import { date } from 'zod';
 
 interface MovementListProps {
   data: Movements[];

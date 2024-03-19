@@ -4,120 +4,8 @@ import dayjs from 'dayjs';
 
 import Text from '../../../components/Text';
 import NewMovementModal from './components/NewMovementModal';
-import { getIconByCategory } from '@/shared/utils/general.utils';
-import { CaretDown, Pencil, Trash } from '@phosphor-icons/react';
 import MovementList from './components/MovementList';
 import { getMovementByUserId } from '@/lib/appwrite/api';
-
-const headersTable = [
-  {
-    id: 1,
-    title: 'Registro',
-  },
-  {
-    id: 2,
-    title: 'Categoria',
-  },
-  {
-    id: 3,
-    title: 'Fecha de creación',
-  },
-  {
-    id: 4,
-    title: 'Monto',
-  },
-  {
-    id: 5,
-    title: 'Tipo',
-  },
-  {
-    id: 6,
-    title: 'Acciones',
-  },
-];
-
-const dataTable = [
-  {
-    id: 1,
-    title: 'ID-1',
-    date: '2021-10-10',
-    category: 'Carro',
-    amount: 10000,
-    status: 'Ingreso',
-  },
-  {
-    id: 2,
-    title: 'ID-2',
-    date: '2021-10-10',
-    category: 'Comida',
-    amount: 2000,
-    status: 'Gasto',
-  },
-  {
-    id: 3,
-    title: 'ID-3',
-    date: '2021-10-10',
-    category: 'Viaje',
-    amount: 1000,
-    status: 'Ingreso',
-  },
-  {
-    id: 4,
-    title: 'ID-4',
-    date: '2021-10-10',
-    category: 'Casa',
-    amount: 1000,
-    status: 'Gasto',
-  },
-  {
-    id: 5,
-    title: 'ID-4',
-    date: '2021-10-10',
-    category: 'Casa',
-    amount: 1000,
-    status: 'Ingreso',
-  },
-  {
-    id: 6,
-    title: 'ID-4',
-    date: '2021-10-10',
-    category: 'Casa',
-    amount: 1000,
-    status: 'Gasto',
-  },
-  {
-    id: 7,
-    title: 'ID-4',
-    date: '2021-10-10',
-    category: 'Casa',
-    amount: 1000,
-    status: 'Gasto',
-  },
-  {
-    id: 8,
-    title: 'ID-4',
-    date: '2021-10-10',
-    category: 'Casa',
-    amount: 1000,
-    status: 'Gasto',
-  },
-  {
-    id: 9,
-    title: 'ID-4',
-    date: '2021-10-10',
-    category: 'Casa',
-    amount: 1000,
-    status: 'Gasto',
-  },
-  {
-    id: 10,
-    title: 'ID-4',
-    date: '2021-10-10',
-    category: 'Casa',
-    amount: 1000,
-    status: 'Gasto',
-  },
-];
 
 const cardsInfo = [
   {
@@ -157,6 +45,7 @@ const Home: React.FC = () => {
 
   const getUserMovements = async () => {
     try {
+      //@ts-ignore
       const response: Movements[] = await getMovementByUserId();
 
       setMovements(response);

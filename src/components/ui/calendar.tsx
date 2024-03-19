@@ -24,6 +24,7 @@ function Calendar({
         caption_label: 'text-sm font-medium text-h-primary',
         nav: 'space-x-1 flex items-center',
         nav_button: cn(
+          //@ts-ignore
           buttonVariants({ variant: 'outline' }),
           'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'
         ),
@@ -36,6 +37,7 @@ function Calendar({
         row: 'flex w-full mt-2',
         cell: 'h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-slate-100/50 [&:has([aria-selected])]:bg-slate-100 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20 dark:[&:has([aria-selected].day-outside)]:bg-slate-800/50 dark:[&:has([aria-selected])]:bg-slate-800',
         day: cn(
+          //@ts-ignore
           buttonVariants({ variant: 'ghost' }),
           'h-9 w-9 p-0 font-normal aria-selected:opacity-100'
         ),
@@ -53,7 +55,9 @@ function Calendar({
         ...classNames,
       }}
       components={{
+        //@ts-ignore
         IconLeft: ({ ...props }) => <ChevronLeft className='h-4 w-4' />,
+        //@ts-ignore
         IconRight: ({ ...props }) => <ChevronRight className='h-4 w-4' />,
       }}
       {...props}

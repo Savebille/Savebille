@@ -32,6 +32,7 @@ export function DatePickerWithPresets({
       <PopoverTrigger asChild>
         <FormControl>
           <Button
+            //@ts-ignore
             variant={'outline'}
             className={cn(
               'w-full h-auto flex items-center justify-start gap-4 p-0 text-left font-normal',
