@@ -79,3 +79,174 @@ export const defaultExpenseCategories = [
   },
 ];
 
+export const customCategoryColors = [
+  {
+    id: 1,
+    color: '#e91e63',
+    isDefault: true,
+  },
+  {
+    id: 2,
+    color: '#ff80ab',
+    isDefault: true,
+  },
+  {
+    id: 3,
+    color: '#9c27b0',
+    isDefault: true,
+  },
+  {
+    id: 4,
+    color: '#ea80fc',
+    isDefault: true,
+  },
+  {
+    id: 5,
+    color: '#673ab7',
+    isDefault: true,
+  },
+  {
+    id: 6,
+    color: '#b388ff',
+    isDefault: false,
+  },
+  {
+    id: 7,
+    color: '#3f51b5',
+    isDefault: false,
+  },
+  {
+    id: 8,
+    color: '#8c9eff',
+    isDefault: false,
+  },
+  {
+    id: 9,
+    color: '#2196f3',
+    isDefault: false,
+  },
+  {
+    id: 10,
+    color: '#82b1ff',
+    isDefault: false,
+  },
+  {
+    id: 11,
+    color: '#03a9f4',
+    isDefault: false,
+  },
+  {
+    id: 12,
+    color: '#80d8ff',
+    isDefault: false,
+  },
+  {
+    id: 13,
+    color: '#00bcd4',
+    isDefault: false,
+  },
+  {
+    id: 14,
+    color: '#84ffff',
+    isDefault: false,
+  },
+  {
+    id: 15,
+    color: '#009688',
+    isDefault: false,
+  },
+  {
+    id: 16,
+    color: '#a7ffeb',
+    isDefault: false,
+  },
+  {
+    id: 17,
+    color: '#4caf50',
+    isDefault: false,
+  },
+  {
+    id: 18,
+    color: '#b9f6ca',
+    isDefault: false,
+  },
+  {
+    id: 19,
+    color: '#8bc34a',
+    isDefault: false,
+  },
+  {
+    id: 20,
+    color: '#ccff90',
+    isDefault: false,
+  },
+  {
+    id: 21,
+    color: '#cddc39',
+    isDefault: false,
+  },
+  {
+    id: 22,
+    color: '#f4ff81',
+    isDefault: false,
+  },
+  {
+    id: 23,
+    color: '#ffeb3b',
+    isDefault: false,
+  },
+  {
+    id: 24,
+    color: '#ffff8d',
+    isDefault: false,
+  },
+  {
+    id: 25,
+    color: '#ffc107',
+    isDefault: false,
+  },
+  {
+    id: 26,
+    color: '#ffe57f',
+    isDefault: false,
+  },
+  {
+    id: 27,
+    color: '#ff9800',
+    isDefault: false,
+  },
+  {
+    id: 28,
+    color: '#ffd180',
+    isDefault: false,
+  },
+  {
+    id: 29,
+    color: '#ff5722',
+    isDefault: false,
+  },
+  {
+    id: 30,
+    color: '#ff9e80',
+    isDefault: false,
+  },
+  {
+    id: 31,
+    color: '#795548',
+    isDefault: false,
+  },
+  {
+    id: 32,
+    color: '#a1887f',
+    isDefault: false,
+  },
+  {
+    id: 33,
+    color: '#607d8b',
+    isDefault: false,
+  },
+];
+
+
+
+

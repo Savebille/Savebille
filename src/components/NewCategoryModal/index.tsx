@@ -185,15 +185,13 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
                   <FormItem>
                     <FormControl>
                       <div className='flex items-center'>
-                        <button>
+                        <button type='button'>
                           <Image
                             size={24}
                             color='#8e98a7'
                             className='cursor-pointer'
                           />
                         </button>
-
-
                       </div>
                     </FormControl>
                     <FormMessage className='ml-10' />
@@ -209,15 +207,13 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
                   <FormItem>
                     <FormControl>
                       <div className='flex items-center'>
-                        <button>
+                        <button type='button'>
                           <Palette
                             size={24}
                             color='#8e98a7'
                             className='cursor-pointer'
                           />
                         </button>
-
-
                       </div>
                     </FormControl>
                     <FormMessage className='ml-10' />
