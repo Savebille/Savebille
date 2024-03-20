@@ -9,4 +9,7 @@ export enum QUERY_KEYS {
 
   // MOVEMENTS KEYS
   GET_RECENT_MOVEMENTS = "getRecentMovements",
+
+  // CATEGORIES KEYS
+  GET_CATEGORIES = "getCategories",
 }

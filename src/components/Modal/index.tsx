@@ -36,7 +36,7 @@ const Modal = ({
         {hasHeader && (
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
-            <DialogDescription>{description}</DialogDescription>
+            {description && <DialogDescription>{description}</DialogDescription>}
           </DialogHeader>
         )}
 

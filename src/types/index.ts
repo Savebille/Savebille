@@ -21,3 +21,11 @@ export type INewMovement = {
   description: string;
   category: string;
 };
+
+export type INewCategory = {
+  userId: string;
+  type: string;
+  name: string;
+  icon: string;
+  color: string;
+};

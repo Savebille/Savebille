@@ -1,7 +1,7 @@
 import { ID, Query } from 'appwrite';
 
 import { appwriteConfig, account, databases, avatars } from './config';
-import { INewMovement, INewUser } from '@/types';
+import { INewCategory, INewMovement, INewUser } from '@/types';
 
 export async function createUserAccount(user: INewUser) {
   try {
@@ -127,26 +127,70 @@ export async function createMovement(movement: INewMovement) {
   }
 }
 
-export async function getMovementByUserId() {
+export async function createCategory(category: INewCategory) {
   try {
-    const currentUser = await getCurrentUser();
-
-    const movementDocuments = await databases.listDocuments(
+    // Create new category
+    const newCategory = await databases.createDocument(
       appwriteConfig.databaseId,
-      appwriteConfig.movementCollectionId,
-      //@ts-ignore
-      [Query.equal('creator', currentUser.$id)]
+      appwriteConfig.categoryCollectionId,
+      ID.unique(),
+      {
+        user: category.userId,
+        type: category.type,
+        icon: category.icon,
+        name: category.name,
+        color: category.color,
+      }
     );
 
-    const { documents } = movementDocuments;
-
-    if (!movementDocuments) {
+    if (!newCategory) {
       throw Error;
     }
 
-    return documents;
+    return newCategory;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getMovementByUserId(userId?: string) {
+
+  if (!userId) return;
+
+  try {
+    const movement = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.movementCollectionId,
+      [Query.equal("creator", userId), Query.orderDesc("$createdAt")]
+    );
+
+    if (!movement) {
+      throw Error;
+    }
+
+    return movement.documents;
   } catch (error) {
     console.error(error);
   }
 }
 
+export async function getCategoriesByUserId(userId?: string) {
+
+  if (!userId) return;
+
+  try {
+    const category = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.categoryCollectionId,
+      [Query.equal("user", userId), Query.orderDesc("$createdAt")]
+    );
+
+    if (!category) {
+      throw Error;
+    }
+
+    return category.documents;
+  } catch (error) {
+    console.error(error);
+  }
+}

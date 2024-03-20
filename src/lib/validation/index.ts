@@ -56,3 +56,20 @@ export const MovementValidation = z.object({
     message: 'Por favor selecciona una categoría.',
   }),
 });
+
+// Category
+
+export const CategoryValidation = z.object({
+  type: z.string().min(2, {
+    message: 'Selecciona el tipo de movimiento',
+  }),
+  name: z.string().min(2, {
+    message: 'Ingresa un nombre para la categoría.',
+  }),
+  icon: z.string().min(2, {
+    message: 'Selecciona un icono para la categoría.',
+  }),
+  color: z.string().min(2, {
+    message: 'Selecciona un color para la categoría.',
+  }),
+});

@@ -26,7 +26,7 @@ const headersTable = [
   },
   {
     id: 4,
-    title: "Fecha de creación",
+    title: "Fecha",
     width: "w-[14.3%]",
   },
   {
@@ -56,7 +56,6 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
 
   return (
     <div className="flex flex-col bg-white rounded-md shadow-sm mt-6 p-4">
-      {/* Encabezado */}
       <div className="sticky top-0 z-10 bg-white">
         <div className="flex items-center justify-between">
           <Text size="h5" color="primary" weight="bold">
@@ -77,8 +76,6 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
           ))}
         </div>
       </div>
-
-      {/* Registros */}
       <div className="overflow-y-auto max-h-[450px]">
         {data.map((data) => (
           <div
@@ -133,7 +130,7 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
                 <Text
                   size="text-1"
                   color={data.type === "ingreso" ? "success" : "error"}
-                  weight="bold"
+                  weight="medium"
                 >
                   {data.type === "ingreso" ? "Ingreso" : "Gasto"}
                 </Text>

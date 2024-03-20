@@ -80,7 +80,7 @@ const options = [
     path: ROUTES.ROOT,
   },
   {
-    label: 'Mis categorias',
+    label: 'Categorias',
     icon: <Book size={20} color='var(--h-secondary)' />,
     path: ROUTES.CATEGORIES,
   },

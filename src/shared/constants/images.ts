@@ -10,6 +10,8 @@ const IMAGES = {
     USERPROFILE: '/assets/icons/userprofile.svg',
   },
   COLFLAG: '/assets/Images/COL.png',
+  NEQUI_ICON: '/assets/Images/nequi.jpeg',
+  DAVIPLATA_ICON: '/assets/Images/daviplata.png',
 };
 
 export default IMAGES;

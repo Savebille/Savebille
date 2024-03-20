@@ -3,12 +3,13 @@ import {
 } from "@tanstack/react-query";
 
 import {
+  createCategory,
   createMovement,
   createUserAccount,
   signInAccount,
   signOutAccount,
 } from "@/lib/appwrite/api";
-import { INewMovement, INewUser } from "@/types";
+import { INewCategory, INewMovement, INewUser } from "@/types";
 import { QUERY_KEYS } from "./queryKeys";
 
 export const useCreateUserAccount = () => {
@@ -41,3 +42,17 @@ export const useCreateMovement = () => {
     },
   });
 };
+
+export const useCreateCategory = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (category: INewCategory) => createCategory(category),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_CATEGORIES],
+      });
+    },
+  });
+};
+
+

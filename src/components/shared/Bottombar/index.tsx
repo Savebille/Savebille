@@ -133,7 +133,7 @@ const Bottombar: React.FC = () => {
       onClick: () => navigate(ROUTES.HELP),
     },
     {
-      label: 'Mis categorias',
+      label: 'Categorias',
       icon: <Book size={20} color='var(--h-secondary)' />,
       onClick: () => navigate(ROUTES.CATEGORIES),
     },

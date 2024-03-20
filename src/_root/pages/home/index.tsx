@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import Text from "../../../components/Text";
 import NewMovementModal from "./components/NewMovementModal";
 import MovementList from "./components/MovementList";
-import { getMovementByUserId } from "@/lib/appwrite/api";
+import { getCurrentUser, getMovementByUserId } from "@/lib/appwrite/api";
 import CustomLoader from "@/components/shared/CustomLoader";
 interface CardInfo {
   id: number;
@@ -49,8 +49,11 @@ const Home: React.FC = () => {
   const getUserMovements = async () => {
     try {
       setIsLoadingMovements(true);
+      const currentAccount = await getCurrentUser();
       //@ts-ignore
-      const response: Movements[] = await getMovementByUserId();
+      const response: Movements[] = await getMovementByUserId(
+        currentAccount?.$id
+      );
       setMovements(response);
       setIsLoadingMovements(false);
     } catch (error) {
@@ -145,7 +148,6 @@ const Home: React.FC = () => {
         </div>
       ) : (
         <>
-          {/* Main content */}
           <div className="flex flex-col sm:flex-row items-start gap-6 mt-6 w-full">
             {cardsInfo.map((card) => (
               <div
