@@ -16,6 +16,7 @@ import {
   defaultExpenseCategories,
   defaultIncomeCategories,
 } from "@/shared/constants/data";
+
 export interface Categories {
   $id: string;
   type: string;
@@ -132,7 +133,7 @@ const Categories: React.FC = () => {
                     .filter((category) => category.type === "ingreso")
                     .map((category) => (
                       <div
-                        key={category.id} // Asegúrate de proporcionar una key única para cada elemento en el mapeo
+                        key={category.$id}
                         className="flex items-center justify-between rounded-md px-4 py-2 shadow-md mb-4"
                       >
                         <div className="flex items-center">

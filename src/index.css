@@ -27,130 +27,198 @@
   --h-gray: #dfe5f1;
   --h-white: #ffffff;
 
-    /* CATEGORY COLORS */
-    --ct-red : #E74C3C ;
-    --ct-purple : #8E44AD;
-    --ct-blue : #3498DB ;
-    --ct-darkGreen : #16A085;
-    --ct-lightGreen : #2ECC71 ;
-    --ct-yellow : #F1C40F ;
-    --ct-orange : #E67E22 ;
+  /*DEFAULT CATEGORY COLORS */
+  --ct-red: #e74c3c;
+  --ct-purple: #8e44ad;
+  --ct-blue: #3498db;
+  --ct-darkGreen: #16a085;
+  --ct-lightGreen: #2ecc71;
+  --ct-yellow: #f1c40f;
+  --ct-orange: #e67e22;
 
-a {
-  text-decoration: none;
-}
+  /*CUSTOM CATEGORY COLORS*/
 
-html,
-body,
-:root {
-  height: 100%;
-}
+  /* Pink */
+  --ct-pink-500: #e91e63;
+  --ct-pink-a100: #ff80ab;
 
-body {
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  min-height: 100vh;
-  overflow-x: hidden;
-  background-color: #fbfcfd;
-  color: #1a1a1a;
-}
+  /* Purple */
+  --ct-purple-500: #9c27b0;
+  --ct-purple-a100: #ea80fc;
 
-* {
-  font-family: 'Poppins', sans-serif;
-  box-sizing: border-box;
-}
+  /* Deep Purple */
+  --ct-deep-purple-500: #673ab7;
+  --ct-deep-purple-a100: #b388ff;
 
-.Mui-error {
-  color: var(--h-red-40) !important;
-}
+  /* Indigo */
+  --ct-indigo-500: #3f51b5;
+  --ct-indigo-a100: #8c9eff;
 
-.darktheme > .MuiInputBase-input {
-  color: white !important;
-}
+  /* Blue */
+  --ct-blue-500: #2196f3;
+  --ct-blue-a100: #82b1ff;
 
-.darktheme > .MuiOutlinedInput-notchedOutline {
-  border-color: rgba(255, 255, 255, 0.23) !important;
-}
+  /* Light Blue */
+  --ct-light-blue-500: #03a9f4;
+  --ct-light-blue-a100: #80d8ff;
 
-.multiline .MuiInputBase-root {
-  background-color: #fff !important;
-  min-height: 31px !important;
-  padding: 12px;
-  height: fit-content !important;
-  border-radius: 8px 8px !important;
-}
+  /* Cyan */
+  --ct-cyan-500: #00bcd4;
+  --ct-cyan-a100: #84ffff;
 
-.customInput .MuiOutlinedInput-input {
-  border-radius: 8px;
-  height: 14px;
-}
+  /* Teal */
+  --ct-teal-500: #009688;
+  --ct-teal-a100: #a7ffeb;
 
-.customInput .MuiInputLabel-animated {
-  color: var(--h-light) !important;
-  top: -4px;
-}
+  /* Green */
+  --ct-green-500: #4caf50;
+  --ct-green-a100: #b9f6ca;
 
-.customInput .MuiInputLabel-shrink {
-  color: var(--h-blue-40) !important;
-  top: 0px;
-}
+  /* Light Green */
+  --ct-light-green-500: #8bc34a;
+  --ct-light-green-a100: #ccff90;
 
-.MuiAccordion-root::before {
-  display: none !important;
-}
+  /* Lime */
+  --ct-lime-500: #cddc39;
+  --ct-lime-a100: #f4ff81;
 
-.checkbox-input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border: 2px solid #dfe5f1;
-  border-radius: 4px;
-  background-color: #fafafa;
-  outline: none;
-  cursor: pointer;
-}
+  /* Yellow */
+  --ct-yellow-500: #ffeb3b;
+  --ct-yellow-a100: #ffff8d;
 
-.checkbox-input:checked {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border: 2px solid #dfe5f1;
-  border-radius: 4px;
-  background-color: #fafafa;
-  outline: none;
-  cursor: pointer;
-  background-color: var(--h-success);
-}
+  /* Amber */
+  --ct-amber-500: #ffc107;
+  --ct-amber-a100: #ffe57f;
 
-/* width */
-::-webkit-scrollbar {
-  display: none;
-  width: 10px;
-}
+  /* Orange */
+  --ct-orange-500: #ff9800;
+  --ct-orange-a100: #ffd180;
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
+  /* Deep Orange */
+  --ct-deep-orange-500: #ff5722;
+  --ct-deep-orange-a100: #ff9e80;
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--h-gray-40);
-  border-radius: 40px;
-}
+  /* Brown */
+  --ct-brown-500: #795548;
+  --ct-brown-300: #a1887f;
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #dfe5f1;
-}
+  /* Blue Grey */
+  --ct-blue-grey-500: #607d8b;
 
-@layer components {
-  /* SHADCN COMPONENTS */
-}
+  a {
+    text-decoration: none;
+  }
 
+  html,
+  body,
+  :root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #fbfcfd;
+    color: #1a1a1a;
+  }
+
+  * {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+  }
+
+  .Mui-error {
+    color: var(--h-red-40) !important;
+  }
+
+  .darktheme > .MuiInputBase-input {
+    color: white !important;
+  }
+
+  .darktheme > .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(255, 255, 255, 0.23) !important;
+  }
+
+  .multiline .MuiInputBase-root {
+    background-color: #fff !important;
+    min-height: 31px !important;
+    padding: 12px;
+    height: fit-content !important;
+    border-radius: 8px 8px !important;
+  }
+
+  .customInput .MuiOutlinedInput-input {
+    border-radius: 8px;
+    height: 14px;
+  }
+
+  .customInput .MuiInputLabel-animated {
+    color: var(--h-light) !important;
+    top: -4px;
+  }
+
+  .customInput .MuiInputLabel-shrink {
+    color: var(--h-blue-40) !important;
+    top: 0px;
+  }
+
+  .MuiAccordion-root::before {
+    display: none !important;
+  }
+
+  .checkbox-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #dfe5f1;
+    border-radius: 4px;
+    background-color: #fafafa;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .checkbox-input:checked {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #dfe5f1;
+    border-radius: 4px;
+    background-color: #fafafa;
+    outline: none;
+    cursor: pointer;
+    background-color: var(--h-success);
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    display: none;
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--h-gray-40);
+    border-radius: 40px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #dfe5f1;
+  }
+
+  @layer components {
+    /* SHADCN COMPONENTS */
+  }
 }

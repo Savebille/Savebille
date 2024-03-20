@@ -1,24 +1,13 @@
-import {
-  Calculator,
-  CoatHanger,
-  File,
-  GasPump,
-  HandCoins,
-  House,
-  Money,
-  Pizza,
-  Plus,
-  TrendUp,
-} from "@phosphor-icons/react";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Calculator, File, Plus } from '@phosphor-icons/react';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import Text from "@/components/Text";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import Text from '@/components/Text';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 import {
   Form,
@@ -27,21 +16,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 
-import IMAGES from "@/shared/constants/images";
-import { DatePickerWithPresets } from "@/components/DatePicker";
-import Modal from "@/components/Modal";
-import { useCreateMovement } from "@/lib/react-query/queries";
-import { useUserContext } from "@/context/AuthContext";
-import { useToast } from "@/components/ui/use-toast";
-import { MovementValidation } from "@/lib/validation";
-import { SetStateAction, useState } from "react";
+import IMAGES from '@/shared/constants/images';
+import { DatePickerWithPresets } from '@/components/DatePicker';
+import Modal from '@/components/Modal';
+import { useCreateMovement } from '@/lib/react-query/queries';
+import { useUserContext } from '@/context/AuthContext';
+import { useToast } from '@/components/ui/use-toast';
+import { MovementValidation } from '@/lib/validation';
+import { SetStateAction, useState } from 'react';
 import {
   defaultExpenseCategories,
   defaultIncomeCategories,
-} from "@/shared/constants/data";
-import CategorySelector from "@/components/CategorySelector";
+} from '@/shared/constants/data';
+import CategorySelector from '@/components/CategorySelector';
 
 interface NewMovementModalProps {
   fetchMovements: () => void;
@@ -53,11 +42,11 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
   const form = useForm<z.infer<typeof MovementValidation>>({
     resolver: zodResolver(MovementValidation),
     defaultValues: {
-      type: "",
-      amount: "",
+      type: '',
+      amount: '',
       date: new Date(),
-      description: "",
-      category: "",
+      description: '',
+      category: '',
     },
   });
 
@@ -70,11 +59,11 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
 
   // Handler
   const handleSubmit = async (value: z.infer<typeof MovementValidation>) => {
-    console.log("value", value);
+    console.log('value', value);
 
     // ACTION = CREATE
 
-    const cleanAmount = Number(value.amount.replace(/[.,]/g, ""));
+    const cleanAmount = Number(value.amount.replace(/[.,]/g, ''));
 
     const newMovement = await createMovement({
       type: value.type,
@@ -87,11 +76,11 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
 
     if (!newMovement) {
       toast({
-        title: `create movement failed. Please try again.`,
+        title: `Error al crear movimiento. Por favor intenta de nuevo.`,
       });
     }
     toast({
-      title: `REGISTRADO EN DB PAPU.`,
+      title: `Movimiento registrado exitosamente.`,
     });
     form.reset();
 
@@ -102,79 +91,12 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
   // Amount Field
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Aquí puedes agregar validación adicional si es necesario
-    let value = e.target.value.replace(/\D/g, ""); // Eliminar caracteres no numéricos
-    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Agregar separadores de miles
-    form.setValue("amount", value);
+    let value = e.target.value.replace(/\D/g, ''); // Eliminar caracteres no numéricos
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Agregar separadores de miles
+    form.setValue('amount', value);
   };
 
-  const categoryOptions = [
-    {
-      icon: <Money size={24} color="#2ECC71" />,
-      type: "Ingreso",
-      label: "Salario",
-      color: "lightGreen",
-    },
-    {
-      icon: (
-        <img src={IMAGES.NEQUI_ICON} alt="nequiIcon" width={24} height={24} />
-      ),
-      type: "Ingreso",
-      label: "Nequi",
-      color: "lightGreen",
-    },
-    {
-      icon: (
-        <img
-          src={IMAGES.DAVIPLATA_ICON}
-          alt="daviplataIcon"
-          width={24}
-          height={24}
-        />
-      ),
-      type: "Ingreso",
-      label: "Daviplata",
-      color: "lightGreen",
-    },
-    {
-      icon: <TrendUp size={24} color="#3498DB" />,
-      type: "Ingreso",
-      label: "Inversión",
-      color: "blue",
-    },
-    {
-      icon: <HandCoins size={24} color="#E67E22" />,
-      type: "Ingreso",
-      label: "Prestamo",
-      color: "orange",
-    },
-    {
-      icon: <House size={24} color="#2ECC71" />,
-      type: "Gasto",
-      label: "Arriendo",
-      color: "lightGreen",
-    },
-    {
-      icon: <Pizza size={24} color="#E67E22" />,
-      type: "Gasto",
-      label: "Comida",
-      color: "orange",
-    },
-    {
-      icon: <CoatHanger size={24} color="#3498DB" />,
-      type: "Gasto",
-      label: "Ropa",
-      color: "blue",
-    },
-    {
-      icon: <GasPump size={24} color="#8E44AD" />,
-      type: "Gasto",
-      label: "Gasolina",
-      color: "purple",
-    },
-  ];
-
-  const [selectedType, setselectedType] = useState("Ingreso");
+  const [selectedType, setselectedType] = useState('Ingreso');
 
   const tottleSelectedType = (type: SetStateAction<string>) => {
     if (type !== selectedType) setselectedType(type);
@@ -186,54 +108,56 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
     <Modal
       closeModal={activateCloseModal}
       hasHeader
-      title="Nuevo movimiento"
-      description="Ingresa la información de tu movimiento"
+      title='Nuevo movimiento'
+      description='Ingresa la información de tu movimiento'
       triggerContent={
-        <button className="flex items-center justify-between px-3 py-2 bg-h-info rounded-md mt-4 sm:mt-0 transition ease-in-out hover:scale-105 duration-200 text-h-white text-[14px] font-normal gap-2 ">
+        <button className='flex items-center justify-between px-3 py-2 bg-h-info rounded-md mt-4 sm:mt-0 transition ease-in-out hover:scale-105 duration-200 text-h-white text-[14px] font-normal gap-2 '>
           Agregar
-          <Plus size={16} color={"var(--h-white)"} />
+          <Plus size={16} color={'var(--h-white)'} />
         </button>
       }
       mainContent={
-        <div className="mt-4">
+        <div className='mt-4'>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(handleSubmit)}
-              className="space-y-10"
+              className='space-y-10'
             >
               {/* Income or Expense */}
               <FormField
                 control={form.control}
-                name="type"
+                name='type'
                 render={({ field }) => (
-                  <FormItem className="flex flex-col w-full items-center ">
+
+                  <FormItem className='flex flex-col w-full items-center '>
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
                         defaultValue={field.value}
-                        className="flex w-full items-center justify-evenly"
+                        className='flex w-full items-center justify-evenly'
                       >
-                        <FormItem className="flex w-auto items-center gap-4 space-y-0 ">
+                        <FormItem className='flex w-auto items-center gap-4 space-y-0 '>
                           <FormControl
-                            onClick={() => tottleSelectedType("Ingreso")}
+                            onClick={() => tottleSelectedType('Ingreso')}
                           >
-                            <RadioGroupItem value="ingreso" />
+                            <RadioGroupItem value='ingreso' />
                           </FormControl>
-                          <FormLabel className="font-normal text-h-success">
+                          <FormLabel className='font-normal text-h-success'>
                             Ingreso
                           </FormLabel>
                         </FormItem>
 
-                        <FormItem className="flex w-auto items-center gap-4 space-y-0 ">
+                        <FormItem className='flex w-auto items-center gap-4 space-y-0 '>
                           <FormControl
-                            onClick={() => tottleSelectedType("Gasto")}
+                            onClick={() => tottleSelectedType('Gasto')}
                           >
-                            <RadioGroupItem value="gasto" />
+                            <RadioGroupItem value='gasto' />
                           </FormControl>
-                          <FormLabel className="font-normal text-h-error">
+                          <FormLabel className='font-normal text-h-error'>
                             Gasto
                           </FormLabel>
                         </FormItem>
+
                       </RadioGroup>
                     </FormControl>
                     <FormMessage />
@@ -244,47 +168,47 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
               {/* First Field */}
               <FormField
                 control={form.control}
-                name="amount"
+                name='amount'
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <div className="flex items-center justify-between w-full">
-                        <div className="flex items-center">
-                          <FormLabel htmlFor="amount">
+                      <div className='flex items-center justify-between w-full'>
+                        <div className='flex items-center'>
+                          <FormLabel htmlFor='amount'>
                             <Calculator
                               size={24}
-                              color="#8e98a7"
-                              className="cursor-pointer"
+                              color='#8e98a7'
+                              className='cursor-pointer'
                             />
                           </FormLabel>
 
-                          {selectedType === "Ingreso" && (
-                            <div className="flex items-center ml-4">
-                              <Text size="h3" color="success" sx="mr-2">
+                          {selectedType === 'Ingreso' && (
+                            <div className='flex items-center ml-4'>
+                              <Text size='h3' color='success' sx='mr-2'>
                                 +
                               </Text>
                               <Input
-                                className="text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-success placeholder:text-h-success focus:outline-none"
-                                type="text"
-                                autoComplete="off"
-                                placeholder="0.00"
-                                inputMode="numeric"
+                                className='text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-success placeholder:text-h-success focus:outline-none'
+                                type='text'
+                                autoComplete='off'
+                                placeholder='0.00'
+                                inputMode='numeric'
                                 {...field}
                                 onChange={handleInputChange}
                               />
                             </div>
                           )}
-                          {selectedType === "Gasto" && (
-                            <div className="flex items-center ml-4">
-                              <Text size="h3" color="error" sx="mr-2">
+                          {selectedType === 'Gasto' && (
+                            <div className='flex items-center ml-4'>
+                              <Text size='h3' color='error' sx='mr-2'>
                                 -
                               </Text>
                               <Input
-                                className="text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-error placeholder:text-h-error focus:outline-none"
-                                type="text"
-                                autoComplete="off"
-                                placeholder="0.00"
-                                inputMode="numeric"
+                                className='text-[20px] bg-transparent p-0 border-none rounded-none leading-none text-h-error placeholder:text-h-error focus:outline-none'
+                                type='text'
+                                autoComplete='off'
+                                placeholder='0.00'
+                                inputMode='numeric'
                                 {...field}
                                 onChange={handleInputChange}
                               />
@@ -292,18 +216,18 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
                           )}
                         </div>
 
-                        <div className="flex items-center">
+                        <div className='flex items-center'>
                           <img
                             src={IMAGES.COLFLAG}
-                            alt="bandera de Colombia"
+                            alt='bandera de Colombia'
                             width={24}
                             height={24}
                           />
                           <Text
-                            size="h3"
-                            color="secondary"
-                            weight="light"
-                            sx="ml-2"
+                            size='h3'
+                            color='secondary'
+                            weight='light'
+                            sx='ml-2'
                           >
                             COP
                           </Text>
@@ -311,7 +235,7 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
                       </div>
                     </FormControl>
 
-                    <FormMessage className="ml-10" />
+                    <FormMessage className='ml-10' />
                   </FormItem>
                 )}
               />
@@ -319,11 +243,11 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
               {/* Second Field */}
               <FormField
                 control={form.control}
-                name="date"
+                name='date'
                 render={({ field }) => (
                   <FormItem>
                     <DatePickerWithPresets fieldProps={field} />
-                    <FormMessage className="ml-10" />
+                    <FormMessage className='ml-10' />
                   </FormItem>
                 )}
               />
@@ -331,30 +255,30 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
               {/* Third Field */}
               <FormField
                 control={form.control}
-                name="description"
+                name='description'
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <div className="flex items-center">
-                        <FormLabel htmlFor="description">
+                      <div className='flex items-center'>
+                        <FormLabel htmlFor='description'>
                           <File
                             size={24}
-                            color="#8e98a7"
-                            className="cursor-pointer"
+                            color='#8e98a7'
+                            className='cursor-pointer'
                           />
                         </FormLabel>
 
                         <Input
-                          className="w ml-4 text-[14px] bg-transparent rounded-none p-0 border-none leading-none text-h-primary focus:outline-none"
-                          id="description"
-                          autoComplete="off"
-                          type="text"
-                          placeholder="Descripción"
+                          className='w ml-4 text-[14px] bg-transparent rounded-none p-0 border-none leading-none text-h-primary focus:outline-none'
+                          id='description'
+                          autoComplete='off'
+                          type='text'
+                          placeholder='Descripción'
                           {...field}
                         />
                       </div>
                     </FormControl>
-                    <FormMessage className="ml-10" />
+                    <FormMessage className='ml-10' />
                   </FormItem>
                 )}
               />
@@ -362,27 +286,27 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
               {/* Fourth Field */}
               <FormField
                 control={form.control}
-                name="category"
+                name='category'
                 render={({ field }) => (
                   <FormItem>
                     <CategorySelector
                       options={
-                        selectedType === "Ingreso"
+                        selectedType === 'Ingreso'
                           ? defaultIncomeCategories
                           : defaultExpenseCategories
                       }
                       fieldProps={field}
                     />
-                    <FormMessage className="ml-10" />
+                    <FormMessage className='ml-10' />
                   </FormItem>
                 )}
               />
 
-              <div className="flex w-full items-center justify-end">
+              <div className='flex w-full items-center justify-end'>
                 <Button
                   disabled={isLoadingCreate}
-                  type="submit"
-                  className="w-auto lg:w-auto"
+                  type='submit'
+                  className='w-auto lg:w-auto'
                 >
                   Crear movimiento
                 </Button>
