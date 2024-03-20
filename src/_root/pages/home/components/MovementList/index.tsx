@@ -4,6 +4,13 @@ import { getIconByCategory } from "@/shared/utils/general.utils";
 import { Pencil, Trash } from "@phosphor-icons/react";
 import { Movements } from "../..";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 interface MovementListProps {
   data: Movements[];
 }
@@ -63,7 +70,65 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
           </Text>
         </div>
 
-        <div className="bg-[#F8F9FC] rounded-md flex items-center justify-evenly mt-4">
+        <Accordion type="single" collapsible className="block lg:hidden">
+          {data.map((data) => (
+            <AccordionItem value={data.$id} className="justify-start w-full">
+              <AccordionTrigger>
+                <div className="flex gap-2">
+                  <Text size="text-1">{getIconByCategory(data.category)}</Text>
+                  <Text size="text-1">{data.description}</Text>
+                </div>
+              </AccordionTrigger>
+              <div className="flex justify-between">
+                <AccordionContent>
+                  <Text size="text-1" color="primary" weight="semibold">
+                    {data.date.slice(0, 10)}
+                  </Text>
+                </AccordionContent>
+                <AccordionContent>
+                  <Text size="text-1" color="primary" weight="regular">
+                    {Number(data.amount).toLocaleString("es-CO", {
+                      style: "currency",
+                      currency: "COP",
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    })}
+                  </Text>
+                </AccordionContent>
+              </div>
+              <div className="flex justify-between items-center">
+                <AccordionContent>
+                  <div
+                    className={`${
+                      data.type === "ingreso" ? "bg-[#F4F9F2]" : "bg-[#FFF2ED]"
+                    } px-2.5 rounded-md py-1.5 `}
+                  >
+                    <Text
+                      size="text-1"
+                      color={data.type === "ingreso" ? "success" : "error"}
+                      weight="medium"
+                    >
+                      {data.type === "ingreso" ? "Ingreso" : "Gasto"}
+                    </Text>
+                  </div>
+                </AccordionContent>
+                <AccordionContent>
+                  <div className="flex gap-2">
+                    <Pencil
+                      size={16}
+                      color={"var(--h-info)"}
+                      className="mr-3 cursor-pointer"
+                    />
+                    <Trash size={16} color={"var(--h-error)"} />
+                  </div>
+                </AccordionContent>
+              </div>
+            </AccordionItem>
+          ))}
+        </Accordion>
+
+        {/* Header Tabla de Datos */}
+        <div className="bg-[#F8F9FC] rounded-md items-center justify-evenly mt-4 hidden lg:flex ">
           {headersTable.map((header) => (
             <div
               key={header.id}
@@ -76,25 +141,26 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
           ))}
         </div>
       </div>
-      <div className="overflow-y-auto max-h-[450px]">
+      {/* Tabla de datos */}
+      <div className="overflow-y-auto max-h-[450px] hidden lg:block">
         {data.map((data) => (
           <div
             className="flex items-center justify-between p-3 border-b w-full"
             key={data.$id}
           >
-            <div className="flex items-center justify-center w-[14.3%]">
+            <div className="flex items-center justify-center w-[14.3%] mr-2">
               <Text size="text-1" color="secondary" weight="light">
                 ID - {data.$id.slice(0, 8)}
               </Text>
             </div>
 
-            <div className="flex items-center justify-center w-[14.3%]">
+            <div className="flex items-center justify-center w-[14.3%] mr-2">
               <Text size="text-1" color="secondary" weight="regular">
                 {truncateDescription(data.description)}
               </Text>
             </div>
 
-            <div className="flex items-center justify-center w-[14.3%]">
+            <div className="flex items-center justify-center w-[14.3%] mr-2">
               <div className="bg-h-blue-light w-7 h-7 flex items-center justify-center rounded-full mr-2">
                 {getIconByCategory(data.category)}
               </div>
