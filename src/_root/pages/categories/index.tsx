@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Text from "../../../components/Text";
 import { getCategoriesByUserId, getCurrentUser } from "@/lib/appwrite/api";
 import CustomLoader from "@/components/shared/CustomLoader";
-import NewCategoryModal from "@/components/NewCategoryModal";
+import NewCategoryModal from "@/_root/pages/categories/components/NewCategoryModal";
 import {
   CurrencyBtc,
   HandCoins,

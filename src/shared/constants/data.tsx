@@ -1,7 +1,24 @@
-import { CoatHanger, DeviceMobile, DotsThreeCircle, GasPump, Gift, HandCoins, House, Money, Pizza, TrendUp } from "@phosphor-icons/react";
-import IMAGES from "./images";
+import {
+  CoatHanger,
+  DeviceMobile,
+  DotsThreeCircle,
+  GasPump,
+  Gift,
+  HandCoins,
+  House,
+  Money,
+  Pizza,
+  TrendUp,
+} from '@phosphor-icons/react';
+import IMAGES from './images';
 
- export const defaultIncomeCategories = [
+export interface customCategoryColorsProps {
+  id: number;
+  color: string;
+  main?: boolean;
+  isDefault?: boolean;
+}
+export const defaultIncomeCategories = [
   {
     icon: <Money size={20} color='white' />,
     name: 'Salario',
@@ -23,26 +40,30 @@ import IMAGES from "./images";
     color: 'orange',
   },
   {
-    icon:   <img
-    src={IMAGES.NEQUI_ICON}
-    alt='nequiIcon'
-    width={28}
-    height={28}
-    className="rounded-full"
-  />,
-  name: 'Nequi',
-  color: 'lightGreen',
+    icon: (
+      <img
+        src={IMAGES.NEQUI_ICON}
+        alt='nequiIcon'
+        width={28}
+        height={28}
+        className='rounded-full'
+      />
+    ),
+    name: 'Nequi',
+    color: 'lightGreen',
   },
   {
-    icon:   <img
-    src={IMAGES.DAVIPLATA_ICON}
-    alt='daviplataIcon'
-    width={28}
-    height={28}
-    className="rounded-full"
-  />,
-  name: 'Daviplata',
-  color: 'lightGreen',
+    icon: (
+      <img
+        src={IMAGES.DAVIPLATA_ICON}
+        alt='daviplataIcon'
+        width={28}
+        height={28}
+        className='rounded-full'
+      />
+    ),
+    name: 'Daviplata',
+    color: 'lightGreen',
   },
   {
     icon: <DotsThreeCircle size={20} color='white' />,
@@ -79,31 +100,52 @@ export const defaultExpenseCategories = [
   },
 ];
 
-export const customCategoryColors = [
+export const customCategoryColors: customCategoryColorsProps[] = [
   {
     id: 1,
     color: '#e91e63',
+    main: true,
+  },
+  {
+    id: 8,
+    color: '#8c9eff',
     isDefault: true,
   },
   {
+    id: 15,
+    color: '#009688',
+    isDefault: true,
+  },
+  {
+    id: 17,
+    color: '#4caf50',
+    isDefault: true,
+  },
+  {
+    id: 24,
+    color: '#ffc107',
+    isDefault: true,
+  },
+
+  {
     id: 2,
     color: '#ff80ab',
-    isDefault: true,
+    isDefault: false,
   },
   {
     id: 3,
     color: '#9c27b0',
-    isDefault: true,
+    isDefault: false,
   },
   {
     id: 4,
     color: '#ea80fc',
-    isDefault: true,
+    isDefault: false,
   },
   {
     id: 5,
     color: '#673ab7',
-    isDefault: true,
+    isDefault: false,
   },
   {
     id: 6,
@@ -113,11 +155,6 @@ export const customCategoryColors = [
   {
     id: 7,
     color: '#3f51b5',
-    isDefault: false,
-  },
-  {
-    id: 8,
-    color: '#8c9eff',
     isDefault: false,
   },
   {
@@ -150,21 +187,13 @@ export const customCategoryColors = [
     color: '#84ffff',
     isDefault: false,
   },
-  {
-    id: 15,
-    color: '#009688',
-    isDefault: false,
-  },
+
   {
     id: 16,
     color: '#a7ffeb',
     isDefault: false,
   },
-  {
-    id: 17,
-    color: '#4caf50',
-    isDefault: false,
-  },
+
   {
     id: 18,
     color: '#b9f6ca',
@@ -195,58 +224,45 @@ export const customCategoryColors = [
     color: '#ffeb3b',
     isDefault: false,
   },
-  {
-    id: 24,
-    color: '#ffff8d',
-    isDefault: false,
-  },
+
   {
     id: 25,
-    color: '#ffc107',
-    isDefault: false,
-  },
-  {
-    id: 26,
     color: '#ffe57f',
     isDefault: false,
   },
   {
-    id: 27,
+    id: 26,
     color: '#ff9800',
     isDefault: false,
   },
   {
-    id: 28,
+    id: 27,
     color: '#ffd180',
     isDefault: false,
   },
   {
-    id: 29,
+    id: 28,
     color: '#ff5722',
     isDefault: false,
   },
   {
-    id: 30,
+    id: 29,
     color: '#ff9e80',
     isDefault: false,
   },
   {
-    id: 31,
+    id: 30,
     color: '#795548',
     isDefault: false,
   },
   {
-    id: 32,
+    id: 31,
     color: '#a1887f',
     isDefault: false,
   },
   {
-    id: 33,
+    id: 32,
     color: '#607d8b',
     isDefault: false,
   },
 ];
-
-
-
-

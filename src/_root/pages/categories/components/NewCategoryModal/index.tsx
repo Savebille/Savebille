@@ -1,10 +1,4 @@
-import {
-  BookmarkSimple,
-  File,
-  Image,
-  Palette,
-  Plus,
-} from '@phosphor-icons/react';
+import { BookmarkSimple, Image, Palette, Plus } from '@phosphor-icons/react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -29,6 +23,11 @@ import { useUserContext } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { CategoryValidation } from '@/lib/validation';
 import { SetStateAction, useState } from 'react';
+import {
+  customCategoryColors,
+  customCategoryColorsProps,
+} from '../../../../../shared/constants/data';
+import Text from '@/components/Text';
 
 interface NewCategoryModalProps {
   fetchCategories: () => void;
@@ -62,7 +61,7 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
       type: value.type,
       name: value.name,
       icon: value.icon,
-      color: value.color,
+      color: selectedColor,
       userId: user.id,
     });
 
@@ -87,6 +86,34 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
   };
 
   const [activateCloseModal, setActivateCloseModal] = useState(false);
+
+  const [activeCategoryColors, setActiveCategoryColors] = useState(false);
+
+  const [selectedColor, setSelectedColor] = useState('');
+
+  const [mainColor, setMainColor] = useState('#e91e63');
+
+  const handleActiveCategoryColors = () => {
+    setActiveCategoryColors(!activeCategoryColors);
+  };
+
+  const handleColorSelectionClick = (
+    categoryColor: customCategoryColorsProps
+  ) => {
+    if (categoryColor.isDefault === false) {
+      setSelectedColor(categoryColor.color);
+
+      setMainColor(categoryColor.color);
+
+      setActiveCategoryColors(false);
+    } else {
+      setSelectedColor(categoryColor.color);
+
+      setMainColor('#e91e63');
+
+      setActiveCategoryColors(false);
+    }
+  };
 
   return (
     <Modal
@@ -207,16 +234,102 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
                   <FormItem>
                     <FormControl>
                       <div className='flex items-center'>
-                        <button type='button'>
+                        <button
+                          onClick={handleActiveCategoryColors}
+                          type='button'
+                        >
                           <Palette
                             size={24}
                             color='#8e98a7'
                             className='cursor-pointer'
                           />
                         </button>
+
+                        <div className='flex w-full justify-between items-center gap-4'>
+                          <div className='w-auto h-auto flex flex-wrap ml-4 items-center justify-between gap-2'>
+                            {/* COLOR PRINCIPAL */}
+                            {customCategoryColors.map(
+                              (categoryColor) =>
+                                categoryColor.main && (
+                                  <div
+                                    onClick={() => {
+                                      field.onChange(categoryColor.color);
+                                      setSelectedColor(categoryColor.color);
+                                    }}
+                                    key={categoryColor.id}
+                                    className={`bg-[${mainColor}] w-6 h-6 rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center`}
+                                  >
+                                    {mainColor === selectedColor && (
+                                      <div className='bg-white w-[14px] h-[14px] rounded-full'></div>
+                                    )}
+                                  </div>
+                                )
+                            )}
+
+                            {/* COLORES DEFAULT */}
+                            {customCategoryColors.map(
+                              (categoryColor) =>
+                                categoryColor.isDefault && (
+                                  <div
+                                    onClick={() => {
+                                      field.onChange(categoryColor.color);
+                                      setSelectedColor(categoryColor.color);
+                                    }}
+                                    key={categoryColor.id}
+                                    className={`bg-[${categoryColor.color}] w-6 h-6 rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center`}
+                                  >
+                                    {selectedColor === categoryColor.color && (
+                                      <div className='bg-white w-[14px] h-[14px] rounded-full'></div>
+                                    )}
+                                  </div>
+                                )
+                            )}
+                          </div>
+
+                          <button
+                            onClick={handleActiveCategoryColors}
+                            type='button'
+                            className='bg-h-blue-light max-[390px]:px-2 px-4 py-2 rounded-md transition duration-200 hover:scale-105'
+                          >
+                            <Text
+                              size='text-1'
+                              color='secondary'
+                              weight='regular'
+                            >
+                              {activeCategoryColors
+                                ? 'Menos colores'
+                                : 'Más colores'}
+                            </Text>
+                          </button>
+
+                          {/* MÁS COLORES */}
+                          {activeCategoryColors && (
+                            <div className='ml-4 p-4 absolute  flex flex-wrap items-center max-[374px]:top-[350px] top-[330px]  z-50  w-auto max-w-[422px]  bg-white rounded-md shadow-md border border-slate-200 gap-3'>
+                              {customCategoryColors.map((categoryColor) => (
+                                <div
+                                  onClick={() => {
+                                    field.onChange(categoryColor.color);
+                                    handleColorSelectionClick(categoryColor);
+                                  }}
+                                  key={categoryColor.id}
+                                  className={`bg-[${categoryColor.color}] w-6 h-6 rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center `}
+                                >
+                                  {selectedColor === categoryColor.color && (
+                                    <div className='bg-white w-[14px] h-[14px] rounded-full'></div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </FormControl>
-                    <FormMessage className='ml-10' />
+
+                    {form.formState.errors.color && (
+                      <FormMessage className='ml-10' color='error'>
+                        {form.formState.errors.color.message}
+                      </FormMessage>
+                    )}
                   </FormItem>
                 )}
               />
