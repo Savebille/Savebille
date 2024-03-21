@@ -13,6 +13,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Divider from '@/components/Divider';
 import {
+  customCategoryIcons,
   defaultExpenseCategories,
   defaultIncomeCategories,
 } from '@/shared/constants/data';
@@ -50,17 +51,12 @@ const Categories: React.FC = () => {
     getUserCategories();
   }, []);
 
-  const getIconByName = (name: string) => {
-    switch (name) {
-      case 'Crypto':
-        return <CurrencyBtc size={20} color='white' />;
-      case 'Prestamo':
-        return <HandCoins size={20} color='white' />;
-      case 'Gasto':
-        return '💸';
-      default:
-        return '💰';
-    }
+  const getIconByName = (iconName: string) => {
+    const foundIcon = customCategoryIcons.find(
+      (icon) => icon.name === iconName
+    );
+
+    return foundIcon?.icon;
   };
 
   const getColorByName = (name: string) => {
@@ -139,11 +135,9 @@ const Categories: React.FC = () => {
                       >
                         <div className='flex items-center'>
                           <div
-                            className={`${getColorByName(
-                              category.color
-                            )} flex items-center justify-center rounded-full w-8 h-8`}
+                            className={`${category.color} flex items-center justify-center rounded-full w-8 h-8`}
                           >
-                            {getIconByName(category.name)}
+                            {getIconByName(category.icon)}
                           </div>
                           <Text
                             color='primary'
@@ -227,7 +221,7 @@ const Categories: React.FC = () => {
                           <div
                             className={`${category.color} flex items-center justify-center rounded-full w-8 h-8`}
                           >
-                            {getIconByName(category.name)}
+                            {getIconByName(category.icon)}
                           </div>
                           <Text
                             color='primary'
