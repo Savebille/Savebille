@@ -22,12 +22,14 @@ import { useCreateCategory } from '@/lib/react-query/queries';
 import { useUserContext } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { CategoryValidation } from '@/lib/validation';
-import { SetStateAction, useState } from 'react';
+import { ReactNode, SetStateAction, useState } from 'react';
 import {
   customCategoryColors,
-  customCategoryColorsProps,
+  customCategoryIcons,
 } from '../../../../../shared/constants/data';
 import Text from '@/components/Text';
+import { CircleCategoryColor } from '../CircleCategoryColor';
+import { CircleCategoryIcon } from '../CircleCategoryIcon';
 
 interface NewCategoryModalProps {
   fetchCategories: () => void;
@@ -41,7 +43,6 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
     defaultValues: {
       type: '',
       name: '',
-      icon: '',
       color: '',
     },
   });
@@ -81,38 +82,44 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
 
   const [selectedType, setselectedType] = useState('Ingreso');
 
-  const tottleSelectedType = (type: SetStateAction<string>) => {
-    if (type !== selectedType) setselectedType(type);
-  };
-
   const [activateCloseModal, setActivateCloseModal] = useState(false);
+
+  // Colors Field
 
   const [activeCategoryColors, setActiveCategoryColors] = useState(false);
 
   const [selectedColor, setSelectedColor] = useState('');
 
-  const [mainColor, setMainColor] = useState('#e91e63');
+  const tottleSelectedType = (type: SetStateAction<string>) => {
+    if (type !== selectedType) setselectedType(type);
+  };
 
   const handleActiveCategoryColors = () => {
     setActiveCategoryColors(!activeCategoryColors);
   };
 
-  const handleColorSelectionClick = (
-    categoryColor: customCategoryColorsProps
-  ) => {
-    if (categoryColor.isDefault === false) {
-      setSelectedColor(categoryColor.color);
+  const handleColorSelectionClick = (color: string) => {
+    setSelectedColor(color);
+    setActiveCategoryColors(false);
+  };
 
-      setMainColor(categoryColor.color);
+  //Icons Field
 
-      setActiveCategoryColors(false);
-    } else {
-      setSelectedColor(categoryColor.color);
+  const [activeCategoryIcons, setActiveCategoryIcons] = useState(false);
 
-      setMainColor('#e91e63');
+  const [selectedIcon, setSelectedIcon] = useState<ReactNode | null>(null);
 
+  const handleActiveCategoryIcons = () => {
+    setActiveCategoryIcons(!activeCategoryIcons);
+
+    if (activeCategoryColors) {
       setActiveCategoryColors(false);
     }
+  };
+
+  const handleIconSelectionClick = (icon: ReactNode) => {
+    setSelectedIcon(icon);
+    setActiveCategoryIcons(false);
   };
 
   return (
@@ -205,6 +212,7 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
               />
 
               {/* Third Field */}
+
               <FormField
                 control={form.control}
                 name='icon'
@@ -212,16 +220,88 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
                   <FormItem>
                     <FormControl>
                       <div className='flex items-center'>
-                        <button type='button'>
+                        <button
+                          onClick={handleActiveCategoryColors}
+                          type='button'
+                        >
                           <Image
                             size={24}
                             color='#8e98a7'
                             className='cursor-pointer'
                           />
                         </button>
+
+                        <div className='flex w-full justify-between items-center gap-4'>
+                          <div className='w-auto h-auto flex flex-wrap ml-4 items-center justify-between gap-2'>
+                            {/* ICONOS DEFAULT */}
+
+                            {selectedIcon === null ? (
+                              <>
+                                {customCategoryIcons
+                                  .map((item) => (
+                                    <CircleCategoryIcon
+                                      key={item.name}
+                                      field={field}
+                                      item={item}
+                                      selectedIcon={selectedIcon}
+                                      setSelectedIcon={setSelectedIcon}
+                                      setActiveCategoryIcons={
+                                        setActiveCategoryIcons
+                                      }
+                                    />
+                                  ))
+                                  .slice(0, 5)}
+                              </>
+                            ) : (
+                              <div
+                                className={`bg-h-secondary border border-h-primary p-1 w-6 h-6 rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center`}
+                              >
+                                {selectedIcon}
+                              </div>
+                            )}
+                          </div>
+
+                          <button
+                            onClick={handleActiveCategoryIcons}
+                            type='button'
+                            className='bg-h-blue-light max-[390px]:px-2 px-4 py-2 rounded-md transition duration-200 hover:scale-105'
+                          >
+                            <Text
+                              size='text-1'
+                              color='secondary'
+                              weight='regular'
+                            >
+                              {activeCategoryIcons
+                                ? 'Menos iconos'
+                                : 'Más iconos'}
+                            </Text>
+                          </button>
+
+                          {/* MÁS ICONOS */}
+                          {activeCategoryIcons && (
+                            <div className='ml-4 p-4 absolute  flex flex-wrap items-center max-[425px]:top-[300px] top-[264px]  z-50  w-auto max-w-[422px]  bg-white rounded-md shadow-md border border-slate-200 gap-3'>
+                              {customCategoryIcons.map((item) => (
+                                <CircleCategoryIcon
+                                  key={item.name}
+                                  field={field}
+                                  item={item}
+                                  selectedIcon={selectedIcon}
+                                  handleIconSelectionClick={
+                                    handleIconSelectionClick
+                                  }
+                                />
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </FormControl>
-                    <FormMessage className='ml-10' />
+
+                    {form.formState.errors.icon && (
+                      <FormMessage className='ml-10' color='error'>
+                        {form.formState.errors.icon.message}
+                      </FormMessage>
+                    )}
                   </FormItem>
                 )}
               />
@@ -247,42 +327,31 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
 
                         <div className='flex w-full justify-between items-center gap-4'>
                           <div className='w-auto h-auto flex flex-wrap ml-4 items-center justify-between gap-2'>
-                            {/* COLOR PRINCIPAL */}
-                            {customCategoryColors.map(
-                              (categoryColor) =>
-                                categoryColor.main && (
-                                  <div
-                                    onClick={() => {
-                                      field.onChange(categoryColor.color);
-                                      setSelectedColor(categoryColor.color);
-                                    }}
-                                    key={categoryColor.id}
-                                    className={`bg-[${mainColor}] w-6 h-6 rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center`}
-                                  >
-                                    {mainColor === selectedColor && (
-                                      <div className='bg-white w-[14px] h-[14px] rounded-full'></div>
-                                    )}
-                                  </div>
-                                )
-                            )}
-
                             {/* COLORES DEFAULT */}
-                            {customCategoryColors.map(
-                              (categoryColor) =>
-                                categoryColor.isDefault && (
-                                  <div
-                                    onClick={() => {
-                                      field.onChange(categoryColor.color);
-                                      setSelectedColor(categoryColor.color);
-                                    }}
-                                    key={categoryColor.id}
-                                    className={`bg-[${categoryColor.color}] w-6 h-6 rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center`}
-                                  >
-                                    {selectedColor === categoryColor.color && (
-                                      <div className='bg-white w-[14px] h-[14px] rounded-full'></div>
-                                    )}
-                                  </div>
-                                )
+
+                            {selectedColor === '' ? (
+                              <>
+                                {customCategoryColors
+                                  .map((item) => (
+                                    <CircleCategoryColor
+                                      key={item.id}
+                                      item={item}
+                                      field={field}
+                                      selectedColor={selectedColor}
+                                      setActiveCategoryColors={
+                                        setActiveCategoryColors
+                                      }
+                                      setSelectedColor={setSelectedColor}
+                                    />
+                                  ))
+                                  .slice(0, 5)}
+                              </>
+                            ) : (
+                              <div
+                                className={`${selectedColor} w-6 h-6 rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center`}
+                              >
+                                <div className='bg-white w-[14px] h-[14px] rounded-full'></div>
+                              </div>
                             )}
                           </div>
 
@@ -304,20 +373,17 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
 
                           {/* MÁS COLORES */}
                           {activeCategoryColors && (
-                            <div className='ml-4 p-4 absolute  flex flex-wrap items-center max-[374px]:top-[350px] top-[330px]  z-50  w-auto max-w-[422px]  bg-white rounded-md shadow-md border border-slate-200 gap-3'>
-                              {customCategoryColors.map((categoryColor) => (
-                                <div
-                                  onClick={() => {
-                                    field.onChange(categoryColor.color);
-                                    handleColorSelectionClick(categoryColor);
-                                  }}
-                                  key={categoryColor.id}
-                                  className={`bg-[${categoryColor.color}] w-6 h-6 rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center `}
-                                >
-                                  {selectedColor === categoryColor.color && (
-                                    <div className='bg-white w-[14px] h-[14px] rounded-full'></div>
-                                  )}
-                                </div>
+                            <div className='ml-4 p-4 absolute  flex flex-wrap items-center max-[374px]:top-[396px] max-[408px]:top-[376px] top-[338px]  z-50  w-auto max-w-[422px]  bg-white rounded-md shadow-md border border-slate-200 gap-3'>
+                              {customCategoryColors.map((item) => (
+                                <CircleCategoryColor
+                                  key={item.id}
+                                  item={item}
+                                  field={field}
+                                  selectedColor={selectedColor}
+                                  handleColorSelectionClick={
+                                    handleColorSelectionClick
+                                  }
+                                />
                               ))}
                             </div>
                           )}
