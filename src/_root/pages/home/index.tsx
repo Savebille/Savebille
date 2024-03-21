@@ -50,7 +50,7 @@ const Home: React.FC = () => {
     try {
       setIsLoadingMovements(true);
       const currentAccount = await getCurrentUser();
-      //@ts-ignore
+
       const response: Movements[] = await getMovementByUserId(
         currentAccount?.$id
       );
@@ -137,7 +137,7 @@ const Home: React.FC = () => {
             color="secondary"
             weight="regular"
             size="text-1"
-            sx="mt-2"
+            sx="mt-2 w-auto"
           >{`Revisa tu actividad - ${now}`}</Text>
         </div>
         <NewMovementModal fetchMovements={getUserMovements} />
@@ -153,14 +153,14 @@ const Home: React.FC = () => {
               <div
                 key={card.title}
                 onClick={() => handleCardClick(card.title)}
-                className={`flex flex-col bg-white ${
+                className={`flex flex-col bg-h-white ${
                   currentCardInfo === card.title
                     ? "border border-h-info shadow-md"
                     : "border-none border-transparent shadow-sm"
                 }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <Text size="h5" color="secondary" weight="regular">
+                  <Text size="h5" color="secondary" weight="regular" sx="mr-2">
                     {card.title}
                   </Text>
                   <Text size="h5" color="secondary" weight="regular">
@@ -168,8 +168,8 @@ const Home: React.FC = () => {
                   </Text>
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <Text size="h5" color={getColorByInfo(card)} weight="bold">
+                <div className="flex items-center justify-between ">
+                  <Text size="h5" color={getColorByInfo(card)} weight="bold" sx="mr-2">
                     {getValueByInfo(card).toLocaleString("es-CO", {
                       style: "currency",
                       currency: "COP",
@@ -178,12 +178,12 @@ const Home: React.FC = () => {
                     })}
                   </Text>
                   {currentCardInfo === card.title && (
-                    <Text size="text-3" color="info" weight="regular">
+                    <Text size="text-3" color="info" weight="bold" sx="ml-4 text-center">
                       {card.title === "Ingresos"
-                        ? `${getIncomeCount()} registros`
+                        ? `${getIncomeCount()} Registros`
                         : card.title === "Gastos"
-                        ? `${getExpenseCount()} registros`
-                        : movements.length + " registros"}
+                        ? `${getExpenseCount()} Registros`
+                        : movements.length + " Registros"}
                     </Text>
                   )}
                 </div>
