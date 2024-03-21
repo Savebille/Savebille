@@ -23,6 +23,9 @@ export const theme = {
       'h-white': '#FFFFFF',
       'h-gray-input': '#FAFAFA',
       'h-blue-light': '#F3F8FF',
+      'h-green-light': '#F4F9F2',
+      'h-red-light': '#FFF2ED',
+      
 
       // Category Colors
       'ct-red': '#E74C3C',

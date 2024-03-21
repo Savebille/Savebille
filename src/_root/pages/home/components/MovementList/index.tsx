@@ -100,7 +100,7 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
                 <AccordionContent>
                   <div
                     className={`${
-                      data.type === "ingreso" ? "bg-[#F4F9F2]" : "bg-[#FFF2ED]"
+                      data.type === "ingreso" ? "bg-h-green-light" : "bg-h-red-light"
                     } px-2.5 rounded-md py-1.5 `}
                   >
                     <Text
@@ -128,7 +128,7 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
         </Accordion>
 
         {/* Header Tabla de Datos */}
-        <div className="bg-[#F8F9FC] rounded-md items-center justify-evenly mt-4 hidden lg:flex ">
+        <div className="bg-h-blue-light rounded-md items-center justify-evenly mt-4 hidden lg:flex ">
           {headersTable.map((header) => (
             <div
               key={header.id}
@@ -190,7 +190,7 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
             <div className="flex items-center justify-center w-[14.3%] ">
               <div
                 className={`${
-                  data.type === "ingreso" ? "bg-[#F4F9F2]" : "bg-[#FFF2ED]"
+                  data.type === "ingreso" ? "bg-h-green-light" : "bg-h-red-light"
                 } px-2.5 rounded-md py-1.5 `}
               >
                 <Text
