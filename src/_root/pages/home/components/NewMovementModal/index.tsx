@@ -61,7 +61,6 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
   const handleSubmit = async (value: z.infer<typeof MovementValidation>) => {
     console.log('value', value);
 
-    // ACTION = CREATE
 
     const cleanAmount = Number(value.amount.replace(/[.,]/g, ''));
 
@@ -85,7 +84,7 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
     form.reset();
 
     fetchMovements();
-    setActivateCloseModal(true);
+    setActivateCloseModal(false);
   };
 
   // Amount Field

@@ -10,10 +10,13 @@ import {
   Church,
   CoatHanger,
   Coffee,
+  CurrencyBtc,
+  CurrencyEth,
   DeviceMobile,
   DotsThreeCircle,
   DribbbleLogo,
   Drop,
+  FilmStrip,
   GameController,
   GasPump,
   Gavel,
@@ -22,6 +25,7 @@ import {
   HandCoins,
   Handbag,
   Heartbeat,
+  HighlighterCircle,
   House,
   IceCream,
   Lightbulb,
@@ -31,6 +35,7 @@ import {
   PaintBrushBroad,
   PawPrint,
   PersonSimpleBike,
+  Phone,
   PhoneCall,
   PiggyBank,
   Pill,
@@ -72,7 +77,7 @@ export const defaultIncomeCategories = [
   {
     icon: <Gift size={20} color='white' />,
     name: 'Regalo',
-    color: 'red',
+    color: 'lightGreen',
   },
   {
     icon: <DeviceMobile size={20} color='white' />,
@@ -90,7 +95,6 @@ export const defaultIncomeCategories = [
       />
     ),
     name: 'Nequi',
-    color: 'lightGreen',
   },
   {
     icon: (
@@ -103,7 +107,6 @@ export const defaultIncomeCategories = [
       />
     ),
     name: 'Daviplata',
-    color: 'lightGreen',
   },
   {
     icon: <DotsThreeCircle size={20} color='white' />,
@@ -141,145 +144,193 @@ export const defaultExpenseCategories = [
 ];
 
 export const customCategoryIcons: CategoryIconsProps[] = [
+  // Nature
   {
     icon: <TreePalm size={20} color='white' />,
     name: 'Tree Palm',
-  },
-  {
-    icon: <Heartbeat size={20} color='white' />,
-    name: 'Heartbeat',
-  },
-  {
-    icon: <BookOpenText size={20} color='white' />,
-    name: 'Book Open Text',
-  },
-  {
-    icon: <Baby size={20} color='white' />,
-    name: 'Baby',
-  },
-  {
-    icon: <Lightbulb size={20} color='white' />,
-    name: 'Light Bulb',
-  },
-  {
-    icon: <Handbag size={20} color='white' />,
-    name: 'Handbag',
-  },
-  {
-    icon: <PersonSimpleBike size={20} color='white' />,
-    name: 'Person Simple Bike',
-  },
-  {
-    icon: <Bone size={20} color='white' />,
-    name: 'Bone',
-  },
-  {
-    icon: <Car size={20} color='white' />,
-    name: 'Car',
-  },
-  {
-    icon: <Cake size={20} color='white' />,
-    name: 'Cake',
-  },
-  {
-    icon: <Camera size={20} color='white' />,
-    name: 'Camera',
-  },
-  {
-    icon: <IceCream size={20} color='white' />,
-    name: 'Ice Cream',
   },
   {
     icon: <Airplane size={20} color='white' />,
     name: 'Airplane',
   },
   {
-    icon: <Church size={20} color='white' />,
-    name: 'Church',
+    icon: <Drop size={20} color='white' />,
+    name: 'Drop',
   },
   {
-    icon: <Coffee size={20} color='white' />,
-    name: 'Coffee',
+    icon: <Plant size={20} color='white' />,
+    name: 'Plant',
+  },
+
+  // Health
+  {
+    icon: <Heartbeat size={20} color='white' />,
+    name: 'Heartbeat',
   },
   {
-    icon: <SketchLogo size={20} color='white' />,
-    name: 'Sketch Logo',
+    icon: <Baby size={20} color='white' />,
+    name: 'Baby',
   },
   {
-    icon: <Barbell size={20} color='white' />,
-    name: 'Barbell',
-  },
-  {
-    icon: <DribbbleLogo size={20} color='white' />,
-    name: 'Dribbble Logo',
-  },
-  {
-    icon: <PaintBrushBroad size={20} color='white' />,
-    name: 'Paint Brush Broad',
-  },
-  {
-    icon: <GameController size={20} color='white' />,
-    name: 'Game Controller',
-  },
-  {
-    icon: <Gavel size={20} color='white' />,
-    name: 'Gavel',
-  },
-  {
-    icon: <Guitar size={20} color='white' />,
-    name: 'Guitar',
-  },
-  {
-    icon: <Martini size={20} color='white' />,
-    name: 'Martini',
-  },
-  {
-    icon: <SpotifyLogo size={20} color='white' />,
-    name: 'Spotify Logo',
+    icon: <Bone size={20} color='white' />,
+    name: 'Bone',
   },
   {
     icon: <Tooth size={20} color='white' />,
     name: 'Tooth',
   },
   {
+    icon: <Pill size={20} color='white' />,
+    name: 'Pill',
+  },
+
+  // Education
+  {
+    icon: <BookOpenText size={20} color='white' />,
+    name: 'Book Open Text',
+  },
+  {
+    icon: <Student size={20} color='white' />,
+    name: 'Student',
+  },
+
+  // Technology
+  {
+    icon: <Lightbulb size={20} color='white' />,
+    name: 'Light Bulb',
+  },
+  {
+    icon: <Phone size={20} color='white' />,
+    name: 'Phone',
+  },
+  {
     icon: <WifiHigh size={20} color='white' />,
     name: 'Wifi High',
   },
+
+  //Fashion
   {
-    icon: <Drop size={20} color='white' />,
-    name: 'Drop',
+    icon: <Handbag size={20} color='white' />,
+    name: 'Handbag',
   },
   {
-    icon: <Package size={20} color='white' />,
-    name: 'Package',
+    icon: <HighlighterCircle size={20} color='white' />,
+    name: 'Highlighter',
+  },
+
+  //Transportation
+  {
+    icon: <Car size={20} color='white' />,
+    name: 'Car',
   },
   {
-    icon: <PawPrint size={20} color='white' />,
-    name: 'Paw Print',
+    icon: <PersonSimpleBike size={20} color='white' />,
+    name: 'Person Simple Bike',
+  },
+
+  //Food
+  {
+    icon: <Cake size={20} color='white' />,
+    name: 'Cake',
   },
   {
-    icon: <PiggyBank size={20} color='white' />,
-    name: 'Piggy Bank',
+    icon: <IceCream size={20} color='white' />,
+    name: 'Ice Cream',
+  },
+  {
+    icon: <Coffee size={20} color='white' />,
+    name: 'Coffee',
+  },
+  {
+    icon: <Martini size={20} color='white' />,
+    name: 'Martini',
+  },
+
+  //Art & Design
+  {
+    icon: <Camera size={20} color='white' />,
+    name: 'Camera',
+  },
+  {
+    icon: <SketchLogo size={20} color='white' />,
+    name: 'Sketch Logo',
+  },
+  {
+    icon: <PaintBrushBroad size={20} color='white' />,
+    name: 'Paint Brush Broad',
+  },
+
+  //Entertainment
+  {
+    icon: <GameController size={20} color='white' />,
+    name: 'Game Controller',
+  },
+  {
+    icon: <Guitar size={20} color='white' />,
+    name: 'Guitar',
+  },
+  {
+    icon: <DribbbleLogo size={20} color='white' />,
+    name: 'Dribbble Logo',
+  },
+  {
+    icon: <SpotifyLogo size={20} color='white' />,
+    name: 'Spotify Logo',
+  },
+  {
+    icon: <FilmStrip size={20} color='white' />,
+    name: 'Film Strip',
+  },
+
+  //Business
+  {
+    icon: <Gavel size={20} color='white' />,
+    name: 'Gavel',
   },
   {
     icon: <Receipt size={20} color='white' />,
     name: 'Receipt',
   },
   {
-    icon: <Student size={20} color='white' />,
-    name: 'Student',
+    icon: <Package size={20} color='white' />,
+    name: 'Package',
   },
+
+  //Animals
+  {
+    icon: <PawPrint size={20} color='white' />,
+    name: 'Paw Print',
+  },
+
+  //Finance
+  {
+    icon: <PiggyBank size={20} color='white' />,
+    name: 'Piggy Bank',
+  },
+  {
+    icon: <CurrencyBtc size={20} color='white' />,
+    name: 'Currency Bitcoin',
+  },
+  {
+    icon: <CurrencyEth size={20} color='white' />,
+    name: 'Currency Ethereum',
+  },
+
+  //Miscellaneous
+
+  {
+    icon: <Church size={20} color='white' />,
+    name: 'Church',
+  },
+
+  {
+    icon: <Barbell size={20} color='white' />,
+    name: 'Barbell',
+  },
+
   {
     icon: <PhoneCall size={20} color='white' />,
     name: 'Phone Call',
-  },
-  {
-    icon: <Plant size={20} color='white' />,
-    name: 'Plant',
-  },
-  {
-    icon: <Pill size={20} color='white' />,
-    name: 'Pill',
   },
 ];
 

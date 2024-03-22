@@ -5,8 +5,6 @@ import { getCategoriesByUserId, getCurrentUser } from '@/lib/appwrite/api';
 import CustomLoader from '@/components/shared/CustomLoader';
 import NewCategoryModal from '@/_root/pages/categories/components/NewCategoryModal';
 import {
-  CurrencyBtc,
-  HandCoins,
   TrendDown,
   TrendUp,
 } from '@phosphor-icons/react';
@@ -75,6 +73,8 @@ const Categories: React.FC = () => {
         return 'bg-ct-purple';
       case 'yellow':
         return 'bg-ct-yellow';
+      case 'lightGreen':
+        return 'bg-ct-lightGreen';
       case 'darkGreen':
         return 'bg-ct-darkGreen';
       case 'primary':

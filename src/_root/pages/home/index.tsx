@@ -169,7 +169,7 @@ const Home: React.FC = () => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Text size="h5" color={getColorByInfo(card)} weight="bold">
+                  <Text size="h5" color={getColorByInfo(card)} weight="medium">
                     {getValueByInfo(card).toLocaleString("es-CO", {
                       style: "currency",
                       currency: "COP",

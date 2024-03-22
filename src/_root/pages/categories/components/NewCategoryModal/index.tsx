@@ -43,6 +43,7 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
     defaultValues: {
       type: '',
       name: '',
+      icon: '',
       color: '',
     },
   });
@@ -68,11 +69,11 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
 
     if (!newCategory) {
       toast({
-        title: `Create category failed. Please try again.`,
+        title: `Error al crear categoría. Por favor intenta de nuevo.`,
       });
     }
     toast({
-      title: `REGISTRADO EN DB MI PAPACHO KLK.`,
+      title: `Categoría registrada exitosamente.`,
     });
     form.reset();
 

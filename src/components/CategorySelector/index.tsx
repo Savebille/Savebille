@@ -45,6 +45,8 @@ const getColorByName = (name: string) => {
       return 'bg-ct-purple';
     case 'yellow':
       return 'bg-ct-yellow';
+    case 'lightGreen':
+      return 'bg-ct-lightGreen';
     case 'darkGreen':
       return 'bg-ct-darkGreen';
     case 'primary':
