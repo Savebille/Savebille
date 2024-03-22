@@ -30,6 +30,7 @@ import {
 import Text from '@/components/Text';
 import { CircleCategoryColor } from '../CircleCategoryColor';
 import { CircleCategoryIcon } from '../CircleCategoryIcon';
+import { DialogClose } from '@/components/ui/dialog';
 
 interface NewCategoryModalProps {
   fetchCategories: () => void;
@@ -78,6 +79,8 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
     form.reset();
 
     fetchCategories();
+    setSelectedIcon(null);
+    setSelectedColor('');
     setActivateCloseModal(true);
   };
 
@@ -125,7 +128,6 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
 
   return (
     <Modal
-      closeModal={activateCloseModal}
       hasHeader
       title='Nueva categoría'
       triggerContent={
@@ -150,7 +152,7 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        defaultValue={''}
                         className='flex w-full items-center justify-evenly'
                       >
                         <FormItem className='flex w-auto items-center gap-4 space-y-0 '>
@@ -401,7 +403,14 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
                 )}
               />
 
-              <div className='flex w-full items-center justify-end'>
+              <div className='flex w-full items-center justify-end gap-2'>
+                {activateCloseModal && (
+                  <DialogClose asChild>
+                    <Button className='w-auto lg:w-auto bg-h-error'>
+                      Cerrar
+                    </Button>
+                  </DialogClose>
+                )}
                 <Button
                   disabled={isLoadingCreate}
                   type='submit'

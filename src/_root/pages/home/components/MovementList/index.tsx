@@ -111,6 +111,7 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
                         size='text-1'
                         color={data.type === 'ingreso' ? 'success' : 'error'}
                         weight='medium'
+                        sx='w-[52.7px] flex items-center justify-center'
                       >
                         {data.type === 'ingreso' ? 'Ingreso' : 'Gasto'}
                       </Text>
@@ -126,8 +127,8 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
                   </AccordionContent>
 
                   <AccordionContent>
-                    <div className='flex gap-2'>
-                      <button type='button' className='mr-3'>
+                    <div className='flex w-[72.69px] justify-evenly'>
+                      <button type='button' className=''>
                         <Pencil size={16} color={'var(--h-info)'} />
                       </button>
                       <button type='button'>
@@ -213,6 +214,7 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
                   size='text-1'
                   color={data.type === 'ingreso' ? 'success' : 'error'}
                   weight='medium'
+                  sx='w-[52.7px] flex items-center justify-center'
                 >
                   {data.type === 'ingreso' ? 'Ingreso' : 'Gasto'}
                 </Text>

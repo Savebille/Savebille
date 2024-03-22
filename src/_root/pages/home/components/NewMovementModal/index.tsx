@@ -31,6 +31,7 @@ import {
   defaultIncomeCategories,
 } from '@/shared/constants/data';
 import CategorySelector from '@/components/CategorySelector';
+import { DialogClose } from '@/components/ui/dialog';
 
 interface NewMovementModalProps {
   fetchMovements: () => void;
@@ -61,7 +62,6 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
   const handleSubmit = async (value: z.infer<typeof MovementValidation>) => {
     console.log('value', value);
 
-
     const cleanAmount = Number(value.amount.replace(/[.,]/g, ''));
 
     const newMovement = await createMovement({
@@ -84,7 +84,7 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
     form.reset();
 
     fetchMovements();
-    setActivateCloseModal(false);
+    setActivateCloseModal(true);
   };
 
   // Amount Field
@@ -105,7 +105,6 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
 
   return (
     <Modal
-      closeModal={activateCloseModal}
       hasHeader
       title='Nuevo movimiento'
       description='Ingresa la información de tu movimiento'
@@ -127,7 +126,6 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
                 control={form.control}
                 name='type'
                 render={({ field }) => (
-
                   <FormItem className='flex flex-col w-full items-center '>
                     <FormControl>
                       <RadioGroup
@@ -156,7 +154,6 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
                             Gasto
                           </FormLabel>
                         </FormItem>
-
                       </RadioGroup>
                     </FormControl>
                     <FormMessage />
@@ -301,7 +298,15 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
                 )}
               />
 
-              <div className='flex w-full items-center justify-end'>
+              <div className='flex w-full items-center justify-end gap-2'>
+                {activateCloseModal && (
+                  <DialogClose asChild>
+                    <Button className='w-auto lg:w-auto bg-h-error'>
+                      Cerrar
+                    </Button>
+                  </DialogClose>
+                )}
+
                 <Button
                   disabled={isLoadingCreate}
                   type='submit'
