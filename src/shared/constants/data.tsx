@@ -66,23 +66,27 @@ export interface CategoryColorsProps {
 export const defaultIncomeCategories = [
   {
     icon: <Money size={20} color='white' />,
+    iconName: 'Money',
     name: 'Salario',
-    color: 'green',
+    color: 'bg-ct-darkGreen',
   },
   {
     icon: <TrendUp size={20} color='white' />,
+    iconName: 'TrendUp',
     name: 'Inversión',
-    color: 'blue',
+    color: 'bg-ct-blue',
   },
   {
     icon: <Gift size={20} color='white' />,
+    iconName: 'Gift',
     name: 'Regalo',
-    color: 'lightGreen',
+    color: 'bg-ct-red',
   },
   {
     icon: <DeviceMobile size={20} color='white' />,
+    iconName: 'DeviceMobile',
     name: 'Transferencia',
-    color: 'orange',
+    color: 'bg-ct-purple',
   },
   {
     icon: (
@@ -94,7 +98,9 @@ export const defaultIncomeCategories = [
         className='rounded-full'
       />
     ),
+    iconName: 'nequiIcon',
     name: 'Nequi',
+    color: 'bg-ct-lightGreen',
   },
   {
     icon: (
@@ -106,40 +112,76 @@ export const defaultIncomeCategories = [
         className='rounded-full'
       />
     ),
+    iconName: 'daviplataIcon',
     name: 'Daviplata',
+    color: 'bg-ct-lightGreen',
   },
   {
     icon: <DotsThreeCircle size={20} color='white' />,
+    iconName: 'DotsThreeCircle',
     name: 'Otros',
-    color: 'gray',
+    color: 'bg-ct-orange',
   },
 ];
 
 export const defaultExpenseCategories = [
   {
     icon: <HandCoins size={20} color='white' />,
+    iconName: 'HandCoins',
     name: 'Prestamo',
-    color: 'primary',
+    color: 'bg-ct-yellow',
   },
   {
     icon: <House size={20} color='white' />,
+    iconName: 'House',
     name: 'Arriendo',
-    color: 'red',
+    color: 'bg-ct-crimsonRed',
   },
   {
     icon: <Pizza size={20} color='white' />,
+    iconName: 'Pizza',
     name: 'Comida',
-    color: 'orange',
+    color: 'bg-ct-deepCobaltBlue',
   },
   {
     icon: <CoatHanger size={20} color='white' />,
+    iconName: 'CoatHanger',
     name: 'Ropa',
-    color: 'purple',
+    color: 'bg-ct-paleLilac',
   },
   {
     icon: <GasPump size={20} color='white' />,
+    iconName: 'GasPump',
     name: 'Gasolina',
-    color: 'darkGreen',
+    color: 'bg-ct-navyBlue',
+  },
+  {
+    icon: (
+      <img
+        src={IMAGES.NEQUI_ICON}
+        alt='nequiIcon'
+        width={28}
+        height={28}
+        className='rounded-full'
+      />
+    ),
+    iconName: 'nequiIcon',
+    name: 'Nequi',
+    color: 'bg-ct-crimsonRed',
+  },
+  {
+    icon: (
+      <img
+        src={IMAGES.DAVIPLATA_ICON}
+        alt='daviplataIcon'
+        width={28}
+        height={28}
+        className='rounded-full'
+      />
+    ),
+    iconName: 'daviplataIcon',
+    name: 'Daviplata',
+    color: 'bg-ct-crimsonRed',
   },
 ];
 
@@ -331,6 +373,75 @@ export const customCategoryIcons: CategoryIconsProps[] = [
   {
     icon: <PhoneCall size={20} color='white' />,
     name: 'PhoneCall',
+  },
+
+  //Incomes
+  {
+    icon: <Money size={20} color='white' />,
+    name: 'Money',
+  },
+  {
+    icon: <TrendUp size={20} color='white' />,
+    name: 'TrendUp',
+  },
+  {
+    icon: <Gift size={20} color='white' />,
+    name: 'Gift',
+  },
+  {
+    icon: <DeviceMobile size={20} color='white' />,
+    name: 'DeviceMobile',
+  },
+  {
+    icon: (
+      <img
+        src={IMAGES.NEQUI_ICON}
+        alt='nequiIcon'
+        width={28}
+        height={28}
+        className='rounded-full'
+      />
+    ),
+    name: 'nequiIcon',
+  },
+  {
+    icon: (
+      <img
+        src={IMAGES.DAVIPLATA_ICON}
+        alt='daviplataIcon'
+        width={28}
+        height={28}
+        className='rounded-full'
+      />
+    ),
+    name: 'daviplataIcon',
+  },
+  {
+    icon: <DotsThreeCircle size={20} color='white' />,
+    name: 'DotsThreeCircle',
+  },
+
+  //Expenses
+
+  {
+    icon: <HandCoins size={20} color='white' />,
+    name: 'HandCoins',
+  },
+  {
+    icon: <House size={20} color='white' />,
+    name: 'House',
+  },
+  {
+    icon: <Pizza size={20} color='white' />,
+    name: 'Pizza',
+  },
+  {
+    icon: <CoatHanger size={20} color='white' />,
+    name: 'CoatHanger',
+  },
+  {
+    icon: <GasPump size={20} color='white' />,
+    name: 'GasPump',
   },
 ];
 

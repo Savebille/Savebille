@@ -7,25 +7,11 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { ReactNode } from 'react';
 import { BookmarkSimple } from '@phosphor-icons/react';
 import Text from '../Text';
 import CustomLoader from '../shared/CustomLoader';
 import { Categories } from '@/_root/pages/categories';
-import { getColorByName, getIconByName } from '@/shared/utils/general.utils';
-
-export interface Option {
-  icon: ReactNode;
-  name: string;
-  color:
-    | 'red'
-    | 'purple'
-    | 'blue'
-    | 'darkGreen'
-    | 'lightGreen'
-    | 'yellow'
-    | 'orange';
-}
+import {  getIconByName } from '@/shared/utils/general.utils';
 
 interface selectorProps {
   userOptions: Categories[];
@@ -57,14 +43,15 @@ const CategorySelector = ({
         </FormControl>
 
         <SelectContent className='max-h-48 overflow-y-auto'>
-          {defaultOptions.map((item: Option) => (
-            <SelectItem key={item.name} value={item.name}>
+          {defaultOptions.map((item) => (
+            <SelectItem
+              key={item.name}
+              value={`${item.iconName},${item.name},${item.color}`}
+            >
               <FormLabel>
                 <div className='flex items-center'>
                   <div
-                    className={`${getColorByName(
-                      item.color
-                    )} flex items-center justify-center rounded-full w-7 h-7`}
+                    className={`${item.color} flex items-center justify-center rounded-full w-7 h-7`}
                   >
                     {item.icon}
                   </div>

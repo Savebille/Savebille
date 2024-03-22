@@ -25,16 +25,23 @@ export const theme = {
       'h-blue-light': '#F3F8FF',
       'h-green-light': '#F4F9F2',
       'h-red-light': '#FFF2ED',
-      
 
       //Default Category Colors
+
+      // Income
+      'ct-darkGreen': '#16A085',
+      'ct-blue': '#3498DB',
       'ct-red': '#E74C3C',
       'ct-purple': '#8E44AD',
-      'ct-blue': '#3498DB',
-      'ct-darkGreen': '#16A085',
       'ct-lightGreen': '#2ECC71',
-      'ct-yellow': '#F1C40F',
       'ct-orange': '#E67E22',
+      
+      // Expense
+      'ct-yellow': '#F1C40F',
+      'ct-crimsonRed': '#DC143C',
+      'ct-deepCobaltBlue': '#0047AB',
+      'ct-paleLilac': '#a393fa',
+      'ct-navyBlue': '#233145',
 
       'ct-pink-500': '#e91e63',
       'ct-pink-a100': '#ff80ab',

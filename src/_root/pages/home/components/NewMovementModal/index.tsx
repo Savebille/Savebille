@@ -337,7 +337,10 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
               <div className='flex w-full items-center justify-end gap-2'>
                 {activateCloseModal && (
                   <DialogClose asChild>
-                    <Button className='w-auto lg:w-auto bg-h-error'>
+                    <Button
+                      onClick={() => setActivateCloseModal(false)}
+                      className='w-auto lg:w-auto bg-h-error'
+                    >
                       Cerrar
                     </Button>
                   </DialogClose>

@@ -283,17 +283,19 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
                           {/* MÁS ICONOS */}
                           {activeCategoryIcons && (
                             <div className='ml-4 p-4 absolute  flex flex-wrap items-center max-[425px]:top-[300px] top-[264px]  z-50  w-auto max-w-[422px]  bg-white rounded-md shadow-md border border-slate-200 gap-3'>
-                              {customCategoryIcons.map((item) => (
-                                <CircleCategoryIcon
-                                  key={item.name}
-                                  field={field}
-                                  item={item}
-                                  selectedIcon={selectedIcon}
-                                  handleIconSelectionClick={
-                                    handleIconSelectionClick
-                                  }
-                                />
-                              ))}
+                              {customCategoryIcons
+                                .map((item) => (
+                                  <CircleCategoryIcon
+                                    key={item.name}
+                                    field={field}
+                                    item={item}
+                                    selectedIcon={selectedIcon}
+                                    handleIconSelectionClick={
+                                      handleIconSelectionClick
+                                    }
+                                  />
+                                ))
+                                .slice(0, 40)}
                             </div>
                           )}
                         </div>
@@ -406,7 +408,10 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
               <div className='flex w-full items-center justify-end gap-2'>
                 {activateCloseModal && (
                   <DialogClose asChild>
-                    <Button className='w-auto lg:w-auto bg-h-error'>
+                    <Button
+                      onClick={() => setActivateCloseModal(false)}
+                      className='w-auto lg:w-auto bg-h-error'
+                    >
                       Cerrar
                     </Button>
                   </DialogClose>

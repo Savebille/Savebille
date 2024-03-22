@@ -4,7 +4,6 @@ import {
   extractCategoryName,
   extractColorName,
   extractIconName,
-  getIconByCategory,
 } from '@/shared/utils/general.utils';
 import { Pencil, Trash } from '@phosphor-icons/react';
 import { Movements } from '../..';
@@ -84,7 +83,13 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
             >
               <AccordionTrigger>
                 <div className='flex'>
-                  {getIconByCategory(data.category)}
+                  <div
+                    className={`${extractColorName(
+                      data.category
+                    )} w-8 h-8 flex items-center justify-center rounded-full mr-2`}
+                  >
+                    {extractIconName(data.category)}
+                  </div>
                   <Text size='text-1' color='secondary' sx='ml-2'>
                     {data.description}
                   </Text>
@@ -168,13 +173,13 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
             className='flex items-center justify-between p-3 border-b w-full'
             key={data.$id}
           >
-            <div className='flex items-center justify-center w-[14.3%] mr-2'>
+            <div className='flex items-center justify-center w-[14.3%]'>
               <Text size='text-1' color='secondary' weight='light'>
                 ID - {data.$id.slice(0, 8)}
               </Text>
             </div>
 
-            <div className='flex items-center justify-start w-[14.3%] mx-2'>
+            <div className='flex items-center justify-start w-[14.3%]'>
               <Text size='text-1' color='secondary' weight='regular'>
                 {truncateDescription(data.description)}
               </Text>

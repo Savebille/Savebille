@@ -11,7 +11,7 @@ import {
   defaultExpenseCategories,
   defaultIncomeCategories,
 } from '@/shared/constants/data';
-import { getColorByName, getIconByName } from '@/shared/utils/general.utils';
+import {  getIconByName } from '@/shared/utils/general.utils';
 
 export interface Categories {
   $id: string;
@@ -134,9 +134,7 @@ const Categories: React.FC = () => {
                   >
                     <div className='flex items-center'>
                       <div
-                        className={`${getColorByName(
-                          category.color
-                        )} flex items-center justify-center rounded-full w-8 h-8`}
+                        className={`${category.color} flex items-center justify-center rounded-full w-8 h-8`}
                       >
                         {category.icon}
                       </div>
@@ -218,9 +216,7 @@ const Categories: React.FC = () => {
                   >
                     <div className='flex items-center'>
                       <div
-                        className={`${getColorByName(
-                          category.color
-                        )} flex items-center justify-center rounded-full w-8 h-8`}
+                        className={`${category.color} flex items-center justify-center rounded-full w-8 h-8`}
                       >
                         {category.icon}
                       </div>

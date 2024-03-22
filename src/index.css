@@ -28,13 +28,24 @@
   --h-white: #ffffff;
 
   /*DEFAULT CATEGORY COLORS */
+
+  /* Income */
+  --ct-darkGreen: #16a085;
+  --ct-blue: #3498db;
   --ct-red: #e74c3c;
   --ct-purple: #8e44ad;
-  --ct-blue: #3498db;
-  --ct-darkGreen: #16a085;
   --ct-lightGreen: #2ecc71;
-  --ct-yellow: #f1c40f;
   --ct-orange: #e67e22;
+  
+  /* Expense */
+  
+  --ct-yellow: #f1c40f;
+  --ct-crimsonRed: #DC143C,
+  --ct-deepCobaltBlue: #0047AB,
+  --ct-paleLilac: #a393fa,
+  --ct-navyBlue: #233145,
+
+
 
   a {
     text-decoration: none;
@@ -151,5 +162,5 @@
 
   @layer components {
     /* SHADCN COMPONENTS */
-  } 
+  }
 }
