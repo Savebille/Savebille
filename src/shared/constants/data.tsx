@@ -147,7 +147,7 @@ export const customCategoryIcons: CategoryIconsProps[] = [
   // Nature
   {
     icon: <TreePalm size={20} color='white' />,
-    name: 'Tree Palm',
+    name: 'TreePalm',
   },
   {
     icon: <Airplane size={20} color='white' />,
@@ -187,7 +187,7 @@ export const customCategoryIcons: CategoryIconsProps[] = [
   // Education
   {
     icon: <BookOpenText size={20} color='white' />,
-    name: 'Book Open Text',
+    name: 'BookOpenText',
   },
   {
     icon: <Student size={20} color='white' />,
@@ -197,7 +197,7 @@ export const customCategoryIcons: CategoryIconsProps[] = [
   // Technology
   {
     icon: <Lightbulb size={20} color='white' />,
-    name: 'Light Bulb',
+    name: 'LightBulb',
   },
   {
     icon: <Phone size={20} color='white' />,
@@ -205,7 +205,7 @@ export const customCategoryIcons: CategoryIconsProps[] = [
   },
   {
     icon: <WifiHigh size={20} color='white' />,
-    name: 'Wifi High',
+    name: 'WifiHigh',
   },
 
   //Fashion
@@ -225,7 +225,7 @@ export const customCategoryIcons: CategoryIconsProps[] = [
   },
   {
     icon: <PersonSimpleBike size={20} color='white' />,
-    name: 'Person Simple Bike',
+    name: 'PersonSimple Bike',
   },
 
   //Food
@@ -235,7 +235,7 @@ export const customCategoryIcons: CategoryIconsProps[] = [
   },
   {
     icon: <IceCream size={20} color='white' />,
-    name: 'Ice Cream',
+    name: 'IceCream',
   },
   {
     icon: <Coffee size={20} color='white' />,
@@ -253,17 +253,17 @@ export const customCategoryIcons: CategoryIconsProps[] = [
   },
   {
     icon: <SketchLogo size={20} color='white' />,
-    name: 'Sketch Logo',
+    name: 'SketchLogo',
   },
   {
     icon: <PaintBrushBroad size={20} color='white' />,
-    name: 'Paint Brush Broad',
+    name: 'PaintBrushBroad',
   },
 
   //Entertainment
   {
     icon: <GameController size={20} color='white' />,
-    name: 'Game Controller',
+    name: 'GameController',
   },
   {
     icon: <Guitar size={20} color='white' />,
@@ -271,15 +271,15 @@ export const customCategoryIcons: CategoryIconsProps[] = [
   },
   {
     icon: <DribbbleLogo size={20} color='white' />,
-    name: 'Dribbble Logo',
+    name: 'DribbbleLogo',
   },
   {
     icon: <SpotifyLogo size={20} color='white' />,
-    name: 'Spotify Logo',
+    name: 'SpotifyLogo',
   },
   {
     icon: <FilmStrip size={20} color='white' />,
-    name: 'Film Strip',
+    name: 'FilmStrip',
   },
 
   //Business
@@ -299,21 +299,21 @@ export const customCategoryIcons: CategoryIconsProps[] = [
   //Animals
   {
     icon: <PawPrint size={20} color='white' />,
-    name: 'Paw Print',
+    name: 'PawPrint',
   },
 
   //Finance
   {
     icon: <PiggyBank size={20} color='white' />,
-    name: 'Piggy Bank',
+    name: 'PiggyBank',
   },
   {
     icon: <CurrencyBtc size={20} color='white' />,
-    name: 'Currency Bitcoin',
+    name: 'CurrencyBtc',
   },
   {
     icon: <CurrencyEth size={20} color='white' />,
-    name: 'Currency Ethereum',
+    name: 'CurrencyEth',
   },
 
   //Miscellaneous
@@ -330,7 +330,7 @@ export const customCategoryIcons: CategoryIconsProps[] = [
 
   {
     icon: <PhoneCall size={20} color='white' />,
-    name: 'Phone Call',
+    name: 'PhoneCall',
   },
 ];
 

@@ -1,6 +1,11 @@
 import React from 'react';
 import Text from '@/components/Text';
-import { getIconByCategory } from '@/shared/utils/general.utils';
+import {
+  extractCategoryName,
+  extractColorName,
+  extractIconName,
+  getIconByCategory,
+} from '@/shared/utils/general.utils';
 import { Pencil, Trash } from '@phosphor-icons/react';
 import { Movements } from '../..';
 
@@ -176,12 +181,16 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
             </div>
 
             <div className='flex items-center justify-start w-[14.3%]'>
-              <div className='bg-h-blue-light w-8 h-8 flex items-center justify-center rounded-full mr-2'>
-                {getIconByCategory(data.category)}
+              <div
+                className={`${extractColorName(
+                  data.category
+                )} w-8 h-8 flex items-center justify-center rounded-full mr-2`}
+              >
+                {extractIconName(data.category)}
               </div>
 
               <Text size='text-1' color='secondary' weight='regular'>
-                {data.category}
+                {extractCategoryName(data.category)}
               </Text>
             </div>
 

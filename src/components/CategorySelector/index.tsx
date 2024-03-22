@@ -82,7 +82,10 @@ const CategorySelector = ({
             </div>
           ) : (
             userOptions.map((item: Categories) => (
-              <SelectItem key={item.name} value={item.name}>
+              <SelectItem
+                key={item.name}
+                value={`${item.icon},${item.name},${item.color}`}
+              >
                 <FormLabel>
                   <div className='flex items-center'>
                     <div
