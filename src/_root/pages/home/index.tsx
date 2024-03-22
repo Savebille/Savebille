@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
-import Text from "../../../components/Text";
-import NewMovementModal from "./components/NewMovementModal";
-import MovementList from "./components/MovementList";
-import { getCurrentUser, getMovementByUserId } from "@/lib/appwrite/api";
-import CustomLoader from "@/components/shared/CustomLoader";
+import Text from '../../../components/Text';
+import NewMovementModal from './components/NewMovementModal';
+import MovementList from './components/MovementList';
+import { getCurrentUser, getMovementByUserId } from '@/lib/appwrite/api';
+import CustomLoader from '@/components/shared/CustomLoader';
 interface CardInfo {
   id: number;
   title: string;
@@ -16,18 +16,18 @@ interface CardInfo {
 const cardsInfo = [
   {
     id: 1,
-    title: "Balance",
-    currency: "COP",
+    title: 'Balance',
+    currency: 'COP',
   },
   {
     id: 2,
-    title: "Ingresos",
-    currency: "COP",
+    title: 'Ingresos',
+    currency: 'COP',
   },
   {
     id: 3,
-    title: "Gastos",
-    currency: "COP",
+    title: 'Gastos',
+    currency: 'COP',
   },
 ];
 export interface Movements {
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
     try {
       setIsLoadingMovements(true);
       const currentAccount = await getCurrentUser();
-      //@ts-ignore
+
       const response: Movements[] = await getMovementByUserId(
         currentAccount?.$id
       );
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
 
   const getTotalIncome = () => {
     return movements.reduce((total, movement) => {
-      if (movement.type === "ingreso") {
+      if (movement.type === 'ingreso') {
         return total + movement.amount;
       }
       return total;
@@ -74,7 +74,7 @@ const Home: React.FC = () => {
 
   const getTotalExpenses = () => {
     return movements.reduce((total, movement) => {
-      if (movement.type === "gasto") {
+      if (movement.type === 'gasto') {
         return total + movement.amount;
       }
       return total;
@@ -82,11 +82,11 @@ const Home: React.FC = () => {
   };
 
   const getIncomeCount = () => {
-    return movements.filter((movement) => movement.type === "ingreso").length;
+    return movements.filter((movement) => movement.type === 'ingreso').length;
   };
 
   const getExpenseCount = () => {
-    return movements.filter((movement) => movement.type === "gasto").length;
+    return movements.filter((movement) => movement.type === 'gasto').length;
   };
 
   const getBalance = () => {
@@ -102,9 +102,9 @@ const Home: React.FC = () => {
   };
 
   const getValueByInfo = (card: CardInfo) => {
-    if (card.title === "Ingresos") {
+    if (card.title === 'Ingresos') {
       return getTotalIncome();
-    } else if (card.title === "Gastos") {
+    } else if (card.title === 'Gastos') {
       return getTotalExpenses();
     } else {
       return getBalance();
@@ -112,12 +112,12 @@ const Home: React.FC = () => {
   };
 
   const getColorByInfo = (card: CardInfo) => {
-    if (card.title === "Ingresos") {
-      return "success";
-    } else if (card.title === "Gastos") {
-      return "error";
+    if (card.title === 'Ingresos') {
+      return 'success';
+    } else if (card.title === 'Gastos') {
+      return 'error';
     } else {
-      return getBalance() >= 0 ? "success" : "error";
+      return getBalance() >= 0 ? 'success' : 'error';
     }
   };
 
@@ -137,7 +137,7 @@ const Home: React.FC = () => {
             color='secondary'
             weight='regular'
             size='text-1'
-            sx='mt-2'
+            sx='mt-2 w-auto'
           >{`Revisa tu actividad - ${now}`}</Text>
         </div>
         <NewMovementModal fetchMovements={getUserMovements} />
@@ -153,14 +153,14 @@ const Home: React.FC = () => {
               <div
                 key={card.title}
                 onClick={() => handleCardClick(card.title)}
-                className={`flex flex-col bg-white ${
+                className={`flex flex-col bg-h-white ${
                   currentCardInfo === card.title
                     ? 'border border-h-info shadow-md'
                     : 'border-none border-transparent shadow-sm'
                 }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
               >
                 <div className='flex items-center justify-between mb-3'>
-                  <Text size='h5' color='secondary' weight='regular'>
+                  <Text size='h5' color='secondary' weight='regular' sx='mr-2'>
                     {card.title}
                   </Text>
                   <Text size='h5' color='secondary' weight='regular'>
@@ -168,12 +168,12 @@ const Home: React.FC = () => {
                   </Text>
                 </div>
 
-                <div className='flex items-center justify-between'>
+                <div className='flex max-sm:flex-row max-sm:items-center max-sm:justify-between max-[700px]:flex-col max-[700px]:items-start max-[700px]:justify-center flex-rowitems-center justify-between '>
                   <Text
                     size='h5'
                     color={getColorByInfo(card)}
                     weight='medium'
-                    sx='mr-2'
+                    sx='max-sm:mr-2 max-sm:mb-0 max-[700px]:mb-2 max-[700px]:mr-0 mr-2 mb-0'
                   >
                     {getValueByInfo(card).toLocaleString('es-CO', {
                       style: 'currency',
@@ -183,7 +183,12 @@ const Home: React.FC = () => {
                     })}
                   </Text>
                   {currentCardInfo === card.title && (
-                    <Text size='text-3' color='info' weight='regular'>
+                    <Text
+                      size='text-3'
+                      color='info'
+                      weight='regular'
+                      sx='leading-none'
+                    >
                       {card.title === 'Ingresos'
                         ? `${getIncomeCount()} registros`
                         : card.title === 'Gastos'
