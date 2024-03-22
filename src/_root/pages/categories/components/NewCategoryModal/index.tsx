@@ -257,7 +257,7 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
                               </>
                             ) : (
                               <div
-                                className={`bg-h-secondary border border-h-primary p-1 w-6 h-6 rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center`}
+                                className={`bg-h-info border  p-1 w-[26px] h-[26px] rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center`}
                               >
                                 {selectedIcon}
                               </div>

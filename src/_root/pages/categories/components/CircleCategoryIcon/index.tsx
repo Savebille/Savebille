@@ -35,7 +35,7 @@ export const CircleCategoryIcon = ({
       setActiveCategoryIcons && setActiveCategoryIcons(false);
       handleIconSelectionClick && handleIconSelectionClick(item.icon);
     }}
-    className={`bg-h-secondary ${
+    className={`bg-h-info ${
       selectedIcon === item.icon && 'border border-h-primary'
     } w-8 h-8 rounded-full shadow-md cursor-pointer transition duration-200 hover:scale-110 flex justify-center items-center`}
   >
