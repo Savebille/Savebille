@@ -126,64 +126,69 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col">
+    <div className='w-full flex flex-col'>
       {/* Header content */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-        <div className="flex flex-col">
-          <Text color="primary" weight="bold" size="h4">
+      <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between'>
+        <div className='flex flex-col'>
+          <Text color='primary' weight='bold' size='h4'>
             Listado de gastos e ingresos
           </Text>
           <Text
-            color="secondary"
-            weight="regular"
-            size="text-1"
-            sx="mt-2"
+            color='secondary'
+            weight='regular'
+            size='text-1'
+            sx='mt-2'
           >{`Revisa tu actividad - ${now}`}</Text>
         </div>
         <NewMovementModal fetchMovements={getUserMovements} />
       </div>
       {isLoadingMovements ? (
-        <div className="mt-10">
-          <CustomLoader color="#3183ff" height={44} width={44} />
+        <div className='mt-10'>
+          <CustomLoader color='#3183ff' height={44} width={44} />
         </div>
       ) : (
         <>
-          <div className="flex flex-col sm:flex-row items-start gap-6 mt-6 w-full">
+          <div className='flex flex-col sm:flex-row items-start gap-6 mt-6 w-full'>
             {cardsInfo.map((card) => (
               <div
                 key={card.title}
                 onClick={() => handleCardClick(card.title)}
                 className={`flex flex-col bg-white ${
                   currentCardInfo === card.title
-                    ? "border border-h-info shadow-md"
-                    : "border-none border-transparent shadow-sm"
+                    ? 'border border-h-info shadow-md'
+                    : 'border-none border-transparent shadow-sm'
                 }  rounded-md p-4 w-full lg:max-w-64 transition ease-in-out hover:shadow-md hover:scale-105 duration-200 cursor-pointer`}
               >
-                <div className="flex items-center justify-between mb-3">
-                  <Text size="h5" color="secondary" weight="regular">
+                <div className='flex items-center justify-between mb-3'>
+                  <Text size='h5' color='secondary' weight='regular'>
                     {card.title}
                   </Text>
-                  <Text size="h5" color="secondary" weight="regular">
+                  <Text size='h5' color='secondary' weight='regular'>
                     {card.currency}
                   </Text>
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <Text size="h5" color={getColorByInfo(card)} weight="medium">
-                    {getValueByInfo(card).toLocaleString("es-CO", {
-                      style: "currency",
-                      currency: "COP",
+                <div className='flex items-center justify-between'>
+                  <Text
+                    size='h5'
+                    color={getColorByInfo(card)}
+                    weight='medium'
+                    sx='mr-2'
+                  >
+                    {getValueByInfo(card).toLocaleString('es-CO', {
+                      style: 'currency',
+                      currency: 'COP',
                       minimumFractionDigits: 0,
                       maximumFractionDigits: 0,
                     })}
                   </Text>
                   {currentCardInfo === card.title && (
-                    <Text size="text-3" color="info" weight="regular">
-                      {card.title === "Ingresos"
+                    <Text size='text-3' color='info' weight='regular'>
+                      {card.title === 'Ingresos'
                         ? `${getIncomeCount()} registros`
-                        : card.title === "Gastos"
+                        : card.title === 'Gastos'
                         ? `${getExpenseCount()} registros`
-                        : movements.length + " registros"}
+                        : movements.length + ' registros'}
                     </Text>
                   )}
                 </div>

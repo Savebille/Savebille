@@ -222,7 +222,7 @@ const NewCategoryModal: React.FC<NewCategoryModalProps> = ({
                     <FormControl>
                       <div className='flex items-center'>
                         <button
-                          onClick={handleActiveCategoryColors}
+                          onClick={handleActiveCategoryIcons}
                           type='button'
                         >
                           <Image
