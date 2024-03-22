@@ -4,17 +4,14 @@ import Text from '../../../components/Text';
 import { getCategoriesByUserId, getCurrentUser } from '@/lib/appwrite/api';
 import CustomLoader from '@/components/shared/CustomLoader';
 import NewCategoryModal from '@/_root/pages/categories/components/NewCategoryModal';
-import {
-  TrendDown,
-  TrendUp,
-} from '@phosphor-icons/react';
+import { TrendDown, TrendUp } from '@phosphor-icons/react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Divider from '@/components/Divider';
 import {
-  customCategoryIcons,
   defaultExpenseCategories,
   defaultIncomeCategories,
 } from '@/shared/constants/data';
+import { getColorByName, getIconByName } from '@/shared/utils/general.utils';
 
 export interface Categories {
   $id: string;
@@ -48,41 +45,6 @@ const Categories: React.FC = () => {
   useEffect(() => {
     getUserCategories();
   }, []);
-
-  const getIconByName = (iconName: string) => {
-    const foundIcon = customCategoryIcons.find(
-      (icon) => icon.name === iconName
-    );
-
-    return foundIcon?.icon;
-  };
-
-  const getColorByName = (name: string) => {
-    switch (name) {
-      case 'green':
-        return 'bg-h-success';
-      case 'blue':
-        return 'bg-[#3498DB]';
-      case 'red':
-        return 'bg-h-error';
-      case 'gray':
-        return 'bg-h-gray';
-      case 'orange':
-        return 'bg-ct-orange';
-      case 'purple':
-        return 'bg-ct-purple';
-      case 'yellow':
-        return 'bg-ct-yellow';
-      case 'lightGreen':
-        return 'bg-ct-lightGreen';
-      case 'darkGreen':
-        return 'bg-ct-darkGreen';
-      case 'primary':
-        return 'bg-h-primary';
-      default:
-        return 'bg-h-blue-light';
-    }
-  };
 
   return (
     <div className='w-full flex flex-col'>

@@ -25,13 +25,15 @@ import { useCreateMovement } from '@/lib/react-query/queries';
 import { useUserContext } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { MovementValidation } from '@/lib/validation';
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import {
   defaultExpenseCategories,
   defaultIncomeCategories,
 } from '@/shared/constants/data';
 import CategorySelector from '@/components/CategorySelector';
 import { DialogClose } from '@/components/ui/dialog';
+import { Categories } from '@/_root/pages/categories';
+import { getCategoriesByUserId, getCurrentUser } from '@/lib/appwrite/api';
 
 interface NewMovementModalProps {
   fetchMovements: () => void;
@@ -102,6 +104,30 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
   };
 
   const [activateCloseModal, setActivateCloseModal] = useState(false);
+
+  const [categories, setCategories] = useState<Categories[]>([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+
+  const getUserCategories = async () => {
+    try {
+      setIsLoadingCategories(true);
+      const currentAccount = await getCurrentUser();
+      //@ts-ignore
+      const response: Categories[] = await getCategoriesByUserId(
+        currentAccount?.$id
+      );
+      setCategories(response);
+      setIsLoadingCategories(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoadingCategories(false);
+    }
+  };
+
+  useEffect(() => {
+    getUserCategories();
+  }, []);
 
   return (
     <Modal
@@ -286,7 +312,17 @@ const NewMovementModal: React.FC<NewMovementModalProps> = ({
                 render={({ field }) => (
                   <FormItem>
                     <CategorySelector
-                      options={
+                      isLoadingCategories={isLoadingCategories}
+                      userOptions={
+                        selectedType === 'Ingreso'
+                          ? categories.filter(
+                              (category) => category.type === 'ingreso'
+                            )
+                          : categories.filter(
+                              (category) => category.type === 'gasto'
+                            )
+                      }
+                      defaultOptions={
                         selectedType === 'Ingreso'
                           ? defaultIncomeCategories
                           : defaultExpenseCategories

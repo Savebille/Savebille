@@ -9,6 +9,7 @@ import {
   TrendUp,
 } from '@phosphor-icons/react';
 import IMAGES from '../constants/images';
+import { customCategoryIcons } from '../constants/data';
 
 const getIconByCategory = (category: string) => {
   switch (category) {
@@ -59,4 +60,37 @@ const getIconByCategory = (category: string) => {
   }
 };
 
-export { getIconByCategory };
+const getColorByName = (name: string) => {
+  switch (name) {
+    case 'green':
+      return 'bg-h-success';
+    case 'blue':
+      return 'bg-[#3498DB]';
+    case 'red':
+      return 'bg-h-error';
+    case 'gray':
+      return 'bg-h-gray';
+    case 'orange':
+      return 'bg-ct-orange';
+    case 'purple':
+      return 'bg-ct-purple';
+    case 'yellow':
+      return 'bg-ct-yellow';
+    case 'lightGreen':
+      return 'bg-ct-lightGreen';
+    case 'darkGreen':
+      return 'bg-ct-darkGreen';
+    case 'primary':
+      return 'bg-h-primary';
+    default:
+      return 'bg-h-blue-light';
+  }
+};
+
+const getIconByName = (iconName: string) => {
+  const foundIcon = customCategoryIcons.find((icon) => icon.name === iconName);
+
+  return foundIcon?.icon;
+};
+
+export { getIconByCategory, getColorByName, getIconByName };
