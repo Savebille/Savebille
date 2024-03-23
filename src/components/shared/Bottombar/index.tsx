@@ -130,23 +130,32 @@ const Bottombar: React.FC = () => {
     {
       label: 'Ayuda',
       icon: <Info size={20} color='var(--h-secondary)' />,
-      onClick: () => navigate(ROUTES.HELP),
+      onClick: () => {
+        navigate(ROUTES.HELP);
+        setShowAccountMenu(false);
+      },
     },
     {
       label: 'Categorias',
       icon: <Book size={20} color='var(--h-secondary)' />,
-      onClick: () => navigate(ROUTES.CATEGORIES),
+      onClick: () => {
+        navigate(ROUTES.CATEGORIES);
+        setShowAccountMenu(false);
+      },
     },
     {
       label: 'Cerrar Sesión',
       icon: <SignOut size={20} color='var(--h-secondary)' />,
-      onClick: () => navigate(ROUTES.SIGN_IN),
+      onClick: () => {
+        navigate(ROUTES.SIGN_IN);
+        setShowAccountMenu(false);
+      },
     },
   ];
 
   return (
     <>
-      <div className='bg-h-gray-input flex w-full fixed bottom-0 lg:hidden z-10'>
+      <div className='bg-h-gray-input flex w-full sticky bottom-0 lg:hidden z-50'>
         <div className='flex w-3/4 '>
           <ul className='flex w-full text-base items-center justify-between border-t border-h-gray'>
             {options.map((option) => (
@@ -176,7 +185,7 @@ const Bottombar: React.FC = () => {
       </div>
 
       {showAccountMenu && (
-        <div className='bg-h-white shadow fixed bottom-[61px] right-0 rounded-l-xl w-[200px] lg:hidden'>
+        <div className='bg-h-white shadow fixed bottom-[61px] right-0 rounded-l-xl w-[200px] lg:hidden z-50'>
           <ul className='flex flex-col w-full h-auto  items-center'>
             {settingsOptions.map((item) => (
               <li

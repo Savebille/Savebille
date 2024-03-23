@@ -1,13 +1,12 @@
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import React from "react";
+} from '@/components/ui/dialog';
+import React from 'react';
 interface ModalProps {
   triggerContent: React.ReactNode;
   mainContent?: React.ReactNode;
@@ -23,7 +22,6 @@ const Modal = ({
   description,
   mainContent,
   hasHeader,
-  closeModal,
 }: ModalProps) => {
   return (
     <Dialog>
@@ -36,15 +34,13 @@ const Modal = ({
         {hasHeader && (
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
-            {description && <DialogDescription>{description}</DialogDescription>}
+            {description && (
+              <DialogDescription>{description}</DialogDescription>
+            )}
           </DialogHeader>
         )}
 
-        {mainContent} 
-
-        <DialogClose asChild>
-          {closeModal && <button>Cerrar</button>}
-        </DialogClose>
+        {mainContent}
       </DialogContent>
     </Dialog>
   );
