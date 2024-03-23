@@ -74,7 +74,7 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
           </Text>
         </div>
 
-        <Accordion type='single' collapsible className='block lg:hidden'>
+        <Accordion type='single' collapsible className='block lg:hidden h-auto'>
           {data.map((data) => (
             <AccordionItem
               key={data.$id}
