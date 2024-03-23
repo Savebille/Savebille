@@ -63,13 +63,13 @@ const Categories: React.FC = () => {
           <CustomLoader color='#3183ff' height={44} width={44} />
         </div>
       ) : (
-        <Tabs defaultValue='incomes' className='w-96 mt-4'>
+        <Tabs defaultValue='incomes' className='w-full lg:max-w-96 mt-6'>
           <TabsList className='grid w-full grid-cols-2'>
             <TabsTrigger value='incomes'>Ingresos</TabsTrigger>
             <TabsTrigger value='expenses'>Gastos</TabsTrigger>
           </TabsList>
           <TabsContent value='incomes'>
-            <div className='border border-h-gray flex flex-col rounded-md p-4 mt-4 overflow-auto max-h-[650px]'>
+            <div className='border border-h-gray flex flex-col rounded-md p-4 mt-4 overflow-auto lg:max-h-[650px]'>
               <Text size='h5' weight='medium' sx='mb-3 mt-3'>
                 Mis categorías
               </Text>
@@ -151,7 +151,7 @@ const Categories: React.FC = () => {
           </TabsContent>
 
           <TabsContent value='expenses'>
-            <div className='border border-h-gray flex flex-col rounded-md p-4 mt-4 overflow-auto max-h-[650px]'>
+            <div className='border border-h-gray flex flex-col rounded-md p-4 mt-4 overflow-auto lg:max-h-[650px]'>
               <Text size='h5' weight='medium' sx='mb-3 mt-3'>
                 Mis categorías
               </Text>
