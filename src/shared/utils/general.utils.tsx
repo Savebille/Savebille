@@ -1,24 +1,24 @@
 import { customCategoryIcons } from '../constants/data';
 
-export const extractIconName = (category: string) => {
+const extractIconName = (category: string) => {
   const extract = category.split(',');
 
   return getMovementIcon(extract[0]?.trim());
 };
 
-export const extractCategoryName = (category: string) => {
+const extractCategoryName = (category: string) => {
   const extract = category.split(',');
 
   return extract[1]?.trim();
 };
 
-export const extractColorName = (category: string) => {
+const extractColorName = (category: string) => {
   const extract = category.split(',');
 
   return extract[2]?.trim();
 };
 
-export const getMovementIcon = (iconName: string) => {
+const getMovementIcon = (iconName: string) => {
   const foundIcon = customCategoryIcons.filter(
     (icon) => icon.name === iconName
   );
@@ -32,4 +32,10 @@ const getIconByName = (iconName: string) => {
   return foundIcon?.icon;
 };
 
-export { getIconByName };
+export {
+  getIconByName,
+  extractIconName,
+  extractCategoryName,
+  extractColorName,
+  getMovementIcon,
+};
