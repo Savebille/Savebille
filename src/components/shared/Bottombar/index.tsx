@@ -155,7 +155,7 @@ const Bottombar: React.FC = () => {
 
   return (
     <>
-      <div className='bg-h-gray-input flex w-full sticky bottom-0 lg:hidden z-50'>
+      <div className='bg-h-gray-input flex w-full flex-shrink-0 sticky bottom-0 lg:hidden z-50'>
         <div className='flex w-3/4 '>
           <ul className='flex w-full text-base items-center justify-between border-t border-h-gray'>
             {options.map((option) => (

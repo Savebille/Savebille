@@ -13,9 +13,9 @@ const Topbar: React.FC = () => {
   const { user, isLoading: isUserLoading } = useUserContext();
 
   return (
-    <div className='flex w-full relative'>
+    <div className='flex w-full sticky top-0 z-50 lg:relative flex-shrink-0'>
       {/* NAVBAR MOBILE */}
-      <div className='bg-h-white w-full h-auto flex flex-col justify-between px-6 py-2 lg:hidden gap-2 border-b border-h-gray sticky top-0 z-10'>
+      <div className='bg-h-white w-full h-auto flex flex-col justify-between px-6 py-2 lg:hidden gap-2 border-b border-h-gray '>
         {/* UP */}
         <div className='w-full flex items-center justify-between h-[50px]'>
           {/* Logo */}
@@ -59,7 +59,7 @@ const Topbar: React.FC = () => {
       </div>
 
       {/* NAVBAR DESKTOP */}
-      <div className='bg-h-white hidden lg:flex lg:justify-between lg:items-center w-full h-[100px] border-b border-h-gray p-6 gap-6 sticky top-0 z-10'>
+      <div className='bg-h-white hidden lg:flex lg:justify-between lg:items-center w-full h-[100px] border-b border-h-gray p-6 gap-6 '>
         {/* Left Side */}
         <div className='bg-h-gray-input flex items-center justify-between lg:w-[400px] rounded-md h-11 p-2 border-2 border-h-gray'>
           <SearchInput
