@@ -179,13 +179,13 @@ const MovementList: React.FC<MovementListProps> = ({ data }) => {
               </Text>
             </div>
 
-            <div className='flex items-center justify-start w-[14.3%]'>
+            <div className='flex items-center justify-center w-[14.3%]'>
               <Text size='text-1' color='secondary' weight='regular'>
                 {truncateDescription(data.description)}
               </Text>
             </div>
 
-            <div className='flex items-center justify-start w-[14.3%]'>
+            <div className='flex items-center justify-center w-[14.3%]'>
               <div
                 className={`${extractColorName(
                   data.category
